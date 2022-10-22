@@ -1,13 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
-import { configureStore } from "redux";
+import App from './components/App.js';
+import rootReducer from './reducers/index.js';
+import { configureStore } from '@reduxjs/toolkit';
 import { Provider } from "react-redux";
 import reportWebVitals from './reportWebVitals';
 
 // create reducer for user model
-const store = configureStore(reducer)
+const store = configureStore({ 
+  reducer: rootReducer,
+  devTools: window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
