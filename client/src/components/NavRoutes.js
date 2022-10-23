@@ -5,8 +5,7 @@ import { logoutUser } from "../reducers/userSlice";
 function NavRoutes(){
     const dispatch = useDispatch();
 
-    function logout(event){
-        event.preventDefault();
+    function logout(){
         dispatch(logoutUser());
     };
 

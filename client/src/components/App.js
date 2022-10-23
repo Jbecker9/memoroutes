@@ -8,16 +8,18 @@ import { showUser } from "../reducers/userSlice.js"
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((state)=>state.user.entities);
+  console.log(user.error)
 
   useEffect(() => {
     dispatch(showUser())
   }, [dispatch]);
 
-  return (
-    <div className="App-Div">
-      { user ? <NavRoutes /> : <Login /> }
-    </div>
-  );
+  if (user.error){
+    return <Login />
+  } else {
+    return <NavRoutes />
+  }
+    
 }
 
 export default App;
