@@ -1,8 +1,9 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { createNewUser } from "../reducers/userSlice";
 
-function CreateUserForm(){
+function CreateUserForm({ closeForm }){
     const [newUserFormData, setNewUserFormData] = useState({
         username: "",
         password: "",
@@ -10,37 +11,53 @@ function CreateUserForm(){
     })
     const dispatch = useDispatch();
 
+    function handleSubmit(event){
+        event.preventDefault();
+        console.log(newUserFormData);
+        dispatch(createNewUser(newUserFormData));
+        setNewUserFormData({
+            username: "",
+            password: "",
+            password_confirmation: ""
+        })
+    }
+
     function handleChange(event){
-        const key = event.target.name
+        const name = event.target.name
         const value = event.target.value
 
         setNewUserFormData({
             ...newUserFormData,
-            [key]: value
+            [name]: value
         });
+
+        closeForm()
     };
 
-    function handleSubmit(event){
-        event.preventDefault();
-        dispatch(fetchUser());
-    }
 
     return(
         <div className="CreateUserForm-div">
+            <button className="CreateUserForm-closeButton" onClick={()=>closeForm()} > X </button>
             <form onSubmit={handleSubmit} >
                 <input 
                     onChange={handleChange}
+                    name="username"
+                    value={newUserFormData.username}
                     placeholder="Username..."
                     className="CreateUserForm-input"
                 />
                 <input
                     onChange={handleChange}
+                    value={newUserFormData.password}
+                    name="password"
                     placeholder="Password..."
                     type='password'
                     className="CreateUserForm-input"
                 />
-                <input 
+                <input
                     onChange={handleChange}
+                    value={newUserFormData.password_confirmation}
+                    name="password_confirmation"
                     placeholder="Password Confirmation..."
                     type='password'
                     className="CreateUserForm-input"

@@ -8,7 +8,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
     end
 
     def create
-        user = user.Create!(user_params)
+        user = User.create!(user_params)
         render json: user
     end
 
@@ -19,7 +19,7 @@ private
     end
 
     def user_params
-        params.permit(:username, :password_digest)
+        params.permit(:username, :password, :password_confirmation)
     end
 
     def render_unauthorized_response

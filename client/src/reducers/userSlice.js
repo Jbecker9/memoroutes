@@ -1,47 +1,82 @@
-export function fetchUser(){
-    return function (dispatch) {
-        dispatch({ type: "user/loading" });
-        fetch("/login")
-            .then((r)=>r.json())
-            .then((user)=> dispatch({
-                type: "user/loaded",
-                payload: user
-            }));
-    };
-};
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export function fetchNewUser(){
-    return function (dispatch) {
-        dispatch({ type: "user/loading" });
-        fetch("/signup", {
-            method: "POST",
-            headers: {
-                "Content/Type": "application/json"
-            }
-        })
-    }
-}
+export const showUser = createAsyncThunk("user/showUser", () => {
+    return fetch("/me").then((r)=>r.json()).then((user) => user)
+})
+
+export const loginUser = createAsyncThunk("/user/loginUser", (userData) => {
+    return fetch("/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userData)
+    }).then((r)=>r.json())
+        .then((user) => user)
+});
+
+export const logoutUser = createAsyncThunk("/user/logoutUser", () => {
+    return fetch("/logout",{
+        method: "DELETE"
+    }).then((r)=>r.json())
+});
+
+export const createNewUser = createAsyncThunk("/user/createNewUser", (newUserData) => {
+    return fetch("/signup", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newUserData)
+    }).then((r)=>r.json())
+        .then((user) => user)
+});
 
 const initialState = {
     entities: [],
     status: "idle"
 };
 
-export default function usersReducer(state = initialState, action){
-    switch(action.type){
-        case "user/loaded":
-            return {
-                status: "idle",
-                entities: action.payload
-            };
+const userSlice = createSlice({
+    name: "user",
+    initialState,
+    reducers: {
+        userCheck(state, action){
+            state.entities.push(action.payload);
+        },
+    },
+    extraReducers: {
+        [showUser.pending](state){
+            state.status = "loading";
+        },
+        [showUser.fulfilled](state, action){
+            state.entities = action.payload;
+            state.status = "idle";
+        },
+        [loginUser.pending](state){
+            state.status = "loading";
+        },
+        [loginUser.fulfilled](state, action){
+            state.entities = action.payload;
+            state.status = "idle";
+        },
+        [createNewUser.pending](state){
+            state.status = "loading";
+        },
+        [createNewUser.fulfilled](state, action){
+            state.entities = action.payload;
+            state.status = "idle";
+        },
+        [logoutUser.pending](state){
+            state.status = "loading"
+        },
+        [logoutUser.fulfilled](state){
+            state.entities = []
+            state.status = "idle"
+        }
+    },
+});
 
-        case "user/loading":
-            return {
-                ...state,
-                status: "loading"
-            };
+export const { userCheck } = userSlice.actions;
 
-        default:
-            return state;
-    };
-};
+export default userSlice.reducer

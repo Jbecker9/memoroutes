@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { fetchUser } from "../reducers/userSlice";
+import { loginUser } from "../reducers/userSlice";
 
-function LoginForm({ setCreateUserClick }){
+function LoginForm({ closeForm }){
     const [loginFormData, setLoginFormData] = useState({
         username: "",
         password: ""
@@ -21,7 +21,7 @@ function LoginForm({ setCreateUserClick }){
 
     function handleSubmit(event){
         event.preventDefault();
-        dispatch(fetchUser());
+        dispatch(loginUser(loginFormData));
     }
 
     return(
@@ -29,18 +29,22 @@ function LoginForm({ setCreateUserClick }){
             <form onSubmit={handleSubmit} >
                 <input 
                     onChange={handleChange}
+                    value={loginFormData.username}
+                    name="username"
                     placeholder="Username..."
                     className="LoginForm-input"
                 />
                 <input 
                     onChange={handleChange}
+                    value={loginFormData.password}
+                    name="password"
                     placeholder="Password..."
                     type='password'
                     className="LoginForm-input"
                 />
                 <button> Login </button>
             </form>
-            <button onClick={setCreateUserClick(true)}> Create a New User </button>
+            <button onClick={()=>closeForm()}> Create a New User </button>
         </div>
     );
 };
