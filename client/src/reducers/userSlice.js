@@ -18,7 +18,7 @@ export const loginUser = createAsyncThunk("/user/loginUser", (userData) => {
 export const logoutUser = createAsyncThunk("/user/logoutUser", () => {
     return fetch("/logout",{
         method: "DELETE"
-    }).then((r)=>r.json())
+    }).then((r)=>r.json()).then((user) => user)
 });
 
 export const createNewUser = createAsyncThunk("/user/createNewUser", (newUserData) => {
@@ -41,8 +41,8 @@ const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        userCheck(state, action){
-            state.entities.push(action.payload);
+        userCheck(state){
+            state.status = "idle"
         },
     },
     extraReducers: {
@@ -71,7 +71,7 @@ const userSlice = createSlice({
             state.status = "loading"
         },
         [logoutUser.fulfilled](state){
-            state.entities = []
+            state.entities = null
             state.status = "idle"
         }
     },

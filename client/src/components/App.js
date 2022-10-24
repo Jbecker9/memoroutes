@@ -7,15 +7,15 @@ import { showUser } from "../reducers/userSlice.js"
 
 function App() {
   const dispatch = useDispatch();
-  const user = useSelector((state)=>state.user.entities);
-  console.log(user.error)
+  const user = useSelector((state)=>state.user);
+  console.log(user)
 
   useEffect(() => {
     dispatch(showUser())
-  }, [dispatch]);
+  }, []);
 
-  if (user.error){
-    return <Login />
+  if (user){
+    return <Login  />
   } else {
     return <NavRoutes />
   }
