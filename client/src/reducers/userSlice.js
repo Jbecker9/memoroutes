@@ -71,7 +71,7 @@ const userSlice = createSlice({
             state.status = "loading"
         },
         [logoutUser.fulfilled](state){
-            state.entities = null
+            state.entities = []
             state.status = "idle"
         }
     },

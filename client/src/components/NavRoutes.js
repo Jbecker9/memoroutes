@@ -1,20 +1,24 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { logoutUser } from "../reducers/userSlice";
+import React, { useState } from "react";
+import WelcomePage from "./WelcomePage";
+import { Route, Routes } from "react-router-dom"
+import UserPage from "./UserPage";
+import NavBar from "./NavBar";
+import "../styles/NavRoutes.css";
+
 
 function NavRoutes(){
-    const dispatch = useDispatch();
-    const user = useSelector((state) => state.entities)
-
-    function logout(){
-        dispatch(logoutUser());
-        console.log(user)
-    };
+    const [showMenu, setShowMenu] = useState(null)
 
     return(
         <div className="NavRoutes-div">
-            Hello
-            <button onClick={()=>logout()}> Logout </button>
+            <div className="NavRoutes-navBarContainer">
+                <div className="NavRoutesMenuButton" onClick={()=>setShowMenu(!showMenu)} > { showMenu ? "Close Menu" : "Menu" } </div>
+                { showMenu ? <NavBar /> : null }
+            </div>
+            <Routes>
+                <Route path="/" element={<WelcomePage />} />
+                <Route path="/userPage" element={<UserPage />} />
+            </Routes>
         </div>
     )
 }

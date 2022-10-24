@@ -1,21 +1,15 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useContext } from "react";
+import { UserContext } from "../context/user";
 import "../styles/App.css"
 import Login from "./Login";
 import NavRoutes from "./NavRoutes";
-import { showUser } from "../reducers/userSlice.js"
+
 
 function App() {
-  const dispatch = useDispatch();
-  const user = useSelector((state)=>state.user);
-  console.log(user)
+  const { user } = useContext(UserContext);
 
-  useEffect(() => {
-    dispatch(showUser())
-  }, []);
-
-  if (user){
-    return <Login  />
+  if (!user){
+    return <Login />
   } else {
     return <NavRoutes />
   }

@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-import { loginUser } from "../reducers/userSlice";
+import React, { useContext, useState } from "react";
+import { UserContext } from "../context/user";
 
 function LoginForm({ closeForm }){
     const [loginFormData, setLoginFormData] = useState({
         username: "",
         password: ""
     });
-    const dispatch = useDispatch();
+    const { setUser } = useContext(UserContext);
 
     function handleChange(event){
         const key = event.target.name
@@ -21,8 +20,16 @@ function LoginForm({ closeForm }){
 
     function handleSubmit(event){
         event.preventDefault();
-        dispatch(loginUser(loginFormData));
-    }
+        fetch("/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(loginFormData)
+        }).then((r)=>r.json())
+            .then((user) => setUser(user))
+    };
+    
 
     return(
         <div className="LoginForm-div">
