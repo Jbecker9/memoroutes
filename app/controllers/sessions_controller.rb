@@ -15,4 +15,10 @@ class SessionsController < ApplicationController
         head :no_content
     end
 
+private
+
+    def verify_user
+        user = User.find_by(id: session[:user_id])
+    end
+    
 end

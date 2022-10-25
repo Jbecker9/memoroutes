@@ -8,10 +8,18 @@ function UserProvider({ children }) {
     useEffect(() => {
         fetch("/me")
           .then((r)=>r.json())
-            .then((user) => setUser(user))
+            .then((user) => {
+              { user.error ? setUser(null) : setUser(user) }
+            })
       }, []);
 
-    return <UserContext.Provider value={{ user, setUser }}>{ children }</UserContext.Provider>
+    function fetchLogout(){
+      fetch("/logout", {
+        method: "DELETE"
+      }).then(()=> setUser(null))
+    }
+
+    return <UserContext.Provider value={{ user, setUser, fetchLogout }}>{ children }</UserContext.Provider>
 };
 
 export { UserContext, UserProvider };

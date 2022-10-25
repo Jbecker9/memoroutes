@@ -4,11 +4,11 @@ import { UserContext } from "../context/user";
 import "../styles/NavBar.css"
 
 function NavBar(){
-    const { setUser } = useContext(UserContext)
+    const { fetchLogout } = useContext(UserContext)
 
-    function logout(){
-        setUser(null)
-    };
+    // function logout(){
+    //     setUser(null)
+    // };
 
     const linkStyles = {
         width: "97%",
@@ -25,10 +25,6 @@ function NavBar(){
         boxShadow: "0px 0px 5px rgb(121, 121, 121)",
       };
 
-    const activeLinkStyles = {
-        backgroundColor: "rgb(192, 192, 192)"
-    }
-
     return(
         <div className="NavBar-div">
             <Link 
@@ -36,12 +32,6 @@ function NavBar(){
             style={linkStyles}
             >
                 Welcome Page
-            </Link>
-            <Link
-            to="/userPage"
-            style={linkStyles}
-            >
-                Profile 
             </Link>
             <Link
             to="/mapPage"
@@ -55,7 +45,19 @@ function NavBar(){
             >
                 Road Trips
             </Link>
-            <div onClick={logout} className="NavBar-logOutButton"> Logout </div>
+            <Link
+            to="/statesPage"
+            style={linkStyles}
+            >
+                States
+            </Link>
+            <Link
+            to="/userPage"
+            style={linkStyles}
+            >
+                Profile 
+            </Link>
+            <div onClick={()=>fetchLogout()} className="NavBar-logOutButton"> Logout </div>
         </div>
     )
 }
