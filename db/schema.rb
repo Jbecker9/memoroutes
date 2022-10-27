@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_22_174728) do
+ActiveRecord::Schema[7.0].define(version: 2022_10_27_194814) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,44 +22,45 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_22_174728) do
   end
 
   create_table "departures", force: :cascade do |t|
-    t.string "address"
+    t.string "location_name"
+    t.integer "city_id"
+    t.string "stop_format_type"
+    t.bigint "stop_format_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["stop_format_type", "stop_format_id"], name: "index_departures_on_stop_format"
   end
 
   create_table "destinations", force: :cascade do |t|
-    t.string "address"
+    t.string "location_name"
+    t.integer "city_id"
+    t.string "stop_format_type"
+    t.bigint "stop_format_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["stop_format_type", "stop_format_id"], name: "index_destinations_on_stop_format"
   end
 
-  create_table "favorite_stops", force: :cascade do |t|
+  create_table "liked_routes", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "pit_stop_id"
+    t.integer "road_trip_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "locations", force: :cascade do |t|
-    t.string "location_format_type"
-    t.bigint "location_format_id"
-    t.string "city_state_type"
-    t.bigint "city_state_id"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["city_state_type", "city_state_id"], name: "index_locations_on_city_state"
-    t.index ["location_format_type", "location_format_id"], name: "index_locations_on_location_format"
   end
 
   create_table "pit_stops", force: :cascade do |t|
-    t.string "address"
+    t.string "location_name"
+    t.integer "city_id"
+    t.string "stop_format_type"
+    t.bigint "stop_format_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["stop_format_type", "stop_format_id"], name: "index_pit_stops_on_stop_format"
   end
 
   create_table "road_trips", force: :cascade do |t|
     t.string "name"
+    t.integer "creator_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
