@@ -1,3 +1,4 @@
 class City < ApplicationRecord
-    has_many :locations, as: city_state
+    belongs_to :state
+    has_many :locations 
 end

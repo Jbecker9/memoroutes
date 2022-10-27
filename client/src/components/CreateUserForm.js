@@ -20,6 +20,7 @@ function CreateUserForm({ closeForm }){
             password: "",
             password_confirmation: ""
         })
+        closeForm()
     }
 
     function handleChange(event){
@@ -30,8 +31,6 @@ function CreateUserForm({ closeForm }){
             ...newUserFormData,
             [name]: value
         });
-
-        closeForm()
     };
 
 
