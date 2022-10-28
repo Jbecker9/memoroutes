@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import "../styles/NewRouteForm.css"
+import NewRouteFormDeparture from "./NewRouteFormDeparture";
 
 function NewRouteForm({ startingPoint, setStartingPoint }){
+  const [newTrip, setNewTrip] = useState(null)
 
     function handleChange(event){
         let name = event.target.name
@@ -10,22 +13,20 @@ function NewRouteForm({ startingPoint, setStartingPoint }){
         })
     }
 
+    function handleTripNameChange(event){
+      setNewTrip({ name: event.target.default })
+    }
+
     return(
-        <div>
+        <div className="NewRouteForm-div">
           Hello
           <form>
             <input 
-            placeholder="State"
-            name="state"
-            value={startingPoint.state}
-            onChange={handleChange}
+            placeholder="Trip Name..."
+            name="trip_name"
+            onChange={handleTripNameChange}
             />
-            <input 
-            placeholder="City"
-            name="city"
-            value={startingPoint.city}
-            onChange={handleChange}
-            />
+            { newTrip ? <NewRouteFormDeparture startingPoint={startingPoint} setStartingPoint={setStartingPoint} /> : null }
           </form>
         </div>
     )

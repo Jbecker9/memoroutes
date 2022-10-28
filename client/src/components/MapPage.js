@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { GoogleMap, InfoWindow, LoadScript } from '@react-google-maps/api'
+import { GoogleMap, LoadScript } from '@react-google-maps/api'
 import "../styles/MapPage.css"
 import NewRouteForm from "./NewRouteForm";
 
@@ -15,7 +15,7 @@ function MapPage(){
           city: ""
     })
 
-    function findCityState(geoInfo, locationType){
+    function findCityOrState(geoInfo, locationType){
        return geoInfo.results[0].address_components.find((addressComponent) => addressComponent.types.includes(locationType)).long_name
     }
 
@@ -29,24 +29,30 @@ function MapPage(){
                         lng: event.latLng.lng(),
                     },
                     zoom: 10,
-                    state: findCityState(locationData, "administrative_area_level_1"),
-                    city: findCityState(locationData, "locality")
+                    state: findCityOrState(locationData, "administrative_area_level_1"),
+                    city: findCityOrState(locationData, "locality")
             });
-            setShowNewRouteForm(true)
+            
         })
+    }
+
+    function handleNewRouteClick(){
+        setShowNewRouteForm(true)
     }
 
     return(
         <div className="MapPage-div">
             <div className="MapPage-map">
                 <LoadScript googleMapsApiKey="AIzaSyDBoExD9NToRJN8IGok7pUCySpw10SRVAE">
-                    { showNewRouteForm ? <NewRouteForm startingPoint={startingPoint} setStartingPoint={setStartingPoint} /> : null }
                     <GoogleMap
                     mapContainerClassName="MapPage-map"
                     center={startingPoint.coordinates}
                     zoom={startingPoint.zoom}
                     onClick={handleMapClick}
                     >
+                        <div>
+                            { showNewRouteForm ? <NewRouteForm startingPoint={startingPoint} setStartingPoint={setStartingPoint} /> : <button className="MapPage-newRouteButton" onClick={handleNewRouteClick} > Create New Route </button> }
+                        </div>
                     </GoogleMap>
                 </LoadScript>
             </div>

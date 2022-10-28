@@ -1,4 +1,4 @@
 class PitStop < ApplicationRecord
     belongs_to :city
-    belongs_to :stop_format, polymorphic: true, optional: true
+    belongs_to :stop_format, polymorphic: true, optional: true 
 end

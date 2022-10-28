@@ -8,7 +8,7 @@
 
 .MapPage-map{
     height: 100vh;
-    width: 98%;
+    width: 99%;
 }
 
 .MapPage-newRouteButton{
@@ -49,4 +49,9 @@
     position: absolute;
     left: 87%;
     margin-left: -120px;
+}
+
+.MapPage-newRouteButton{
+    position: absolute;
+    left: 50%
 }
