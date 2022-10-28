@@ -8,50 +8,24 @@
 
 .MapPage-map{
     height: 100vh;
-    width: 99%;
+    width: 100%;
+    position: flex;
 }
 
-.MapPage-newRouteButton{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.MapPage-mapContainer{
     margin: auto;
-    padding: 5px;
-}
-
-.MapPage-searchLocationInput{
-    box-sizing: border-box;
-    border: 1px solid transparent;
-    width: 240px;
-    height: 32px;
-    padding: 0 12px;
-    border-radius: 3px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    font-size: 14px;
-    outline: none;
-    text-overflow: ellipses;
-    position: absolute;
-    left: 50%;
-    margin-left: -120px;
-}
-
-.MapPage-searchLocationButton{
-    box-sizing: border-box;
-    border: 1px solid transparent;
-    width: auto;
-    height: 32px;
-    padding: 0 12px;
-    border-radius: 3px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    font-size: 14px;
-    outline: none;
-    text-overflow: ellipses;
-    position: absolute;
-    left: 87%;
-    margin-left: -120px;
+    height: 100vh;
+    width: 100%;
 }
 
 .MapPage-newRouteButton{
     position: absolute;
-    left: 50%
+    width: 25%;
+}
+
+.MapPage-formDiv{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }

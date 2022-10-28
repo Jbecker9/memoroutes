@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import { GoogleMap, LoadScript } from '@react-google-maps/api'
 import "../styles/MapPage.css"
-import NewRouteForm from "./NewRouteForm";
+import MapNewTripForm from "./MapNewTripForm";
+import MapActiveRouteContainer from "./MapActiveRouteContainer";
 
 function MapPage(){
-    const [showNewRouteForm, setShowNewRouteForm] = useState(false)
+    const [activeTrip, setActiveTrip] = useState(null)
+    const [newTripFormRender, setNewTripFormRender] = useState(false)
     const [startingPoint, setStartingPoint] = useState({
         coordinates: {
             lat: 39.82818518880172,
@@ -36,13 +38,9 @@ function MapPage(){
         })
     }
 
-    function handleNewRouteClick(){
-        setShowNewRouteForm(true)
-    }
-
     return(
         <div className="MapPage-div">
-            <div className="MapPage-map">
+            <div className="MapPage-mapContainer">
                 <LoadScript googleMapsApiKey="AIzaSyDBoExD9NToRJN8IGok7pUCySpw10SRVAE">
                     <GoogleMap
                     mapContainerClassName="MapPage-map"
@@ -51,7 +49,10 @@ function MapPage(){
                     onClick={handleMapClick}
                     >
                         <div>
-                            { showNewRouteForm ? <NewRouteForm startingPoint={startingPoint} setStartingPoint={setStartingPoint} /> : <button className="MapPage-newRouteButton" onClick={handleNewRouteClick} > Create New Route </button> }
+                            <div className="MapPage-formDiv">
+                                { newTripFormRender ? <MapNewTripForm setNewTripFormRender={setNewTripFormRender} setActiveTrip={setActiveTrip} /> : <button className="MapPage-newRouteButton" onClick={()=>setNewTripFormRender(true)}> Create A New Trip! </button> }
+                            </div>
+                            { activeTrip ? <MapActiveRouteContainer activeTrip={activeTrip} /> : <button> Make Trip Options Here </button> }
                         </div>
                     </GoogleMap>
                 </LoadScript>

@@ -43,13 +43,13 @@ function NavBar(){
             to="/roadTripsPage"
             style={linkStyles}
             >
-                Road Trips
+                Discover Road Trips
             </Link>
             <Link
             to="/statesPage"
             style={linkStyles}
             >
-                States
+                Search by State
             </Link>
             <Link
             to="/userPage"
