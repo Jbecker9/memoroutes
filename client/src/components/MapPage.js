@@ -6,7 +6,7 @@ import MapActiveRouteContainer from "./MapActiveRouteContainer";
 
 function MapPage(){
     const [activeTrip, setActiveTrip] = useState(null)
-    const [newTripFormRender, setNewTripFormRender] = useState(false)
+    const [renderNewTripForm, setRenderNewTripForm] = useState(false)
     const [startingPoint, setStartingPoint] = useState({
         coordinates: {
             lat: 39.82818518880172,
@@ -50,9 +50,9 @@ function MapPage(){
                     >
                         <div>
                             <div className="MapPage-formDiv">
-                                { newTripFormRender ? <MapNewTripForm setNewTripFormRender={setNewTripFormRender} setActiveTrip={setActiveTrip} /> : <button className="MapPage-newRouteButton" onClick={()=>setNewTripFormRender(true)}> Create A New Trip! </button> }
+                                { renderNewTripForm ? <MapNewTripForm setRenderNewTripForm={setRenderNewTripForm} setActiveTrip={setActiveTrip} /> : <button className="MapPage-newRouteButton" onClick={()=>setRenderNewTripForm(true)}> Create A New Trip! </button> }
                             </div>
-                            { activeTrip ? <MapActiveRouteContainer activeTrip={activeTrip} /> : <button> Make Trip Options Here </button> }
+                            { activeTrip ? <MapActiveRouteContainer startingPoint={startingPoint} activeTrip={activeTrip} /> : <button> Make Trip Options Here </button> }
                         </div>
                     </GoogleMap>
                 </LoadScript>

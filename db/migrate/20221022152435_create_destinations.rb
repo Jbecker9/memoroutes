@@ -3,7 +3,7 @@ class CreateDestinations < ActiveRecord::Migration[7.0]
     create_table :destinations do |t|
       t.string :location_name
       t.integer :city_id
-      t.references :stop_format, polymorphic: true
+      t.integer :road_trip_id
 
       t.timestamps
     end

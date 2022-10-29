@@ -11,14 +11,14 @@ class RoadTripsController < ApplicationController
     def create
         user = find_user
         number_of_trips = user.road_trips.length
-        trip = user.road_trips.create(name: "Road Trip ##{number_of_trips + 1}", user_id: session[:user_id])
+        new_trip = user.road_trips.create(road_trip_params)
         render json: user
     end
 
 private
 
-    def permit_params
-        params.permit(:name, :creator_id)
+    def road_trip_params
+        params.permit(:name)
     end
 
     def find_user

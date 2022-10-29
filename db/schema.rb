@@ -24,21 +24,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_27_194814) do
   create_table "departures", force: :cascade do |t|
     t.string "location_name"
     t.integer "city_id"
-    t.string "stop_format_type"
-    t.bigint "stop_format_id"
+    t.integer "road_trip_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["stop_format_type", "stop_format_id"], name: "index_departures_on_stop_format"
   end
 
   create_table "destinations", force: :cascade do |t|
     t.string "location_name"
     t.integer "city_id"
-    t.string "stop_format_type"
-    t.bigint "stop_format_id"
+    t.integer "road_trip_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["stop_format_type", "stop_format_id"], name: "index_destinations_on_stop_format"
   end
 
   create_table "liked_routes", force: :cascade do |t|
@@ -51,11 +47,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_27_194814) do
   create_table "pit_stops", force: :cascade do |t|
     t.string "location_name"
     t.integer "city_id"
-    t.string "stop_format_type"
-    t.bigint "stop_format_id"
+    t.integer "road_trip_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["stop_format_type", "stop_format_id"], name: "index_pit_stops_on_stop_format"
   end
 
   create_table "road_trips", force: :cascade do |t|

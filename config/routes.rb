@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get '/me', to: 'users#show'
   post '/signup', to: 'users#create'
 
-  resources :road_trips, only: [:index, :create]
+  resources :road_trips, only: [:index, :create] do
+    resources :departures, only: [:create]
+  end
   
 end

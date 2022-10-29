@@ -1,5 +1,5 @@
 class Departure < ApplicationRecord
     belongs_to :city
-    belongs_to :stop_format, polymorphic: true
-    accepts_nested_attributes_for :city, :stop_format
+    belongs_to :road_trip
+    accepts_nested_attributes_for :city
 end
