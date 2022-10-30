@@ -3,7 +3,7 @@ import { UserContext } from "../context/user";
 import "../styles/MapNewTripForm.css"
 
 function MapNewTripForm({ setActiveTrip, setRenderNewTripForm, setStartingPoint, startingPoint }){
-    const { setUser } = useContext(UserContext)
+    const { setUser, user } = useContext(UserContext)
 
     function handleNameChange(event){
         let name = event.target.name
@@ -24,10 +24,19 @@ function MapNewTripForm({ setActiveTrip, setRenderNewTripForm, setStartingPoint,
         })
           .then((response)=>response.json())
           .then((userData)=>{
-            console.log(userData)
             setUser(userData);
             setRenderNewTripForm(false);
             setActiveTrip(userData.road_trips[userData.road_trips.length-1]);
+            setStartingPoint({
+              name: `${user.username}'s Road Trip #${user.road_trips.length + 1}`,
+              coordinates: {
+                  lat: 39.82818518880172,
+                  lng: -98.57938314610301
+                },
+              zoom: 5,
+              state: "",
+              city: ""
+          })
           })
       }
 

@@ -10,15 +10,10 @@ class RoadTripsController < ApplicationController
 
     def create
         user = find_user
-        trip = user.road_trips.create(road_trip_params)
+        trip = user.road_trips.create(name: params[:name])
         state = State.find_or_create_by(name: params[:state])
-        if find_city(state)
-            city = find_city(state)
-            departure = trip.create_departure(city_id: city.id)
-        else
-            city = state.cities.create(name: params[:city])
-            departure = trip.create_departure(city_id: city.id)
-        end
+        city = City.find_or_create_by(name: params[:city], state_id: state.id)
+        departure = trip.create_departure(city_id: city.id)
         render json: user
     end
 

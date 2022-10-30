@@ -10,14 +10,14 @@ function MapPage(){
     const [activeTrip, setActiveTrip] = useState(null)
     const [renderNewTripForm, setRenderNewTripForm] = useState(false)
     const [startingPoint, setStartingPoint] = useState({
+        name: `${user.username}'s Road Trip #${user.road_trips.length + 1}`,
         coordinates: {
             lat: 39.82818518880172,
             lng: -98.57938314610301
           },
         zoom: 5,
         state: "",
-        city: "",
-        name: `${user.username}'s Road Trip #${user.road_trips.length + 1}`
+        city: ""
     })
 
     function findCityOrState(geoInfo, locationType){
@@ -29,6 +29,7 @@ function MapPage(){
             .then((res)=>res.json())
             .then((locationData) => { 
                 setStartingPoint({
+                    name: startingPoint.name,
                     coordinates: {
                         lat: event.latLng.lat(),
                         lng: event.latLng.lng(),

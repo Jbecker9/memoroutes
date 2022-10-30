@@ -2,6 +2,7 @@ import React from "react";
 import "../styles/MapActiveRouteContainer.css"
 
 function MapActiveRouteContainer({ activeTrip }){
+    console.log(activeTrip)
 
     return(
         <div className="MapActiveRouteContainer-div">
