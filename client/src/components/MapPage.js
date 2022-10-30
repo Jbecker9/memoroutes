@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { GoogleMap, LoadScript } from '@react-google-maps/api'
 import "../styles/MapPage.css"
 import MapNewTripForm from "./MapNewTripForm";
 import MapActiveRouteContainer from "./MapActiveRouteContainer";
+import { UserContext } from "../context/user";
 
 function MapPage(){
+    const { user } = useContext(UserContext)
     const [activeTrip, setActiveTrip] = useState(null)
     const [renderNewTripForm, setRenderNewTripForm] = useState(false)
     const [startingPoint, setStartingPoint] = useState({
@@ -12,9 +14,10 @@ function MapPage(){
             lat: 39.82818518880172,
             lng: -98.57938314610301
           },
-          zoom: 5,
-          state: "",
-          city: ""
+        zoom: 5,
+        state: "",
+        city: "",
+        name: `${user.username}'s Road Trip #${user.road_trips.length + 1}`
     })
 
     function findCityOrState(geoInfo, locationType){
@@ -50,7 +53,7 @@ function MapPage(){
                     >
                         <div>
                             <div className="MapPage-formDiv">
-                                { renderNewTripForm ? <MapNewTripForm setRenderNewTripForm={setRenderNewTripForm} setActiveTrip={setActiveTrip} /> : <button className="MapPage-newRouteButton" onClick={()=>setRenderNewTripForm(true)}> Create A New Trip! </button> }
+                                { renderNewTripForm ? <MapNewTripForm startingPoint={startingPoint} setRenderNewTripForm={setRenderNewTripForm} setActiveTrip={setActiveTrip} setStartingPoint={setStartingPoint} /> : <button className="MapPage-newRouteButton" onClick={()=>setRenderNewTripForm(true)}> Create A New Trip! </button> }
                             </div>
                             { activeTrip ? <MapActiveRouteContainer startingPoint={startingPoint} activeTrip={activeTrip} /> : <button> Make Trip Options Here </button> }
                         </div>
