@@ -13,7 +13,7 @@ class RoadTripsController < ApplicationController
         trip = user.road_trips.create(name: params[:name])
         state = State.find_or_create_by(name: params[:state])
         city = City.find_or_create_by(name: params[:city], state_id: state.id)
-        departure = trip.create_departure(city_id: city.id, state_id: state.id, latitude: params[:coordinates][:lat], longitude: params[:coordinates][:lng])
+        departure = trip.create_departure!(city_id: city.id, state_id: state.id, lat: params[:coordinates][:lat], lng: params[:coordinates][:lng]).save
         render json: user
     end
 

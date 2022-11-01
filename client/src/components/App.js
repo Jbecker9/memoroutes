@@ -13,7 +13,7 @@ function App() {
     window.addEventListener('unload', fetchLogout)
   }, [])
 
-  if (!user){
+  if (!user || user.error){
     return <Login />
   } else {
     return <NavRoutes />
