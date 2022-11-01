@@ -13,7 +13,6 @@ function CreateUserForm({ closeForm }){
 
     function handleSubmit(event){
         event.preventDefault();
-        console.log(newUserFormData);
         dispatch(createNewUser(newUserFormData));
         setNewUserFormData({
             username: "",

@@ -16,8 +16,8 @@ function MapPage(){
             lng: -98.57938314610301
           },
         zoom: 5,
-        state: "",
-        city: ""
+        state: "Kansas",
+        city: "Lebanon"
     })
 
     function findCityOrState(geoInfo, locationType){

@@ -25,10 +25,11 @@ function MapNewTripForm({ setActiveTrip, setRenderNewTripForm, setStartingPoint,
           .then((response)=>response.json())
           .then((userData)=>{
             setUser(userData);
+            console.log(userData)
             setRenderNewTripForm(false);
             setActiveTrip(userData.road_trips[userData.road_trips.length-1]);
             setStartingPoint({
-              name: `${user.username}'s Road Trip #${user.road_trips.length + 1}`,
+              name: `${user.username}'s Road Trip #${userData.road_trips.length + 1}`,
               coordinates: {
                   lat: 39.82818518880172,
                   lng: -98.57938314610301

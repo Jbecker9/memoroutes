@@ -1,10 +1,12 @@
 import React from "react";
 
-function UserPageTrip(){
+function UserPageTrip({ trip }){
+    console.log(trip)
 
     return(
         <div>
-            Trip
+            <h2>{ trip.name }</h2>
+            <h4>{ trip.departure.city }</h4>
         </div>
     )
 }
