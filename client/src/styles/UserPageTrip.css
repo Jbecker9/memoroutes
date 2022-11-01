@@ -1,0 +1,39 @@
+.UserPageTrip-tripCardDiv{
+
+}
+
+.UserPageTrip-tripCardTripContents{
+    border-style: solid;
+    margin: auto;
+    width: 98%;
+    overflow: hidden;
+}
+
+.UserPageTrip-tripTitleH2{
+    text-align: center;
+    text-decoration: underline;
+}
+
+.UserPageTrip-tripCardDeparture{
+    float: left;
+    margin-left: 10px;
+}
+
+.UserPageTrip-tripCardDestination{
+    float: right;
+    margin-right: 10px;
+}
+
+.UserPageTrip-deleteTripButton{
+    float: right;
+    margin-right: 6px;
+}
+
+.UserPageTrip-pitStopsDiv{
+    text-align: center;
+}
+
+.UserPageTrip-showPitStopsButton{
+    margin: auto;
+    width: 50%;
+}

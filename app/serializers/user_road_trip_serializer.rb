@@ -1,5 +1,5 @@
 class UserRoadTripSerializer < ActiveModel::Serializer
-  attributes :id, :name, :departure
+  attributes :id, :name
   belongs_to :user
   has_one :departure
   has_one :destination

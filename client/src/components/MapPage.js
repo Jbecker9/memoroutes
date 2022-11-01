@@ -8,6 +8,7 @@ import { UserContext } from "../context/user";
 function MapPage(){
     const { user } = useContext(UserContext)
     const [activeTrip, setActiveTrip] = useState(null)
+    const [existingTripId, setExistingTripId] = useState(user.road_trips[0].id)
     const [renderNewTripForm, setRenderNewTripForm] = useState(false)
     const [startingPoint, setStartingPoint] = useState({
         name: `${user.username}'s Road Trip #${user.road_trips.length + 1}`,
@@ -42,24 +43,44 @@ function MapPage(){
         })
     }
 
+    function handleExistingTripOptionChange(event){
+        console.log(event.target.value)
+        setExistingTripId(event.target.value)
+    }
+
+    function handleExistingTripFormSubmit(event){
+        event.preventDefault();
+        fetch(`/road_trips/${existingTripId}`)
+            .then((response)=> response.json())
+            .then((tripData) => console.log(tripData))
+    }
+
     return(
-        <div className="MapPage-div">
-            <div className="MapPage-mapContainer">
-                <LoadScript googleMapsApiKey="AIzaSyDBoExD9NToRJN8IGok7pUCySpw10SRVAE">
-                    <GoogleMap
-                    mapContainerClassName="MapPage-map"
-                    center={startingPoint.coordinates}
-                    zoom={startingPoint.zoom}
-                    onClick={handleMapClick}
-                    >
-                        <div>
-                            <div className="MapPage-formDiv">
-                                { renderNewTripForm ? <MapNewTripForm startingPoint={startingPoint} setRenderNewTripForm={setRenderNewTripForm} setActiveTrip={setActiveTrip} setStartingPoint={setStartingPoint} /> : <button className="MapPage-newRouteButton" onClick={()=>setRenderNewTripForm(true)}> Create A New Trip! </button> }
+        <div>
+            <form onSubmit={handleExistingTripFormSubmit}>
+                <select onChange={handleExistingTripOptionChange} className="MapPage-selectExistingTrip" defaultValue={user.road_trips[0].id} >
+                    { user.road_trips.map((roadTrip) => <option label={roadTrip.name} value={roadTrip.id} key={roadTrip.id} />) }
+                </select>
+                <button> Set Active Trip! </button>
+            </form>
+            <div className="MapPage-div">
+                <div className="MapPage-mapContainer">
+                    <LoadScript googleMapsApiKey="AIzaSyDBoExD9NToRJN8IGok7pUCySpw10SRVAE">
+                        <GoogleMap
+                        mapContainerClassName="MapPage-map"
+                        center={startingPoint.coordinates}
+                        zoom={startingPoint.zoom}
+                        onClick={handleMapClick}
+                        >
+                            <div>
+                                <div className="MapPage-formDiv">
+                                    { renderNewTripForm ? <MapNewTripForm startingPoint={startingPoint} setRenderNewTripForm={setRenderNewTripForm} setActiveTrip={setActiveTrip} setStartingPoint={setStartingPoint} /> : <button className="MapPage-newRouteButton" onClick={()=>setRenderNewTripForm(true)}> Create A New Trip! </button> }
+                                </div>
+                                { activeTrip ? <MapActiveRouteContainer startingPoint={startingPoint} activeTrip={activeTrip} /> : <button> Make Trip Options Here </button> }
                             </div>
-                            { activeTrip ? <MapActiveRouteContainer startingPoint={startingPoint} activeTrip={activeTrip} /> : <button> Make Trip Options Here </button> }
-                        </div>
-                    </GoogleMap>
-                </LoadScript>
+                        </GoogleMap>
+                    </LoadScript>
+                </div>
             </div>
         </div>
     )
