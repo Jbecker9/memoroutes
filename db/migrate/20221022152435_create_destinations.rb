@@ -6,8 +6,8 @@ class CreateDestinations < ActiveRecord::Migration[7.0]
       t.integer :road_trip_id
       t.string :destination_city
       t.string :destination_state
-      t.string :latitude
-      t.string :longitude
+      t.string :lat
+      t.string :lng
 
       t.timestamps
     end

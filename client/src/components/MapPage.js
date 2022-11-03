@@ -8,7 +8,7 @@ import { UserContext } from "../context/user";
 function MapPage(){
     const { user } = useContext(UserContext)
     const [activeTrip, setActiveTrip] = useState(null)
-    const [existingTripId, setExistingTripId] = useState(user.road_trips[0].id)
+    const [existingTripId, setExistingTripId] = useState(1)
     const [renderNewTripForm, setRenderNewTripForm] = useState(false)
     const [startingPoint, setStartingPoint] = useState({
         name: `${user.username}'s Road Trip #${user.road_trips.length + 1}`,
@@ -20,6 +20,15 @@ function MapPage(){
         state: "Kansas",
         city: "Lebanon"
     })
+    console.log(user)
+
+    function populatedTripsCheck(){
+        if(user.road_trips.length <= 0){
+            return []
+        } else {
+            return user.road_trips[0].id
+        }
+    }
 
     function findCityOrState(geoInfo, locationType){
        return geoInfo.results[0].address_components.find((addressComponent) => addressComponent.types.includes(locationType)).long_name
@@ -52,13 +61,13 @@ function MapPage(){
         event.preventDefault();
         fetch(`/road_trips/${existingTripId}`)
             .then((response)=> response.json())
-            .then((tripData) => console.log(tripData))
+            .then((tripData) => setActiveTrip(tripData))
     }
 
     return(
         <div>
             <form onSubmit={handleExistingTripFormSubmit}>
-                <select onChange={handleExistingTripOptionChange} className="MapPage-selectExistingTrip" defaultValue={user.road_trips[0].id} >
+                <select onChange={handleExistingTripOptionChange} className="MapPage-selectExistingTrip" >
                     { user.road_trips.map((roadTrip) => <option label={roadTrip.name} value={roadTrip.id} key={roadTrip.id} />) }
                 </select>
                 <button> Set Active Trip! </button>
