@@ -1,17 +1,29 @@
-import React from "react";
+import React, { useContext } from "react";
+import { UserContext } from "../context/user";
 
-function MapDestinationForm({ setDestinationForm, startingPoint }){
+function MapDestinationForm({ setActiveTrip, activeTrip, setDestinationForm, startingPoint }){
+    const { setUser } = useContext(UserContext)
 
     function handleDestinationFormSubmit(event){
+        event.preventDefault()
         setDestinationForm(false)
+        fetch(`/road_trips/${activeTrip.id}/destinations`,{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(startingPoint)
+        }).then((response)=>response.json())
+            .then((userData)=>{
+                setUser(userData);
+                setActiveTrip(userData.road_trips.find((trip) => trip.id === activeTrip.id))
+            })
     }
 
     return(
         <div>
             <form onSubmit={handleDestinationFormSubmit}>
-                <h3>{startingPoint.city}</h3>
-                <h3>{startingPoint.state}</h3>
-                <button> Add Destination! </button>
+                <button> Add {startingPoint.city}, {startingPoint.state} as a Destination! </button>
             </form>
         </div>
     )

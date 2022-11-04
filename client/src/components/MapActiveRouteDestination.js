@@ -4,8 +4,8 @@ function MapActiveRouteDestination({ destination }){
 
     return(
         <div>
-            <h3>{ destination.city.name }</h3>
-            <h3>{ destination.state.name }</h3>
+            <h3>{ destination.destination_city }</h3>
+            <h3>{ destination.destination_state }</h3>
         </div>
     )
 }

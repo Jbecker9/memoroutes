@@ -5,8 +5,10 @@ class DestinationsController < ApplicationController
     def create
         user = find_user
         trip = user.road_trips.find_by(id: params[:road_trip_id])
-        byebug
-        dest = trip.destination.create(destination_params)
+        state = State.find_or_create_by(name: params[:state])
+        city = City.find_or_create_by(name: params[:city], state_id: state.id)
+        dest = trip.create_destination(city_id: city.id, state_id: state.id, destination_city: city.name, destination_state: state.name, lat: params[:coordinates][:lat], lng: params[:coordinates][:lng]).save
+        # byebug
         render json: user
     end
 

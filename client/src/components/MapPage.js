@@ -20,7 +20,6 @@ function MapPage(){
         state: "Kansas",
         city: "Lebanon"
     })
-    console.log(user)
 
     function populatedTripsCheck(){
         if(user.road_trips.length <= 0){
@@ -61,7 +60,15 @@ function MapPage(){
         event.preventDefault();
         fetch(`/road_trips/${existingTripId}`)
             .then((response)=> response.json())
-            .then((tripData) => setActiveTrip(tripData))
+            .then((tripData) => {
+                setActiveTrip(tripData)
+                setRenderNewTripForm(false)
+            })
+    }
+
+    function handleNewTripFormRender(){
+        setRenderNewTripForm(true)
+        setActiveTrip(false)
     }
 
     return(
@@ -83,9 +90,9 @@ function MapPage(){
                         >
                             <div>
                                 <div className="MapPage-formDiv">
-                                    { renderNewTripForm ? <MapNewTripForm startingPoint={startingPoint} setRenderNewTripForm={setRenderNewTripForm} setActiveTrip={setActiveTrip} setStartingPoint={setStartingPoint} /> : <button className="MapPage-newRouteButton" onClick={()=>setRenderNewTripForm(true)}> Create A New Trip! </button> }
+                                    { renderNewTripForm ? <MapNewTripForm startingPoint={startingPoint} setRenderNewTripForm={setRenderNewTripForm} setActiveTrip={setActiveTrip} setStartingPoint={setStartingPoint} /> : <button className="MapPage-newRouteButton" onClick={handleNewTripFormRender}> Create A New Trip! </button> }
                                 </div>
-                                { activeTrip ? <MapActiveRouteContainer startingPoint={startingPoint} activeTrip={activeTrip} /> : <button> Make Trip Options Here </button> }
+                                { activeTrip ? <MapActiveRouteContainer setActiveTrip={setActiveTrip} startingPoint={startingPoint} activeTrip={activeTrip} /> : <button> Make Trip Options Here </button> }
                             </div>
                         </GoogleMap>
                     </LoadScript>
