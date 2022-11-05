@@ -19,7 +19,7 @@ function MapActiveTrip({ startingPoint }){
                     <MapActiveTripDestination startingPoint={startingPoint} />
                 </div>
                 <div className="MapActiveTrip-pitStop" >  
-                    { pitStopForm ? <MapActiveTripPitStopForm setPitStopForm={setPitStopForm} /> : <button onClick={()=>setPitStopForm(true)}> Add a Pit Stop! </button> }
+                    { pitStopForm ? <MapActiveTripPitStopForm startingPoint={startingPoint} setPitStopForm={setPitStopForm} /> : <button onClick={()=>setPitStopForm(true)}> Add a Pit Stop! </button> }
                 </div>
         </div> 
     )

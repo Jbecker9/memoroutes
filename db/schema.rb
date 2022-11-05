@@ -54,8 +54,10 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_27_194814) do
 
   create_table "pit_stops", force: :cascade do |t|
     t.string "location_name"
-    t.string "latitude"
-    t.string "longitude"
+    t.string "lat"
+    t.string "lng"
+    t.string "stop_city"
+    t.string "stop_state"
     t.integer "city_id"
     t.integer "state_id"
     t.integer "road_trip_id"
