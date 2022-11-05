@@ -5,10 +5,23 @@ import "../styles/MapActiveTrip.css"
 import MapActiveTripDestination from "./MapActiveTripDestination";
 import MapActiveTripPitStopForm from "./MapActiveTripPitStopForm";
 
-function MapActiveTrip({ startingPoint }){
-    const { activeTrip } = useContext(UserContext)
+function MapActiveTrip({ setStartingPoint, startingPoint }){
+    const { activeTrip, user } = useContext(UserContext)
     const [pitStopForm, setPitStopForm] = useState(false)
+    console.log(user)
 
+    function findActiveTrip(){
+        return user.road_trips.find((trip) => trip.id === activeTrip.id )
+    }
+
+    function renderPitStopForm(){
+        setPitStopForm(true)
+        setStartingPoint({
+            ...startingPoint,
+            name: `Pit-Stop #${findActiveTrip().pit_stops.length + 1}`
+        })
+    }
+    
     return(
         <div className="MapActiveTrip-div">
                 <div className="MapActiveTrip-titleDiv">
@@ -19,7 +32,7 @@ function MapActiveTrip({ startingPoint }){
                     <MapActiveTripDestination startingPoint={startingPoint} />
                 </div>
                 <div className="MapActiveTrip-pitStop" >  
-                    { pitStopForm ? <MapActiveTripPitStopForm startingPoint={startingPoint} setPitStopForm={setPitStopForm} /> : <button onClick={()=>setPitStopForm(true)}> Add a Pit Stop! </button> }
+                    { pitStopForm ? <MapActiveTripPitStopForm setStartingPoint={setStartingPoint} startingPoint={startingPoint} setPitStopForm={setPitStopForm} /> : <button onClick={renderPitStopForm}> Add a Pit Stop! </button> }
                 </div>
         </div> 
     )

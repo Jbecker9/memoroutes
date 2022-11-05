@@ -43,7 +43,6 @@ function MapPage(){
     }
 
     function handleExistingTripOptionChange(event){
-        console.log(event.target.value)
         setExistingTripId(event.target.value)
     }
 
@@ -84,7 +83,7 @@ function MapPage(){
                         onClick={handleMapClick}
                         >
                             <div>
-                                { activeTrip ? <MapActiveTrip startingPoint={startingPoint} /> : null }
+                                { activeTrip ? <MapActiveTrip setStartingPoint={setStartingPoint} startingPoint={startingPoint} /> : null }
                             </div>
                         </GoogleMap>
                     </LoadScript>

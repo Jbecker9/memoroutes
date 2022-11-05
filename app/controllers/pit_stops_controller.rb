@@ -9,8 +9,7 @@ class PitStopsController < ApplicationController
         city = City.find_or_create_by(name: params[:city]) do |city|
             city.state_id = state.id
         end
-        stop = trip.pit_stops.create(location_name: params[:location_name], stop_city: city.name, stop_state: state.name, city_id: city.id, state_id: state.id, lat: params[:coordinates][:lat], lng: params[:coordinates][:lng])
-        # byebug
+        stop = trip.pit_stops.create(location_name: params[:name], stop_city: city.name, stop_state: state.name, city_id: city.id, state_id: state.id, lat: params[:coordinates][:lat], lng: params[:coordinates][:lng])
         render json: user
     end
 
