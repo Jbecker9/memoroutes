@@ -1,0 +1,7 @@
+.MapActiveTripDeparture-div{
+    position: absolute;
+    width: 25%;
+    top: 5%;
+    display: flex;
+    justify-content: center;
+}

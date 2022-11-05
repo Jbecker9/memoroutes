@@ -2,12 +2,11 @@ import React, { useContext, useState } from "react";
 import { GoogleMap, LoadScript } from '@react-google-maps/api'
 import "../styles/MapPage.css"
 import MapNewTripForm from "./MapNewTripForm";
-import MapActiveRouteContainer from "./MapActiveRouteContainer";
 import { UserContext } from "../context/user";
+import MapActiveTrip from "./MapActiveTrip";
 
 function MapPage(){
-    const { user } = useContext(UserContext)
-    const [activeTrip, setActiveTrip] = useState(null)
+    const { user, activeTrip, setActiveTrip } = useContext(UserContext)
     const [existingTripId, setExistingTripId] = useState(1)
     const [renderNewTripForm, setRenderNewTripForm] = useState(false)
     const [startingPoint, setStartingPoint] = useState({
@@ -20,14 +19,6 @@ function MapPage(){
         state: "Kansas",
         city: "Lebanon"
     })
-
-    function populatedTripsCheck(){
-        if(user.road_trips.length <= 0){
-            return []
-        } else {
-            return user.road_trips[0].id
-        }
-    }
 
     function findCityOrState(geoInfo, locationType){
        return geoInfo.results[0].address_components.find((addressComponent) => addressComponent.types.includes(locationType)).long_name
@@ -72,15 +63,19 @@ function MapPage(){
     }
 
     return(
-        <div>
+        <div className="MapPage-div">
+            <div className="MapPage-selectRouteDiv">
             <form onSubmit={handleExistingTripFormSubmit}>
                 <select onChange={handleExistingTripOptionChange} className="MapPage-selectExistingTrip" >
                     { user.road_trips.map((roadTrip) => <option label={roadTrip.name} value={roadTrip.id} key={roadTrip.id} />) }
                 </select>
                 <button> Set Active Trip! </button>
             </form>
-            <div className="MapPage-div">
-                <div className="MapPage-mapContainer">
+                <div className="MapPage-formDiv">
+                    { renderNewTripForm ? <MapNewTripForm startingPoint={startingPoint} setRenderNewTripForm={setRenderNewTripForm} setStartingPoint={setStartingPoint} /> : <button className="MapPage-newRouteButton" onClick={handleNewTripFormRender}> Create A New Trip! </button> }
+                </div>
+            </div>
+            <div className="MapPage-mapDiv">
                     <LoadScript googleMapsApiKey="AIzaSyDBoExD9NToRJN8IGok7pUCySpw10SRVAE">
                         <GoogleMap
                         mapContainerClassName="MapPage-map"
@@ -89,14 +84,10 @@ function MapPage(){
                         onClick={handleMapClick}
                         >
                             <div>
-                                <div className="MapPage-formDiv">
-                                    { renderNewTripForm ? <MapNewTripForm startingPoint={startingPoint} setRenderNewTripForm={setRenderNewTripForm} setActiveTrip={setActiveTrip} setStartingPoint={setStartingPoint} /> : <button className="MapPage-newRouteButton" onClick={handleNewTripFormRender}> Create A New Trip! </button> }
-                                </div>
-                                { activeTrip ? <MapActiveRouteContainer setActiveTrip={setActiveTrip} startingPoint={startingPoint} activeTrip={activeTrip} /> : <button> Make Trip Options Here </button> }
+                                { activeTrip ? <MapActiveTrip startingPoint={startingPoint} /> : null }
                             </div>
                         </GoogleMap>
                     </LoadScript>
-                </div>
             </div>
         </div>
     )

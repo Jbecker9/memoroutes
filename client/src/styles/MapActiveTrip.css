@@ -1,0 +1,37 @@
+.MapActiveTrip-titleDiv{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.MapActiveTrip-title{
+    position: absolute;
+}
+
+.MapActiveTrip-departure{
+    position: absolute;
+}
+
+.MapActiveTripDiv{
+    align-items: center;
+}
+
+.MapActiveTrip-destinationDiv{
+    position: absolute;
+    right: 0;
+    margin: auto;
+    width: 25%;
+    top: 5%;
+    display: flex;
+    justify-content: center;
+}
+
+.MapActiveTrip-pitStop{
+    position: absolute;
+    margin: auto;
+    width: 100%;
+    top: 10%;
+    display: flex;
+    justify-content: center;
+}

@@ -4,13 +4,19 @@ const UserContext = React.createContext();
 
 function UserProvider({ children }) {
     const [user, setUser] = useState(null)
+    const [loginError, setLoginError] = useState(null)
+    const [activeTrip, setActiveTrip] = useState(null)
 
     useEffect(() => {
         fetch("/me")
-          .then((r)=>r.json())
-            .then((user) => {
-              { user.error ? setUser(null) : setUser(user) }
-            })
+          .then((r)=>{
+            if (r.ok){
+              return r.json()
+            } else {
+              throw new Error("User not found")
+            }
+          }).then((userData)=>setUser(userData))
+            .catch((error)=> setLoginError(error))
       }, []);
 
     function fetchLogout(){
@@ -19,7 +25,7 @@ function UserProvider({ children }) {
       }).then(()=> setUser(null))
     }
 
-    return <UserContext.Provider value={{ user, setUser, fetchLogout }}>{ children }</UserContext.Provider>
+    return <UserContext.Provider value={{ user, setUser, fetchLogout, setActiveTrip, activeTrip, loginError }}>{ children }</UserContext.Provider>
 };
 
 export { UserContext, UserProvider };

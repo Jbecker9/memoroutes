@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { UserContext } from "../context/user";
 import "../styles/MapNewTripForm.css"
 
-function MapNewTripForm({ setActiveTrip, setRenderNewTripForm, setStartingPoint, startingPoint }){
-    const { setUser, user } = useContext(UserContext)
+function MapNewTripForm({ setRenderNewTripForm, setStartingPoint, startingPoint }){
+    const { setUser, user, setActiveTrip } = useContext(UserContext)
 
     function handleNameChange(event){
         let name = event.target.name
