@@ -13,6 +13,14 @@ class PitStopsController < ApplicationController
         render json: user
     end
 
+    def destroy
+        user = find_user
+        road_trip = user.road_trips.find_by!(id: params[:road_trip_id])
+        pit_stop = road_trip.pit_stops.find_by!(id: params[:id])
+        pit_stop.destroy
+        render json: user
+    end
+
 private
 
     def find_user

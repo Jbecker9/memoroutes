@@ -61,6 +61,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_27_194814) do
     t.integer "city_id"
     t.integer "state_id"
     t.integer "road_trip_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

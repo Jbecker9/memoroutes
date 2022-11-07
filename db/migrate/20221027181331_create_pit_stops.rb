@@ -9,6 +9,7 @@ class CreatePitStops < ActiveRecord::Migration[7.0]
       t.integer :city_id
       t.integer :state_id
       t.integer :road_trip_id
+      t.integer :user_id
 
       t.timestamps
     end

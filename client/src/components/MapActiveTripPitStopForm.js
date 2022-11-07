@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { UserContext } from "../context/user";
 
-function MapActiveTripPitStopForm({ setStartingPoint, startingPoint, setPitStopForm }){
+function MapActiveTripPitStopForm({ findActiveTrip, setStartingPoint, startingPoint, setPitStopForm }){
     const { activeTrip, setActiveTrip, setUser } = useContext(UserContext)
 
     function handleNameChange(event){
@@ -23,6 +23,7 @@ function MapActiveTripPitStopForm({ setStartingPoint, startingPoint, setPitStopF
                 }).then((response)=>response.json())
                     .then((userData) => {
                         setUser(userData);
+                        setActiveTrip(findActiveTrip(userData))
                         setPitStopForm(false);
                     })
     }

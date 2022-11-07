@@ -1,0 +1,16 @@
+.MapActiveTripPitStop-div{
+    border: 2px solid black;
+    margin: 0;
+    width: auto;
+    border-radius: 5px;
+    text-align: center;
+    /* border-style: solid black; */
+    background-color: #8ab4f8;
+    display: inline-block;
+}
+
+.MapActiveTripPitStop-textSpacing{
+    padding-left: 2px;
+    padding-right: 2px;
+    margin: 0;
+}
