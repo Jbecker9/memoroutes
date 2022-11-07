@@ -82,7 +82,7 @@ function MapPage(){
                         zoom={startingPoint.zoom}
                         onClick={handleMapClick}
                         >
-                            <div>
+                            <div className="MapPage-ActiveTripSideBarDiv">
                                 { activeTrip ? <MapActiveTrip setStartingPoint={setStartingPoint} startingPoint={startingPoint} /> : null }
                             </div>
                         </GoogleMap>

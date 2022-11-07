@@ -21,6 +21,7 @@ function NavBar(){
         cursor: "pointer",
         texAtlign: "center",
         border: "2px solid rgb(192, 192, 192)",
+        backgroundColor: "white",
         borderRadius: "5px",
         boxShadow: "0px 0px 5px rgb(121, 121, 121)",
       };

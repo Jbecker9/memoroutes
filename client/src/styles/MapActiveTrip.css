@@ -13,17 +13,24 @@
     position: absolute;
 }
 
-.MapActiveTripDiv{
-    align-items: center;
+.MapActiveTrip-div{
+    position: absolute;
+    margin: 0;
+    padding: 0;
+    width: 200px;
+    background-color: #8ab4f8;
+    /* position: fixed; */
+    height: 100%;
+    overflow: auto;
 }
 
 .MapActiveTrip-destinationDiv{
     position: absolute;
-    right: 0;
+    /* right: 0; */
     margin: auto;
     width: 25%;
-    top: 5%;
-    display: flex;
+    top: 25%;
+    /* display: flex; */
     justify-content: center;
 }
 
@@ -31,7 +38,10 @@
     position: absolute;
     margin: auto;
     width: 100%;
-    top: 10%;
+    top: 41%;
     display: flex;
+    border: none;
+    color: white;
+    background-color: #BBE2C6;
     justify-content: center;
 }
