@@ -1,47 +1,37 @@
 .MapActiveTrip-titleDiv{
-    position: absolute;
     width: 100%;
     display: flex;
-    justify-content: center;
-}
-
-.MapActiveTrip-title{
-    position: absolute;
-}
-
-.MapActiveTrip-departure{
-    position: absolute;
+    text-align: center;
+    text-decoration: underline;
 }
 
 .MapActiveTrip-div{
     position: absolute;
-    margin: 0;
-    padding: 0;
     width: 200px;
     background-color: #8ab4f8;
-    /* position: fixed; */
     height: 100%;
     overflow: auto;
 }
 
-.MapActiveTrip-destinationDiv{
-    position: absolute;
-    /* right: 0; */
+.MapActiveTrip-departureDiv{
     margin: auto;
-    width: 25%;
-    top: 25%;
-    /* display: flex; */
-    justify-content: center;
+    width: 100%;
+    display: flex;
+    text-align: center;
+}
+
+.MapActiveTrip-destinationDiv{
+    margin: auto;
+    width: 100%;
+    display: flex;
+
+    text-align: center;
 }
 
 .MapActiveTrip-pitStopFormButton{
-    position: absolute;
     margin: auto;
     width: 100%;
-    top: 41%;
     display: flex;
-    border: none;
-    color: white;
-    background-color: #BBE2C6;
+    /* background-color: #BBE2C6; */
     justify-content: center;
 }

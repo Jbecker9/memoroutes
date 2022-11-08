@@ -36,7 +36,9 @@ function MapActiveTrip({ setStartingPoint, startingPoint }){
                 <div className="MapActiveTrip-titleDiv">
                     <h2>{activeTrip.name}</h2>
                 </div>
+                <div className="MapActiveTrip-departureDiv">
                 <MapActiveTripDeparture />
+                </div>
                 <div className="MapActiveTrip-destinationDiv">
                     <MapActiveTripDestination startingPoint={startingPoint} />
                 </div>

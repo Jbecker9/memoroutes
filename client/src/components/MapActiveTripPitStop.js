@@ -13,7 +13,7 @@ function MapActiveTripPitStop({ findActiveTrip, setStartingPoint, pitStop }){
                 lat: parseInt(pitStop.lat),
                 lng: parseInt(pitStop.lng),
             },
-            zoom: 5,
+            zoom: 15,
             state: pitStop.stop_state,
             city: pitStop.stop_city
         })

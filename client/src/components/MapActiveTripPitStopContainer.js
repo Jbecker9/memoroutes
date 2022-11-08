@@ -9,7 +9,9 @@ function MapActiveTripPitStopContainer({ findActiveTrip, setStartingPoint }){
 
     return(
         <div className="MapActiveTripPitStopContainer-div">
+            <div className="MapActiveTripPitStopContainer-gridDiv">
             { activeTrip.pit_stops.map((pitStop) => <MapActiveTripPitStop findActiveTrip={findActiveTrip} setStartingPoint={setStartingPoint} pitStop={pitStop} key={pitStop.id} /> ) }
+            </div>
         </div>
     )
 }

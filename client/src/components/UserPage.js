@@ -9,9 +9,9 @@ function UserPage(){
     return(
         <div>
             <h1>{ user.username }</h1>
+            <p> To create a Road Trip visit the Map Page on the menu navigation!</p>
             <div>
                 { user.road_trips.map((trip) => <UserPageTrips key={trip.id} trip={trip} /> ) }
-                {/* <UserPageTripsCheck /> */}
             </div>
         </div>
     )

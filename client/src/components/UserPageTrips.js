@@ -1,18 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import UserPagePitStopContainer from "./UserPagePitStopContainer";
 import "../styles/UserPageTrip.css"
 
+
 function UserPageTrip({ trip }){
-    console.log(trip)
-
-    function renderDestination(){
-
-        return(
-            <div>
-                <h4>{ trip.destination.destination_city },</h4>
-                <h4>{ trip.destination.destination_state }</h4>
-            </div>
-        )
-    }
+    const [pitStopClick, setPitStopClick] = useState(false)
     
     return(
         <div className="UserPageTrip-tripCardDiv" >
@@ -24,11 +16,18 @@ function UserPageTrip({ trip }){
                     <h4>{ trip.departure.departure_state }</h4>
                 </div>
                 <div className="UserPageTrip-tripCardDestination">
-                    { trip.destination ? {renderDestination} : <h4> No destination </h4> }
+                    { trip.destination ? 
+                        <div>
+                            <h4>{ trip.destination.destination_city },</h4>
+                            <h4>{ trip.destination.destination_state }</h4>
+                        </div> 
+                    :   
+                        <h4> No destination </h4> 
+                    }
                 </div>
             </div>
             <div className="UserPageTrip-pitStopsDiv">
-                <button className="UserPageTrip-showPitStopsButton"> Show Pit Stops </button>
+                {pitStopClick ? <UserPagePitStopContainer setPitStopClick={setPitStopClick} pitStops={trip.pit_stops} /> : <button className="UserPageTrip-showPitStopsButton" onClick={()=>setPitStopClick(true)}> Show Pit Stops </button> }
             </div>
         </div>
     )
