@@ -3,8 +3,8 @@ import { UserContext } from "../context/user";
 import MapDestinationForm from "./MapDestinationForm"
 import "../styles/MapActiveTripDestination.css"
 
-function MapActiveTripDestination({ startingPoint }){
-    const { activeTrip } = useContext(UserContext)
+function MapActiveTripDestination(){
+    const { activeTrip, startingPoint } = useContext(UserContext)
     const [destinationForm, setDestinationForm] = useState(null)
 
     if (activeTrip.destination){

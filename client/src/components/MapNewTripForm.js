@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { UserContext } from "../context/user";
 import "../styles/MapNewTripForm.css"
 
-function MapNewTripForm({ setRenderNewTripForm, setStartingPoint, startingPoint }){
-    const { setUser, user, setActiveTrip } = useContext(UserContext)
+function MapNewTripForm(){
+    const { setUser, setActiveTrip, setStartingPoint, startingPoint, setRenderNewTripForm } = useContext(UserContext)
 
     function handleNameChange(event){
         let name = event.target.name
@@ -29,14 +29,14 @@ function MapNewTripForm({ setRenderNewTripForm, setStartingPoint, startingPoint 
             setRenderNewTripForm(false);
             setActiveTrip(userData.road_trips[userData.road_trips.length-1]);
             setStartingPoint({
-              name: `${user.username}'s Road Trip #${userData.road_trips.length + 1}`,
+              name: `Starting Point`,
               coordinates: {
                   lat: 39.82818518880172,
                   lng: -98.57938314610301
                 },
               zoom: 5,
-              state: "",
-              city: ""
+              state: "Lebanon",
+              city: "Kansas"
           })
           })
       }

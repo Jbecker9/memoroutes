@@ -1,13 +1,14 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../context/user";
 
-function MapActiveTripPitStopForm({ findActiveTrip, setStartingPoint, startingPoint, setPitStopForm }){
-    const { activeTrip, setActiveTrip, setUser } = useContext(UserContext)
+function MapActiveTripPitStopForm({ findActiveTrip }){
+    const { activeTrip, setActiveTrip, setUser, setPitStopForm, startingPoint, setStartingPoint } = useContext(UserContext)
 
     function handleNameChange(event){
         let name = event.target.name
         let value = event.target.value
         setStartingPoint({
+            ...startingPoint,
             [name]: value
         })
     }
@@ -25,6 +26,16 @@ function MapActiveTripPitStopForm({ findActiveTrip, setStartingPoint, startingPo
                         setUser(userData);
                         setActiveTrip(findActiveTrip(userData))
                         setPitStopForm(false);
+                        setStartingPoint({
+                            name: `Starting Point`,
+                            coordinates: {
+                                lat: 39.82818518880172,
+                                lng: -98.57938314610301
+                              },
+                            zoom: 5,
+                            state: "Kansas",
+                            city: "Lebanon"
+                        })
                     })
     }
             

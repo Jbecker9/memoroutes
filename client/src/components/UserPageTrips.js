@@ -27,7 +27,7 @@ function UserPageTrip({ trip }){
                 </div>
             </div>
             <div className="UserPageTrip-pitStopsDiv">
-                {pitStopClick ? <UserPagePitStopContainer setPitStopClick={setPitStopClick} pitStops={trip.pit_stops} /> : <button className="UserPageTrip-showPitStopsButton" onClick={()=>setPitStopClick(true)}> Show Pit Stops </button> }
+                {pitStopClick ? <UserPagePitStopContainer trip={trip} setPitStopClick={setPitStopClick} pitStops={trip.pit_stops} /> : <button className="UserPageTrip-showPitStopsButton" onClick={()=>setPitStopClick(true)}> Show Pit Stops </button> }
             </div>
         </div>
     )

@@ -1,15 +1,27 @@
 import React, { useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { UserContext } from "../context/user";
 import UserPageTrips from "./UserPageTrips"
 
 function UserPage(){
-    const { user } = useContext(UserContext)
+    const { user, setRenderNewTripForm, setPitStopForm, setStartingPoint, startingPoint } = useContext(UserContext)
+    const navigate = useNavigate()
     // console.log(user)
+
+    function createTripRedirect(){
+        setPitStopForm(false)
+        setStartingPoint({
+            ...startingPoint,
+            name: `${user.username}'s Road Trip #${user.road_trips.length + 1}`
+        })
+        setRenderNewTripForm(true)
+        navigate('/mapPage')
+    }
 
     return(
         <div>
             <h1>{ user.username }</h1>
-            <p> To create a Road Trip visit the Map Page on the menu navigation!</p>
+            <button onClick={createTripRedirect}> Create Trip! </button>
             <div>
                 { user.road_trips.map((trip) => <UserPageTrips key={trip.id} trip={trip} /> ) }
             </div>

@@ -18,13 +18,13 @@
 
 .MapPage-formDiv{
     position: absolute;
+    top: 6%;
     width: 100%;
-    float: right;
     display: flex;
     justify-content: center;
 }
 
-.MapPage-activeTripTitleDiv{
+.MapActiveTrip-activeTripTitleDiv{
     position: absolute;
     width: 100%;
     display: flex;

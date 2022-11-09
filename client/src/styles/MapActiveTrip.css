@@ -21,15 +21,14 @@
 }
 
 .MapActiveTrip-destinationDiv{
-    margin: auto;
+    margin: 5px;
     width: 100%;
     display: flex;
-
     text-align: center;
 }
 
 .MapActiveTrip-pitStopFormButton{
-    margin: auto;
+    padding: 5px;
     width: 100%;
     display: flex;
     /* background-color: #BBE2C6; */

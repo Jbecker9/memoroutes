@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :road_trips, only: [:index, :create, :show] do
     resources :departures, only: [:create]
     resources :destinations, only: [:create]
-    resources :pit_stops, only: [:create, :destroy]
+    resources :pit_stops, only: [:create, :update, :destroy]
   end
   
 end

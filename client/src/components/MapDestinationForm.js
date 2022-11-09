@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { UserContext } from "../context/user";
 
-function MapDestinationForm({ setDestinationForm, startingPoint }){
-    const { setUser } = useContext(UserContext)
+function MapDestinationForm({ setDestinationForm }){
+    const { setUser, startingPoint } = useContext(UserContext)
     const { activeTrip, setActiveTrip } = useContext(UserContext)
 
     function handleDestinationFormSubmit(event){

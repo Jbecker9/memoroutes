@@ -1,3 +1,7 @@
 .MapActiveTripDeparture-departureText{
     text-decoration: underline;
 }
+
+.MapActiveTripDeparture-div{
+    width: 100%;
+}
