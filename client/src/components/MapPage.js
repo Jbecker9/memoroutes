@@ -1,23 +1,30 @@
 import React, { useContext, useState } from "react";
-import {  GoogleMap, LoadScript, MarkerClusterer, Marker, Polyline } from '@react-google-maps/api'
+import {  GoogleMap, LoadScript, MarkerClusterer, Polyline, MarkerF } from '@react-google-maps/api'
 import "../styles/MapPage.css"
 import MapNewTripForm from "./MapNewTripForm";
 import { UserContext } from "../context/user";
 import MapActiveTrip from "./MapActiveTrip";
 
 function MapPage(){
-    const { user, activeTrip, setActiveTrip, startingPoint, setStartingPoint, renderNewTripForm, setRenderNewTripForm, path, fillPathContents, pathStops } = useContext(UserContext)
+    const { user, activeTrip, setActiveTrip, startingPoint, setStartingPoint, setPath, renderNewTripForm, setRenderNewTripForm, path, fillPathContents, pathStops } = useContext(UserContext)
     const [existingTripId, setExistingTripId] = useState(1)
     
     function findCityOrState(geoInfo, locationType){
        return geoInfo.results[0].address_components.find((addressComponent) => addressComponent.types.includes(locationType)).long_name
     }
-    console.log(path)
+    console.log(startingPoint)
 
     function handleMapClick(event){
         fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${event.latLng.lat()},${event.latLng.lng()}&key=AIzaSyDBoExD9NToRJN8IGok7pUCySpw10SRVAE`)
             .then((res)=>res.json())
-            .then((locationData) => { 
+            .then((locationData) => {
+                if(activeTrip.departure && !activeTrip.destination){
+                    setPath([
+                        { lat: parseFloat(activeTrip.departure.lat), lng: parseFloat(activeTrip.departure.lng) },
+                        { lat: event.latLng.lat(), lng: event.latLng.lng() }
+
+                    ])
+                }
                 setStartingPoint({
                     name: startingPoint.name,
                     coordinates: {
@@ -43,6 +50,7 @@ function MapPage(){
             .then((tripData) => {
                 setActiveTrip(tripData)
                 fillPathContents(tripData)
+                console.log(tripData)
                 setRenderNewTripForm(false)
             })
     }
@@ -50,7 +58,6 @@ function MapPage(){
     function handleNewTripFormRender(){
         setRenderNewTripForm(true)
         setActiveTrip(false)
-
         setStartingPoint({
             ...startingPoint,
             name: `${user.username}'s Road Trip #${user.road_trips.length + 1}`
@@ -72,8 +79,12 @@ function MapPage(){
         zIndex: 1
       };
 
-    function createKey(location){
-        return location.lat + location.lng
+    function createLocation(location){
+        let locationLat = parseInt(location.lat)
+        let locationLng = parseInt(location.lng)
+        const locCoords = { locationLat, locationLng }
+        console.log(locCoords)
+        return locCoords
     }
 
     return(
@@ -95,15 +106,15 @@ function MapPage(){
                         zoom={startingPoint.zoom}
                         onClick={handleMapClick}
                         >
-                            {/* { activeTrip?.pit_stops ? 
-                            <MarkerClusterer>
+                            { activeTrip?.pit_stops ?
+                            <MarkerClusterer >
                                 {(clusterer) => 
-                                pathStops.map((location) => (
-                                    <Marker key={()=>createKey(location)} position={location} clusterer={clusterer} />
+                                activeTrip?.pit_stops.map((location) => (
+                                    <MarkerF key={location.id} position={{ lat: parseFloat(location.lat), lng: parseFloat(location.lng) }} clusterer={clusterer} />
                                 ))}
                             </MarkerClusterer> 
                             : null 
-                            } */}
+                            }
                             { activeTrip ? <Polyline path={path} options={styling} /> : null }
                             <div className="MapPage-formDiv">
                                 { renderNewTripForm ? <MapNewTripForm /> : <button className="MapPage-newRouteButton" onClick={handleNewTripFormRender}> Create A New Trip! </button> }

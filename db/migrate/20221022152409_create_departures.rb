@@ -6,8 +6,8 @@ class CreateDepartures < ActiveRecord::Migration[7.0]
       t.integer :road_trip_id
       t.string :departure_city
       t.string :departure_state
-      t.string :lat
-      t.string :lng
+      t.decimal :lat, precision: 16, scale: 14
+      t.decimal :lng, precision: 16, scale: 14
 
       t.timestamps
     end
