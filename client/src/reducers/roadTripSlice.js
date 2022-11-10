@@ -1,7 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const showUser = createAsyncThunk("user/showUser", () => {
-    return fetch("/me").then((r)=>r.json()).then((user) => user)
+export const fetchRoadTrips = createAsyncThunk("roadTrips/fetchRoadTrips", () => {
+    return fetch("/road_trips")
+            .then((response)=>response.json())
+            .then((roadTripData) => roadTripData)
 })
 
 export const loginUser = createAsyncThunk("/user/loginUser", (userData) => {
@@ -37,19 +39,19 @@ const initialState = {
     status: "idle"
 };
 
-const userSlice = createSlice({
-    name: "user",
+const roadTripSlice = createSlice({
+    name: "roadTrips",
     initialState,
     reducers: {
-        userCheck(state){
+        getRoadTrips(state){
             state.status = "idle"
         },
     },
     extraReducers: {
-        [showUser.pending](state){
+        [fetchRoadTrips.pending](state){
             state.status = "loading";
         },
-        [showUser.fulfilled](state, action){
+        [fetchRoadTrips.fulfilled](state, action){
             state.entities = action.payload;
             state.status = "idle";
         },
@@ -77,6 +79,6 @@ const userSlice = createSlice({
     },
 });
 
-export const { userCheck } = userSlice.actions;
+export const { getRoadTrips } = roadTripSlice.actions;
 
-export default userSlice.reducer
+export default roadTripSlice.reducer

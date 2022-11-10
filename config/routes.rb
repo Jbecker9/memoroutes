@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get '/me', to: 'users#show'
   post '/signup', to: 'users#create'
 
+  get "/road_trips_by_length/:format", to: "road_trips#index_by_length"
+
   resources :road_trips, only: [:index, :create, :show] do
     resources :departures, only: [:create]
     resources :destinations, only: [:create]

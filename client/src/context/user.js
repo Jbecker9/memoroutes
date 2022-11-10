@@ -9,6 +9,11 @@ function UserProvider({ children }) {
     const [pitStopForm, setPitStopForm] = useState(false)
     const [renderNewTripForm, setRenderNewTripForm] = useState(false)
     const [renderUpdatePitStopForm, setRenderUpdatePitStopForm] = useState(false)
+    const [path, setPath] = useState([
+      {lat: parseInt(activeTrip?.departure.lat), lng: parseInt(activeTrip?.departure.lng)},
+      {lat: parseInt(activeTrip?.destination.lat), lng: parseInt(activeTrip?.destination.lng)}
+    ])
+    const [pathStops, setPathStops] = useState(activeTrip?.pit_stops?.map((stop) => { return { lat: parseInt(stop.lat), lng: parseInt(stop.lng) } }))
     const [startingPoint, setStartingPoint] = useState({
       name: `Starting Point`,
       coordinates: {
@@ -18,7 +23,7 @@ function UserProvider({ children }) {
       zoom: 5,
       state: "Kansas",
       city: "Lebanon"
-  })
+    })
 
     useEffect(() => {
         fetch("/me")
@@ -38,7 +43,15 @@ function UserProvider({ children }) {
       }).then(()=> setUser(null))
     }
 
-    return <UserContext.Provider value={{ user, setUser, fetchLogout, setActiveTrip, activeTrip, loginError, pitStopForm, setPitStopForm, startingPoint, setStartingPoint, renderNewTripForm, setRenderNewTripForm, renderUpdatePitStopForm, setRenderUpdatePitStopForm }}>{ children }</UserContext.Provider>
+    function fillPathContents(route){
+      setPath([
+        { lat: parseInt(route.departure.lat), lng: parseInt(route.departure.lng) },
+        { lat: parseInt(route.destination?.lat), lng: parseInt(route.destination?.lng) }
+      ])
+      setPathStops(activeTrip?.pit_stops?.map((stop) => { return { lat: parseInt(stop.lat), lng: parseInt(stop.lng) } }))
+    }
+
+    return <UserContext.Provider value={{ user, setUser, fetchLogout, setActiveTrip, activeTrip, loginError, pitStopForm, setPitStopForm, startingPoint, setStartingPoint, renderNewTripForm, setRenderNewTripForm, renderUpdatePitStopForm, setRenderUpdatePitStopForm, path, setPath, pathStops, setPathStops, fillPathContents }}>{ children }</UserContext.Provider>
 };
 
 export { UserContext, UserProvider };

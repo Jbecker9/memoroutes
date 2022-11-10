@@ -1,10 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import usersReducer from "./userSlice";
+import roadTripsReducer from "./roadTripSlice"
 
 const store = configureStore({
     reducer: {
-        user: usersReducer,
-        // devTools: window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+        roadTrips: roadTripsReducer
     }
 });
 

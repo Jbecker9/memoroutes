@@ -1,7 +1,6 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { createNewUser } from "../reducers/userSlice";
 
 function CreateUserForm({ closeForm }){
     const [newUserFormData, setNewUserFormData] = useState({
@@ -9,17 +8,24 @@ function CreateUserForm({ closeForm }){
         password: "",
         password_confirmation: ""
     })
-    const dispatch = useDispatch();
 
     function handleSubmit(event){
         event.preventDefault();
-        dispatch(createNewUser(newUserFormData));
-        setNewUserFormData({
-            username: "",
-            password: "",
-            password_confirmation: ""
-        })
-        closeForm()
+        fetch("/signup",{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newUserFormData)
+        }).then((response)=>response.json())
+            .then(() => {
+                setNewUserFormData({
+                    username: "",
+                    password: "",
+                    password_confirmation: ""
+                })
+                closeForm()
+            })
     }
 
     function handleChange(event){

@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
-import usersReducer from "./userSlice";
+import roadTripsReducer from "./roadTripSlice";
 
 const rootReducer = combineReducers({
-    user: usersReducer
+    roadTrips: roadTripsReducer
 });
 
 export default rootReducer
