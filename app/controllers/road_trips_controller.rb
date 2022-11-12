@@ -4,7 +4,7 @@ class RoadTripsController < ApplicationController
     
     def index
         road_trips = RoadTrip.all
-        render json: road_trips
+        render json: road_trips.order("road_trip_distance_miles #{params[:format]}").limit(50)
     end
 
     def create
@@ -22,6 +22,13 @@ class RoadTripsController < ApplicationController
         user = find_user
         trip = user.road_trips.find_by(id: params[:id])
         render json: trip
+    end
+
+    def destroy
+        user = find_user
+        trip = user.road_trips.find_by(id: params[:id])
+        trip.delete
+        render json: user
     end
 
 private
@@ -42,15 +49,5 @@ private
         render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
     end
 
-    def haversine_formula
-        earth_radius = 3958.8 #miles
-
-        # determines the distance between two points on a sphere
-        # hav(z) = hav(lat2 - lat1) + (1 - hav(lat1 - lat2) - hav(lat1 + lat2)) * hav(lng2 - lng1)
-        # x1 = lat of point 1
-        # x2 = lat of point 2
-        # y1 = lng of point 1
-        # y2 = lng of point 2
-    end
 
 end

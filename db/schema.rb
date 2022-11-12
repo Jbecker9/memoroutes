@@ -27,8 +27,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_27_194814) do
     t.integer "road_trip_id"
     t.string "departure_city"
     t.string "departure_state"
-    t.decimal "lat", precision: 16, scale: 14
-    t.decimal "lng", precision: 16, scale: 14
+    t.decimal "lat", precision: 15, scale: 10
+    t.decimal "lng", precision: 15, scale: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -39,8 +39,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_27_194814) do
     t.integer "road_trip_id"
     t.string "destination_city"
     t.string "destination_state"
-    t.decimal "lat", precision: 16, scale: 14
-    t.decimal "lng", precision: 16, scale: 14
+    t.decimal "lat", precision: 15, scale: 10
+    t.decimal "lng", precision: 15, scale: 10
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -54,8 +54,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_27_194814) do
 
   create_table "pit_stops", force: :cascade do |t|
     t.string "location_name"
-    t.decimal "lat", precision: 16, scale: 14
-    t.decimal "lng", precision: 16, scale: 14
+    t.decimal "lat", precision: 15, scale: 10
+    t.decimal "lng", precision: 15, scale: 10
     t.string "stop_city"
     t.string "stop_state"
     t.integer "city_id"
@@ -69,6 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_27_194814) do
   create_table "road_trips", force: :cascade do |t|
     t.string "name"
     t.bigint "user_id"
+    t.string "road_trip_distance_miles"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

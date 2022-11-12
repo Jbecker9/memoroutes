@@ -1,61 +1,50 @@
 class RoadTripSerializer < ActiveModel::Serializer
-  attributes :id, :name, :departure, :destination, :pit_stops, :trip_distance
+  attributes :id, :name, :departure, :destination, :pit_stops, :road_trip_distance_miles
   belongs_to :user
   has_one :departure, serializer: RoadTripDepartureSerializer
   has_many :pit_stops, serializer: RoadTripPitStopSerializer
   has_one :destination, serializer: RoadTripDestinationSerializer
 
-  def trip_distance
+  # def trip_distance_miles
+  #   # https://gist.github.com/timols/5268103
+  #   # haversine distance formula
 
-    # https://en.wikipedia.org/wiki/Haversine_formula#:~:text=The%20haversine%20formula%20determines%20the,and%20angles%20of%20spherical%20triangles.
+  #   def radian_conversion(coordinate)
+  #     coordinate * ((Math::PI)/180)
+  #   end
 
-    # Central angle (0) between any two points on a sphere be:
-      # 0 = d/r
-        # d = distance between two points
-        # r = radius of the sphere
-
-    # haversine formula (calculates haversine from lat and lng of two points)
-      # hav(z) = hav(lat2 - lat1) + (1 - hav(lat1 - lat2) - hav(lat1 + lat2)) * hav(lng2 - lng1)
-      # x1 = lat of point 1
-      x_one = (self.road_trip.departure.lat)
-      # x2 = lat of point 2
-      x_two = (self.road_trip.destination.lat)
-      # y1 = lng of point 1
-      y_one = (self.road_trip.departure.lng)
-      # y2 = lng of point 2
-      y_two = (self.road_trip.destination.lng)
-
-    #  to calculate distance use archaversine
-      # d = 2r arcsin(squareRoot(hav(lat2 - lat1) + (1 - hav(lat1 - lat2) - hav(lat1 + lat2)) * hav(lng2 - lng1)))
-      #   = 2r arcsin(squareRoot(sin^2((x2 - x1)/2) + (1 - sin^2((x2 - x1)/2) - sin^2((x2 + x1)/2)) * sin^2(y2 -y1)/2))
-      #   = 2r arcsin(squareRoot(sin^2((x2 - x1)/2) + cos(x1) * cos(x2) * sin^2((y2 - y1)/2)))
-
-    earth_radius = 3958.8 #miles
-
-    # radians = coordinate * pi/180
-    def degrees_to_radians(coordinate)
-      (coordinate) * (Math::PI)
-    end
-
-    # convert coordinates to radians from degrees
-    x_one_radian = degrees_to_radians(x_one) 
-    x_two_radian = degrees_to_radians(x_two)
-    y_one_radian = degrees_to_radians(y_one)  
-    y_two_radian = degrees_to_radians(y_two)  
-
-
-    # find difference of lat and lng with Radians
-    lat_difference_div_two = (x_two_radian - x_one_radian)/2
-    lng_difference_div_two = (y_two_radian - y_one_radian)/2
-    # add difference of distance to formula = 2r arcsin(squareRoot(sin^2((x2 - x1)/2) + cos(x1) * cos(x2) * sin^2((y2 - y1)/2)))
-    # lat_sin = Math::sin**2 * (lat_difference_div_two)
-    # lng_sin = Math::sin**2 * (lng_difference_div_two)
-    # x_one_cosine = Math:
+  #   departure_lat = self.object.departure.lat.to_f
+  #   departure_lng = self.object.departure.lng.to_f
     
-    distance = earth_radius * Math::asin( Math::sqrt(((Math::sin(lat_difference_div_two))**2) + Math::cos(x_one) + Math::cos(x_two) * ((Math::sin(lng_difference_div_two))**2)) )
-  
-    return distance
+  #   if self.object.destination
+  #     destination_lat = self.object.destination.lat.to_f
+  #     destination_lng = self.object.destination.lng.to_f
 
-  end
+  #     lat_difference = destination_lat - departure_lat
+  #     lng_difference = destination_lng - departure_lng
+
+  #     lat_radial_arc = radian_conversion(destination_lat - departure_lat)
+  #     lng_radial_arc = radian_conversion(destination_lng - departure_lng)
+      
+  #     haversine_function = 
+  #       (Math::sin(lat_radial_arc / 2) ** 2) +
+  #       Math::cos(radian_conversion(departure_lat)) *
+  #       Math::cos(radian_conversion(destination_lat)) *
+  #       (Math::sin(lng_radial_arc /2) ** 2)
+        
+  #     archaversine_method = 
+  #       2 * Math::atan2(Math::sqrt(haversine_function), Math::sqrt(1 - haversine_function)) 
+
+  #     earth_radius_miles = 3958.8
+
+  #     feet_in_mile = 5280
+      
+  #     distance_miles = 
+  #       earth_radius_miles * archaversine_method
+
+  #     return distance_miles.round(2)
+  #   end
+
+  # end
 
 end

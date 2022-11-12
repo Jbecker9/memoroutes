@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { UserContext } from "../context/user";
 import "../styles/MapNewTripForm.css"
 
-function MapNewTripForm(){
+function MapNewTripForm({ findActiveTrip  }){
     const { setUser, setActiveTrip, setStartingPoint, startingPoint, setRenderNewTripForm } = useContext(UserContext)
 
     function handleNameChange(event){

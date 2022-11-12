@@ -2,8 +2,8 @@ class CreatePitStops < ActiveRecord::Migration[7.0]
   def change
     create_table :pit_stops do |t|
       t.string :location_name
-      t.decimal :lat, precision: 16, scale: 14
-      t.decimal :lng, precision: 16, scale: 14
+      t.decimal :lat, precision: 15, scale: 10
+      t.decimal :lng, precision: 15, scale: 10
       t.string :stop_city
       t.string :stop_state
       t.integer :city_id

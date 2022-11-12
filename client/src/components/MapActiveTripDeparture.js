@@ -4,6 +4,7 @@ import "../styles/MapActiveTripDeparture.css"
 
 function MapActiveTripDeparture(){
     const { activeTrip } = useContext(UserContext)
+    console.log(activeTrip)
     
     return(
         <div className="MapActiveTripDeparture-div">

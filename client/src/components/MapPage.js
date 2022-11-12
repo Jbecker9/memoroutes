@@ -64,6 +64,10 @@ function MapPage(){
         })
     }
 
+    function findActiveTrip(userObj){
+        return userObj.road_trips.find((trip) => trip.id === activeTrip.id )
+    }
+
     const styling = {
         strokeColor: '#FF0000',
         strokeOpacity: 0.8,
@@ -117,10 +121,10 @@ function MapPage(){
                             }
                             { activeTrip ? <Polyline path={path} options={styling} /> : null }
                             <div className="MapPage-formDiv">
-                                { renderNewTripForm ? <MapNewTripForm /> : <button className="MapPage-newRouteButton" onClick={handleNewTripFormRender}> Create A New Trip! </button> }
+                                { renderNewTripForm ? <MapNewTripForm findActiveTrip={findActiveTrip} /> : <button className="MapPage-newRouteButton" onClick={handleNewTripFormRender}> Create A New Trip! </button> }
                             </div>
                             <div className="MapPage-ActiveTripSideBarDiv">
-                                { activeTrip ? <MapActiveTrip /> : null }
+                                { activeTrip ? <MapActiveTrip findActiveTrip={findActiveTrip} /> : null }
                             </div>
                         </GoogleMap>
                     </LoadScript>

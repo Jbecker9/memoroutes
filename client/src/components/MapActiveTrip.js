@@ -6,13 +6,8 @@ import MapActiveTripDestination from "./MapActiveTripDestination";
 import MapActiveTripPitStopForm from "./MapActiveTripPitStopForm";
 import MapActiveTripPitStopContainer from "./MapActiveTripPitStopContainer";
 
-function MapActiveTrip(){
+function MapActiveTrip({ findActiveTrip }){
     const { activeTrip, user, pitStopForm, setPitStopForm, startingPoint, setStartingPoint } = useContext(UserContext)
-    
-
-    function findActiveTrip(userObj){
-        return userObj.road_trips.find((trip) => trip.id === activeTrip.id )
-    }
 
     function renderPitStopForm(){
         setPitStopForm(true)

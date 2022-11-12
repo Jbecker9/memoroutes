@@ -9,6 +9,7 @@ class DestinationsController < ApplicationController
         city = City.find_or_create_by(name: params[:city]) do |city|
             city.state_id = state.id
         end
+        trip.update!(road_trip_distance_miles: convert_coord_to_distance(trip.departure.lat, trip.departure.lng, params[:coordinates][:lat], params[:coordinates][:lng]))
         dest = trip.create_destination(city_id: city.id, state_id: state.id, destination_city: city.name, destination_state: state.name, lat: params[:coordinates][:lat], lng: params[:coordinates][:lng]).save
         # byebug
         render json: user
@@ -28,4 +29,42 @@ private
         render json: { error: "Not Authorized" }, status: :unauthorized 
     end
 
+    def convert_coord_to_distance(x1, y1, x2, y2)
+        # https://gist.github.com/timols/5268103
+        # haversine distance formula
+    
+        def radian_conversion(coordinate)
+          coordinate * ((Math::PI)/180)
+        end
+    
+        departure_lat = x1.to_f
+        departure_lng = y1.to_f
+        
+        destination_lat = x2.to_f
+        destination_lng = y2.to_f
+
+        lat_difference = destination_lat - departure_lat
+        lng_difference = destination_lng - departure_lng
+
+        lat_radial_arc = radian_conversion(destination_lat - departure_lat)
+        lng_radial_arc = radian_conversion(destination_lng - departure_lng)
+        
+        haversine_function = 
+        (Math::sin(lat_radial_arc / 2) ** 2) +
+        Math::cos(radian_conversion(departure_lat)) *
+        Math::cos(radian_conversion(destination_lat)) *
+        (Math::sin(lng_radial_arc /2) ** 2)
+        
+        archaversine_method = 
+        2 * Math::atan2(Math::sqrt(haversine_function), Math::sqrt(1 - haversine_function)) 
+
+        earth_radius_miles = 3958.8
+
+        feet_in_mile = 5280
+        
+        distance_miles = 
+        earth_radius_miles * archaversine_method
+
+        return distance_miles.round(2)
+    end
 end

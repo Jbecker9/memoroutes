@@ -25,6 +25,8 @@ function UserProvider({ children }) {
       city: "Lebanon"
     })
 
+    console.log(user)
+
     useEffect(() => {
         fetch("/me")
           .then((r)=>{

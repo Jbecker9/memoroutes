@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 function UserPageTrip({ trip }){
     const [pitStopClick, setPitStopClick] = useState(false)
-    const { setActiveTrip, setStartingPoint } = useContext(UserContext)
+    const { setActiveTrip, setStartingPoint, setUser } = useContext(UserContext)
     const navigate = useNavigate()
     
     function renderActiveTrip(){
@@ -24,11 +24,19 @@ function UserPageTrip({ trip }){
         })
         navigate("/mapPage")
     }
+
+    function handleDeleteTrip(){
+        fetch(`/road_trips/${trip.id}`,{
+            method: "DELETE"
+        }).then((response) => response.json())
+            .then((userData) => setUser(userData))
+    }
     
     return(
         <div className="UserPageTrip-tripCardDiv" >
             <h2 className="UserPageTrip-tripTitleH2">{ trip.name }</h2>
-                <button className="UserPageTrip-deleteTripButton"> Delete Trip </button>
+                <h4>{ trip.road_trip_distance_miles }</h4>
+                <button onClick={handleDeleteTrip} className="UserPageTrip-deleteTripButton"> Delete Trip </button>
                 <button onClick={renderActiveTrip} > Set your Avtive Trip and start your Journey! </button>
             <div className="UserPageTrip-tripCardTripContents">
                 <div className="UserPageTrip-tripCardDeparture">

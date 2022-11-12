@@ -53,3 +53,5 @@ gem 'active_model_serializers',
 
 
 gem "byebug", "~> 11.1", :groups => [:development, :test]
+
+gem 'bigdecimal'
