@@ -9,7 +9,6 @@ function UserPagePitStop({ trip, pitStop }){
     function handleStopUpdateRedirect(){
         setActiveTrip(trip)
         setRenderUpdatePitStopForm(pitStop)
-        console.log(pitStop)
         setStartingPoint({
             name: pitStop.location_name,
             coordinates: {

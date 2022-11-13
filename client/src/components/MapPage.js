@@ -8,7 +8,6 @@ import MapActiveTrip from "./MapActiveTrip";
 function MapPage(){
     const { user, activeTrip, setActiveTrip, startingPoint, setStartingPoint, setPath, renderNewTripForm, setRenderNewTripForm, path, fillPathContents, pathStops } = useContext(UserContext)
     const [existingTripId, setExistingTripId] = useState(user.road_trips[0].id)
-    console.log(activeTrip)
     
     function findCityOrState(geoInfo, locationType){
        return geoInfo.results[0].address_components.find((addressComponent) => addressComponent.types.includes(locationType)).long_name
@@ -45,12 +44,9 @@ function MapPage(){
 
     function handleExistingTripFormSubmit(event){
         event.preventDefault();
-        console.log(existingTripId)
         fetch(`/road_trips/${existingTripId}`)
             .then((response)=> response.json())
             .then((tripData) => {
-                // console.log(tripData)
-                // debugger
                 setActiveTrip(tripData)
                 fillPathContents(tripData)
                 setRenderNewTripForm(false)
@@ -89,7 +85,6 @@ function MapPage(){
         let locationLat = parseInt(location.lat)
         let locationLng = parseInt(location.lng)
         const locCoords = { locationLat, locationLng }
-        console.log(locCoords)
         return locCoords
     }
 

@@ -25,7 +25,6 @@ function MapNewTripForm({ findActiveTrip  }){
           .then((response)=>response.json())
           .then((userData)=>{
             setUser(userData);
-            console.log(userData)
             setRenderNewTripForm(false);
             setActiveTrip(userData.road_trips[userData.road_trips.length-1]);
             setStartingPoint({
