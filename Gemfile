@@ -55,3 +55,7 @@ gem 'active_model_serializers',
 gem "byebug", "~> 11.1", :groups => [:development, :test]
 
 gem 'bigdecimal'
+  # accuracy for decimals in coordinates 
+
+gem 'kaminari' 
+  # pagination

@@ -2,9 +2,15 @@ class RoadTripsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_unauthorized_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
     
-    def index
-        road_trips = RoadTrip.all
-        render json: road_trips.order("road_trip_distance_miles #{params[:format]}").limit(50)
+    def filter
+        # byebug
+        road_trips = RoadTrip.order(Arel.sql("road_trip_distance_miles #{params[:format]}"))
+        render json: road_trips
+    end
+
+    def search
+        road_trips = RoadTrip.where(name: params[:trip_name]).limit(25)
+        render json: road_trips
     end
 
     def create

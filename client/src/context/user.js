@@ -25,8 +25,6 @@ function UserProvider({ children }) {
       city: "Lebanon"
     })
 
-    console.log(user)
-
     useEffect(() => {
         fetch("/me")
           .then((r)=>{
@@ -42,11 +40,14 @@ function UserProvider({ children }) {
     function fetchLogout(){
       fetch("/logout", {
         method: "DELETE"
-      }).then(()=> setUser(null))
+      }).then(()=> { 
+        setActiveTrip(null)
+        setUser(null)
+       })
     }
 
     function fillPathContents(route){
-      console.log(route.destination)
+      // console.log(route.destination)
       if (!route.destination){
         console.log("non existant")
         setPath([
@@ -54,14 +55,13 @@ function UserProvider({ children }) {
           { lat: startingPoint.coordinates.lat, lng: startingPoint.coordinates.lng }
         ])
       } else {
-        console.log("existant")
+        console.log("no")
         setPath([
           { lat: parseFloat(route.departure.lat), lng: parseFloat(route.departure.lng) },
           { lat: parseFloat(route.destination.lat), lng: parseFloat(route.destination.lng) }
         ])
       }
     }
-    console.log(pathStops)
 
     return <UserContext.Provider value={{ user, setUser, fetchLogout, setActiveTrip, activeTrip, loginError, pitStopForm, setPitStopForm, startingPoint, setStartingPoint, renderNewTripForm, setRenderNewTripForm, renderUpdatePitStopForm, setRenderUpdatePitStopForm, path, setPath, pathStops, setPathStops, fillPathContents }}>{ children }</UserContext.Provider>
 };

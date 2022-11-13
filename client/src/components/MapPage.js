@@ -7,12 +7,12 @@ import MapActiveTrip from "./MapActiveTrip";
 
 function MapPage(){
     const { user, activeTrip, setActiveTrip, startingPoint, setStartingPoint, setPath, renderNewTripForm, setRenderNewTripForm, path, fillPathContents, pathStops } = useContext(UserContext)
-    const [existingTripId, setExistingTripId] = useState(1)
+    const [existingTripId, setExistingTripId] = useState(user.road_trips[0].id)
+    console.log(activeTrip)
     
     function findCityOrState(geoInfo, locationType){
        return geoInfo.results[0].address_components.find((addressComponent) => addressComponent.types.includes(locationType)).long_name
     }
-    console.log(startingPoint)
 
     function handleMapClick(event){
         fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${event.latLng.lat()},${event.latLng.lng()}&key=AIzaSyDBoExD9NToRJN8IGok7pUCySpw10SRVAE`)
@@ -45,12 +45,14 @@ function MapPage(){
 
     function handleExistingTripFormSubmit(event){
         event.preventDefault();
+        console.log(existingTripId)
         fetch(`/road_trips/${existingTripId}`)
             .then((response)=> response.json())
             .then((tripData) => {
+                // console.log(tripData)
+                // debugger
                 setActiveTrip(tripData)
                 fillPathContents(tripData)
-                console.log(tripData)
                 setRenderNewTripForm(false)
             })
     }
@@ -119,7 +121,7 @@ function MapPage(){
                             </MarkerClusterer> 
                             : null 
                             }
-                            { activeTrip ? <Polyline path={path} options={styling} /> : null }
+                            { activeTrip && activeTrip.destination ? <Polyline path={path} options={styling} /> : null }
                             <div className="MapPage-formDiv">
                                 { renderNewTripForm ? <MapNewTripForm findActiveTrip={findActiveTrip} /> : <button className="MapPage-newRouteButton" onClick={handleNewTripFormRender}> Create A New Trip! </button> }
                             </div>

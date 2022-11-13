@@ -1,11 +1,22 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchRoadTrips = createAsyncThunk("roadTrips/fetchRoadTrips", (format) => {
-    return fetch(`/road_trips/${format}`)
+    return fetch(`/road_trips/filter_by/${format}`)
             .then((response)=>response.json())
             .then((roadTripData) => roadTripData)
 })
 
+export const fetchUser = createAsyncThunk("roadTrips/fetchUser", () => {
+    return fetch('/me')
+            .then( (response) => {
+                if (response.ok){
+                    console.log("yes")
+                } else {
+                    console.log("no")
+                }
+            })
+            .then((userData) => userData)
+})
 // export const loginUser = createAsyncThunk("/user/loginUser", (userData) => {
 //     return fetch("/login", {
 //         method: "POST",
@@ -55,6 +66,13 @@ const roadTripSlice = createSlice({
             state.entities = action.payload;
             state.status = "idle";
         },
+        [fetchUser.pending](state){
+            state.status = "loading";
+        },
+        [fetchUser.fulfilled](state, action){
+            state.entities = action.payload
+            state.status = "idle"
+        }
         // [loginUser.pending](state){
         //     state.status = "loading";
         // },
