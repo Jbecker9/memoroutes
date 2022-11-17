@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :pit_stops, only: [:create, :update, :destroy]
   end
   
-  get '/road_trips/filter_by/:format', to: 'road_trips#filter'
-  get '/road_trips/:trip_name', to: 'road_trips#search'
+  get '/road_trips/filter_by_length/:format', to: 'road_trips#filter_by_length'
+  get '/road_trips/search/:trip_name', to: 'road_trips#search'
   
 end

@@ -4,12 +4,13 @@ import { UserContext } from "../context/user";
 import UserPageTrips from "./UserPageTrips"
 
 function UserPage(){
-    const { user, setRenderNewTripForm, setPitStopForm, setStartingPoint, startingPoint } = useContext(UserContext)
+    const { user, setRenderNewTripForm, setPitStopForm, setStartingPoint, setActiveTrip, startingPoint } = useContext(UserContext)
     const navigate = useNavigate()
     // console.log(user)
 
     function createTripRedirect(){
         setPitStopForm(false)
+        setActiveTrip(null)
         setStartingPoint({
             ...startingPoint,
             name: `${user.username}'s Road Trip #${user.road_trips.length + 1}`

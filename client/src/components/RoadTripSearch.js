@@ -1,19 +1,22 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { fetchRoadTripsSearch } from "../reducers/roadTripSlice";
 
-function RoadTripSearch({ setSearchValue }){
+function RoadTripSearch(){
+    const [searchValue, setSearchValue] = useState('')
+    const dispatch = useDispatch();
 
-    function fetchRoadTrips(event){
+    function searchRoadTrips(event){
         event.preventDefault()
-        fetch(`/road_trips/${event.target.value}`)
-            .then((response)=>response.json())
-            .then((tripData) => console.log(tripData))
+        dispatch(fetchRoadTripsSearch(searchValue))
     }
     
-
     return(
         <div>
-                <input onChange={fetchRoadTrips} placeholder="Search..." />
-                <button> Submit Search </button>
+            <form onSubmit={searchRoadTrips}>
+                <input onChange={(event)=>setSearchValue(event.target.value)} placeholder="Search with Trip Name..." />
+                <button> Submit Search!</button>
+            </form>
         </div>
     )
 }

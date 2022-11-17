@@ -2,14 +2,20 @@ class RoadTripsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_unauthorized_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
     
-    def filter
-        # byebug
-        road_trips = RoadTrip.order(Arel.sql("road_trip_distance_miles #{params[:format]}"))
+    def filter_by_length
+        case params[:format]
+            when "DESC"
+                road_trips = RoadTrip.all.sort{ |a,b| b.road_trip_distance_miles.to_i <=> a.road_trip_distance_miles.to_i }
+            when "ASC"
+                road_trips = RoadTrip.all.sort{ |a,b| a.road_trip_distance_miles.to_i <=> b.road_trip_distance_miles.to_i }
+            else
+        end
         render json: road_trips
     end
 
     def search
-        road_trips = RoadTrip.where(name: params[:trip_name]).limit(25)
+        road_trips = RoadTrip.all.where(name: params[:trip_name])
+        byebug
         render json: road_trips
     end
 

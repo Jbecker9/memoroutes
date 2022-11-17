@@ -65,6 +65,6 @@ private
         distance_miles = 
         earth_radius_miles * archaversine_method
 
-        return distance_miles.round(2)
+        return distance_miles.round
     end
 end

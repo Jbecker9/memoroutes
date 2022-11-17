@@ -7,7 +7,15 @@ import MapActiveTrip from "./MapActiveTrip";
 
 function MapPage(){
     const { user, activeTrip, setActiveTrip, startingPoint, setStartingPoint, setPath, renderNewTripForm, setRenderNewTripForm, path, fillPathContents, pathStops } = useContext(UserContext)
-    const [existingTripId, setExistingTripId] = useState(user.road_trips[0].id)
+    const [existingTripId, setExistingTripId] = useState(renderNoTrips())
+
+    function renderNoTrips(){
+        if (user.road_trips <= 0){
+            return "No Trips!"
+        } else {
+            return user.road_trips[0].id
+        }
+    }
     
     function findCityOrState(geoInfo, locationType){
        return geoInfo.results[0].address_components.find((addressComponent) => addressComponent.types.includes(locationType)).long_name
@@ -34,7 +42,6 @@ function MapPage(){
                     state: findCityOrState(locationData, "administrative_area_level_1"),
                     city: findCityOrState(locationData, "locality")
             });
-            
         })
     }
 
@@ -80,13 +87,6 @@ function MapPage(){
         path: path,
         zIndex: 1
       };
-
-    function createLocation(location){
-        let locationLat = parseInt(location.lat)
-        let locationLng = parseInt(location.lng)
-        const locCoords = { locationLat, locationLng }
-        return locCoords
-    }
 
     return(
         <div className="MapPage-div">

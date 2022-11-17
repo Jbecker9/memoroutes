@@ -5,7 +5,6 @@ import RoadTripSearch from "./RoadTripSearch";
 
 function RoadTripsPage(){
     const [search, setSearch] = useState(false)
-    const [searchValue, setSearchValue] = useState(null)
     const roadTrips = useSelector((state) => state.roadTrips)
     const dispatch = useDispatch()
 
@@ -36,7 +35,7 @@ function RoadTripsPage(){
                     {/* <option value={"Popular"}>Most Popular</option> */}
                 </select>
             </label>
-            { search ? <RoadTripSearch setSearchValue={setSearchValue}/> : null }
+            { search ? <RoadTripSearch /> : null }
         </div>
     )
 }
