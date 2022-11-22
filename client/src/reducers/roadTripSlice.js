@@ -27,7 +27,7 @@ const roadTripSlice = createSlice({
     },
     extraReducers: {
         [fetchRoadTrips.pending](state){
-            state.entities = []
+            state.entities = [];
             state.status = "loading";
         },
         [fetchRoadTrips.fulfilled](state, action){
@@ -35,7 +35,7 @@ const roadTripSlice = createSlice({
             state.status = "idle";
         },
         [fetchRoadTripsSearch.pending](state){
-            state.entities = []
+            state.entities = [];
             state.status = "loading";
         },
         [fetchRoadTripsSearch.fulfilled](state, action){
@@ -45,6 +45,6 @@ const roadTripSlice = createSlice({
     },
 });
 
-export const {} = roadTripSlice.actions;
+// export const {} = roadTripSlice.actions;
 
 export default roadTripSlice.reducer

@@ -14,8 +14,8 @@ class RoadTripsController < ApplicationController
     end
 
     def search
-        road_trips = RoadTrip.all.where(name: params[:trip_name])
-        byebug
+        road_trips = RoadTrip.select { |trip| trip.name.include?(params[:trip_name]) }
+        # byebug
         render json: road_trips
     end
 

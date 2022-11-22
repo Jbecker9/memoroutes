@@ -1,4 +1,4 @@
 class StateSerializer < ActiveModel::Serializer
-  attributes :id
-  belongs_to :city
+  attributes :id, :name
+  has_many :cities, serializer: StateCitySerializer
 end

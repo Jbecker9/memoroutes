@@ -1,8 +1,8 @@
 import { combineReducers } from "redux";
 import roadTripsReducer from "./roadTripSlice";
+import statesReducer from "./stateSlice";
 
-const rootReducer = combineReducers({
-    roadTrips: roadTripsReducer
-});
-
-export default rootReducer
+export default combineReducers({
+    statesReducer,
+    roadTripsReducer
+})

@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
 import { fetchRoadTrips } from "../reducers/roadTripSlice";
+import RoadTripsContainer from "./RoadTripsContainer";
 import RoadTripSearch from "./RoadTripSearch";
 
 function RoadTripsPage(){
     const [search, setSearch] = useState(false)
     const roadTrips = useSelector((state) => state.roadTrips)
     const dispatch = useDispatch()
-
-    console.log(roadTrips)
     
     function renderFilterByOption(event){
         event.preventDefault()
@@ -36,6 +35,7 @@ function RoadTripsPage(){
                 </select>
             </label>
             { search ? <RoadTripSearch /> : null }
+            { roadTrips.entities ? <RoadTripsContainer roadTrips={roadTrips.entities} /> : null }
         </div>
     )
 }
