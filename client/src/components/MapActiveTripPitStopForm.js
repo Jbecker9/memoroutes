@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
+import { useDispatch } from "react-redux";
 import { UserContext } from "../context/user";
 
 function MapActiveTripPitStopForm({ findActiveTrip }){
     const { activeTrip, setActiveTrip, setUser, setPitStopForm, startingPoint, setStartingPoint } = useContext(UserContext)
-
+    const dispatch = useDispatch();
+    
     function handleNameChange(event){
         let name = event.target.name
         let value = event.target.value

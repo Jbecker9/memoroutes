@@ -21,8 +21,11 @@ const roadTripSlice = createSlice({
     name: "roadTrips",
     initialState,
     reducers: {
-        getRoadTrips(state){
-            state.status = "idle"
+        addRoadTrip(state, action){
+            state.entities.push(action.payload)
+        },
+        updateTrip(state, action){
+            const roadTrip = state.entities.findIndex((trip) => trip.id === action.payload.id)
         },
     },
     extraReducers: {
