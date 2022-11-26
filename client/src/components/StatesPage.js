@@ -8,8 +8,6 @@ function StatesPage(){
     const states = useSelector((state) => state.states)
     const [activeState, setActiveState] = useState(null)
 
-    console.log(activeState)
-
     useEffect(() => {
         dispatch(fetchStates())
     },[dispatch])

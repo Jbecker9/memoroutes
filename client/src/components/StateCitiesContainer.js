@@ -1,13 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import StateCityCard from "./StateCityCard";
 
 function StateCitiesContainer({ cities }){
-
-    console.log(cities)
+    const [cityDes, setCityDes] = useState(null)
+    const [cityStop, setCityStop] = useState(null)
 
     return(
         <div>
-            { cities?.map((city) => <StateCityCard city={city} key={city.id} /> ) }
+            { cities?.map((city) => <StateCityCard cityDes={cityDes} setCityDes={setCityDes} cityStop={cityStop} setCityStop={setCityStop} city={city} key={city.id} /> ) }
         </div>
     )
 }

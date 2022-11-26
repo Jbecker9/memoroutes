@@ -12,8 +12,6 @@ function App() {
     window.addEventListener('unload', fetchLogout)
   }, [])
 
-  console.log(user)
-
   if (!user || user.error){
     return <Login />
   } else {
