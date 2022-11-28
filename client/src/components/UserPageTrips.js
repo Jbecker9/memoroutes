@@ -7,11 +7,12 @@ import { useNavigate } from "react-router-dom";
 
 function UserPageTrip({ trip }){
     const [pitStopClick, setPitStopClick] = useState(false)
-    const { setActiveTrip, setStartingPoint, setUser } = useContext(UserContext)
+    const { setActiveTrip, setStartingPoint, setUser, fillPathContents } = useContext(UserContext)
     const navigate = useNavigate()
     
     function renderActiveTrip(){
         setActiveTrip(trip)
+        fillPathContents(trip)
         setStartingPoint({
             name: trip.name,
             coordinates: {

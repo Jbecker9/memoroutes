@@ -52,7 +52,7 @@ function UserProvider({ children }) {
         console.log("non existant")
         setPath([
           { lat: parseFloat(route.departure.lat), lng: parseFloat(route.departure.lng) },
-          { lat: startingPoint.coordinates.lat, lng: startingPoint.coordinates.lng }
+          { lat: parseFloat(startingPoint.coordinates.lat), lng: parseFloat(startingPoint.coordinates.lng) }
         ])
       } else {
         console.log("no")

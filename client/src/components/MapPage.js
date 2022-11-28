@@ -9,6 +9,7 @@ function MapPage(){
     const { user, activeTrip, setActiveTrip, startingPoint, setStartingPoint, setPath, renderNewTripForm, setRenderNewTripForm, path, fillPathContents, pathStops } = useContext(UserContext)
     const [existingTripId, setExistingTripId] = useState(renderNoTrips())
 
+    console.log(activeTrip)
     function renderNoTrips(){
         if (user.road_trips <= 0){
             return "No Trips!"
@@ -116,7 +117,7 @@ function MapPage(){
                             </MarkerClusterer> 
                             : null 
                             }
-                            { activeTrip && activeTrip.destination ? <Polyline path={path} options={styling} /> : null }
+                            { activeTrip?.destination ? <Polyline path={path} options={styling} /> : null }
                             <div className="MapPage-formDiv">
                                 { renderNewTripForm ? <MapNewTripForm findActiveTrip={findActiveTrip} /> : <button className="MapPage-newRouteButton" onClick={handleNewTripFormRender}> Create A New Trip! </button> }
                             </div>
