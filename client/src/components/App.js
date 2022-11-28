@@ -7,6 +7,7 @@ import NavRoutes from "./NavRoutes";
 
 function App() {
   const { user, fetchLogout } = useContext(UserContext);
+  console.log(user)
 
   useEffect(()=>{
     window.addEventListener('unload', fetchLogout)

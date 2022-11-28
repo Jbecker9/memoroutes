@@ -21,24 +21,23 @@ class RoadTripsController < ApplicationController
 
     def create
         user = find_user
-        trip = user.road_trips.create(name: params[:name])
         state = State.find_or_create_by(name: params[:state])
         city = City.find_or_create_by(name: params[:city]) do |city|
             city.state_id = state.id
         end
-        departure = trip.create_departure!(city_id: city.id, departure_city: city.name, departure_state: state.name, state_id: state.id, lat: params[:coordinates][:lat], lng: params[:coordinates][:lng]).save
+        trip = user.road_trips.create(road_trip_params(city, state))
         render json: user
     end
 
     def show
         user = find_user
-        trip = user.road_trips.find_by(id: params[:id])
+        trip = find_trip(user)
         render json: trip
     end
 
     def destroy
         user = find_user
-        trip = user.road_trips.find_by(id: params[:id])
+        trip = find_trip(user)
         trip.delete
         render json: user
     end
@@ -49,8 +48,16 @@ private
         User.find_by!(id: session[:user_id])
     end
 
+    def find_trip(user)
+        user.road_trips.find_by(creator_id: params[:id])
+    end
+
     def find_city(state)
         state.cities.find_by(name: params[:city])
+    end
+
+    def road_trip_params(city, state)
+        params.permit(:name, departure_params: {city_id: city.id, departure_city: city.name, departure_state: state.name, state_id: state.id, lat: params[:coordinates][:lat], lng: params[:coordinates][:lng]})
     end
 
     def render_unauthorized_response

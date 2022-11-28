@@ -46,8 +46,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_27_194814) do
   end
 
   create_table "liked_routes", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "road_trip_id"
+    t.integer "liked_trip_id"
+    t.integer "user_like_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -68,7 +68,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_10_27_194814) do
 
   create_table "road_trips", force: :cascade do |t|
     t.string "name"
-    t.bigint "user_id"
+    t.bigint "creator_id"
     t.string "road_trip_distance_miles"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

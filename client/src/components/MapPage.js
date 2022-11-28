@@ -9,7 +9,6 @@ function MapPage(){
     const { user, activeTrip, setActiveTrip, startingPoint, setStartingPoint, setPath, renderNewTripForm, setRenderNewTripForm, path, fillPathContents, pathStops } = useContext(UserContext)
     const [existingTripId, setExistingTripId] = useState(renderNoTrips())
 
-    console.log(activeTrip)
     function renderNoTrips(){
         if (user.road_trips <= 0){
             return "No Trips!"
