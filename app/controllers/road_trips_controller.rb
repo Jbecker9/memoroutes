@@ -25,7 +25,7 @@ class RoadTripsController < ApplicationController
         city = City.find_or_create_by(name: params[:city]) do |city|
             city.state_id = state.id
         end
-        trip = user.road_trips.create(road_trip_params(city, state))
+        trip = user.created_trips.create(road_trip_params(city, state))
         render json: user
     end
 

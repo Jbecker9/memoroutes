@@ -10,10 +10,15 @@ function MapPage(){
     const [existingTripId, setExistingTripId] = useState(renderNoTrips())
 
     function renderNoTrips(){
-        if (user.road_trips <= 0){
-            return "No Trips!"
-        } else {
-            return user.road_trips[0].id
+        switch(user){
+            case user.created_trips > 0:
+                return user.created_trips[0].id;
+                break;
+            case user.liked_trips > 0:
+                return user.liked_trips[0].id;
+                break;
+            default:
+                return "No Trips!"
         }
     }
     
@@ -65,12 +70,12 @@ function MapPage(){
         setActiveTrip(false)
         setStartingPoint({
             ...startingPoint,
-            name: `${user.username}'s Road Trip #${user.road_trips.length + 1}`
+            name: `${user.username}'s Road Trip #${user.created_trips.length + 1}`
         })
     }
 
     function findActiveTrip(userObj){
-        return userObj.road_trips.find((trip) => trip.id === activeTrip.id )
+        return userObj.created_trips.find((trip) => trip.id === activeTrip.id )
     }
 
     const styling = {
@@ -93,7 +98,8 @@ function MapPage(){
             <div className="MapPage-selectRouteDiv">
             <form onSubmit={handleExistingTripFormSubmit}>
                 <select onChange={handleExistingTripOptionChange} className="MapPage-selectExistingTrip" >
-                    { user.road_trips.map((roadTrip) => <option label={roadTrip.name} value={roadTrip.id} key={roadTrip.id} />) }
+                    { user.created_trips.map((roadTrip) => <option label={roadTrip.name} value={roadTrip.id} key={roadTrip.id} />) }
+                    { user.liked_routes.map((roadTrip) => <option label={roadTrip.name} value={roadTrip.name} key={roadTrip.id} ></option>) }
                 </select>
                 <button> Set Active Trip! </button>
             </form>

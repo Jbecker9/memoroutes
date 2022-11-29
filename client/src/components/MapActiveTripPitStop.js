@@ -19,7 +19,6 @@ function MapActiveTripPitStop({ findActiveTrip, pitStop }){
     }
     
     function showPitStop(){
-        console.log(pitStop)
         updateStartingPoint()
         setStartingPoint({
             ...startingPoint,

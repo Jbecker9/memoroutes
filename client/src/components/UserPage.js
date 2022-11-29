@@ -24,7 +24,7 @@ function UserPage(){
             <h1>{ user.username }</h1>
             <button onClick={createTripRedirect}> Create Trip! </button>
             <div>
-                { user.road_trips.map((trip) => <UserPageTrips key={trip.id} trip={trip} /> ) }
+                { user.created_trips.map((trip) => <UserPageTrips key={trip.id} trip={trip} /> ) }
             </div>
         </div>
     )
