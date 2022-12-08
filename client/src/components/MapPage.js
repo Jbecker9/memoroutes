@@ -4,12 +4,16 @@ import "../styles/MapPage.css"
 import MapNewTripForm from "./MapNewTripForm";
 import { UserContext } from "../context/user";
 import MapActiveTrip from "./MapActiveTrip";
+import { useDispatch, useSelector } from "react-redux";
 
 function MapPage(){
     const { user, activeTrip, setActiveTrip, startingPoint, setStartingPoint, setPath, renderNewTripForm, setRenderNewTripForm, path, fillPathContents, pathStops } = useContext(UserContext)
-    const [existingTripId, setExistingTripId] = useState(renderNoTrips())
+    const [existingTripId, setExistingTripId] = useState(checkLikeOrCreatedTrips())
+    const state = useSelector((state)=>state.roadTrips)
+    const dispatch = useDispatch()
+    console.log(state)
 
-    function renderNoTrips(){
+    function checkLikeOrCreatedTrips(){
         switch(user){
             case user.created_trips > 0:
                 return user.created_trips[0].id;
@@ -56,13 +60,7 @@ function MapPage(){
 
     function handleExistingTripFormSubmit(event){
         event.preventDefault();
-        fetch(`/road_trips/${existingTripId}`)
-            .then((response)=> response.json())
-            .then((tripData) => {
-                setActiveTrip(tripData)
-                fillPathContents(tripData)
-                setRenderNewTripForm(false)
-            })
+        
     }
 
     function handleNewTripFormRender(){

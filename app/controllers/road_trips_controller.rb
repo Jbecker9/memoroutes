@@ -21,11 +21,12 @@ class RoadTripsController < ApplicationController
 
     def create
         user = find_user
-        state = State.find_or_create_by(name: params[:state])
-        city = City.find_or_create_by(name: params[:city]) do |city|
-            city.state_id = state.id
-        end
-        trip = user.created_trips.create(road_trip_params(city, state))
+        byebug
+        state = State.find_by_name(params[:departure][:state])
+        city = state.cities.find_by_name(params[:departure][:city])
+        # byebug
+        trip = user.created_trips.create(road_trip_params)
+        byebug
         render json: user
     end
 
@@ -52,12 +53,16 @@ private
         user.road_trips.find_by(creator_id: params[:id])
     end
 
+    def find_by_name(location)
+        where(name: location).first_or_create!
+    end
+
     def find_city(state)
         state.cities.find_by(name: params[:city])
     end
 
-    def road_trip_params(city, state)
-        params.permit(:name, departure_params: {city_id: city.id, departure_city: city.name, departure_state: state.name, state_id: state.id, lat: params[:coordinates][:lat], lng: params[:coordinates][:lng]})
+    def road_trip_params
+        params.permit(:name, departure: [ :city, :state, :lat, :lng ])
     end
 
     def render_unauthorized_response
@@ -67,6 +72,5 @@ private
     def render_unprocessable_entity(invalid)
         render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
     end
-
 
 end

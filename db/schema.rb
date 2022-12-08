@@ -10,81 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_10_27_194814) do
+ActiveRecord::Schema[7.0].define(version: 0) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "cities", force: :cascade do |t|
-    t.string "name"
-    t.string "state_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "departures", force: :cascade do |t|
-    t.integer "city_id"
-    t.integer "state_id"
-    t.integer "road_trip_id"
-    t.string "departure_city"
-    t.string "departure_state"
-    t.decimal "lat", precision: 15, scale: 10
-    t.decimal "lng", precision: 15, scale: 10
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "destinations", force: :cascade do |t|
-    t.integer "city_id"
-    t.integer "state_id"
-    t.integer "road_trip_id"
-    t.string "destination_city"
-    t.string "destination_state"
-    t.decimal "lat", precision: 15, scale: 10
-    t.decimal "lng", precision: 15, scale: 10
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "liked_routes", force: :cascade do |t|
-    t.integer "liked_trip_id"
-    t.integer "user_like_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "pit_stops", force: :cascade do |t|
-    t.string "location_name"
-    t.decimal "lat", precision: 15, scale: 10
-    t.decimal "lng", precision: 15, scale: 10
-    t.string "stop_city"
-    t.string "stop_state"
-    t.integer "city_id"
-    t.integer "state_id"
-    t.integer "road_trip_id"
-    t.integer "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "road_trips", force: :cascade do |t|
-    t.string "name"
-    t.bigint "creator_id"
-    t.string "road_trip_distance_miles"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "states", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "password_digest"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
 end

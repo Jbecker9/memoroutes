@@ -2,7 +2,7 @@ import React from "react";
 import RoadTripPitStops from "./RoadTripPitStops";
 
 function RoadTripsCard({ trip, pitStopsTrip, setPitStopsTrip }){
-
+console.log(trip)
     return(
         <div>
             <h2>{trip.name}</h2>

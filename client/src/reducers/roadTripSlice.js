@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
-export const fetchRoadTrips = createAsyncThunk("roadTrips/fetchRoadTrips", (format) => {
+export const fetchRoadTripsByLength = createAsyncThunk("roadTrips/fetchRoadTripsByLength", (format) => {
     return fetch(`/road_trips/filter_by_length/${format}`)
             .then((response)=>response.json())
             .then((roadTripData) => roadTripData)
@@ -25,15 +25,16 @@ const roadTripSlice = createSlice({
             state.entities.push(action.payload)
         },
         updateTrip(state, action){
-            const roadTrip = state.entities.findIndex((trip) => trip.id === action.payload.id)
+            // const roadTripIndex = state.entities.findIndex((trip) => trip.id === action.payload.id)
+            
         },
     },
     extraReducers: {
-        [fetchRoadTrips.pending](state){
+        [fetchRoadTripsByLength.pending](state){
             state.entities = [];
             state.status = "loading";
         },
-        [fetchRoadTrips.fulfilled](state, action){
+        [fetchRoadTripsByLength.fulfilled](state, action){
             state.entities = action.payload;
             state.status = "idle";
         },

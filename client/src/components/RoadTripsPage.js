@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { fetchRoadTrips } from "../reducers/roadTripSlice";
+import { fetchRoadTripsByLength } from "../reducers/roadTripSlice";
 import RoadTripsContainer from "./RoadTripsContainer";
 import RoadTripSearch from "./RoadTripSearch";
 
@@ -18,7 +18,7 @@ function RoadTripsPage(){
             setSearch(true)
         } else {
             setSearch(false)
-            dispatch(fetchRoadTrips(format))
+            dispatch(fetchRoadTripsByLength(format))
         }
     }
 

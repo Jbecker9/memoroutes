@@ -1,42 +1,51 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { UserContext } from "../context/user";
 import "../styles/MapNewTripForm.css"
 
 function MapNewTripForm({ findActiveTrip  }){
     const { setUser, setActiveTrip, setStartingPoint, startingPoint, setRenderNewTripForm } = useContext(UserContext)
+    const [tripName, setTripName] = useState("")
 
     function handleNameChange(event){
-        let name = event.target.name
-        let value = event.target.value
-        setStartingPoint({
-            [name]: value
-        })
+        setTripName(event.target.value)
     }
+
+    console.log(startingPoint)
 
     function handleNewTripSubmit(event){
         event.preventDefault()
+        const newTripObject = {
+          name: tripName,
+          departure: [{
+            city: startingPoint.city,
+            state: startingPoint.state,
+            lat: startingPoint.coordinates.lat,
+            lng: startingPoint.coordinates.lng
+          }]
+        }
         fetch("/road_trips",{
           method: "POST",
           headers: {
             "Content-Type": "application/json"
           },
-          body: JSON.stringify(startingPoint)
+          body: JSON.stringify(newTripObject)
         })
           .then((response)=>response.json())
           .then((userData)=>{
-            setUser(userData);
-            setRenderNewTripForm(false);
-            setActiveTrip(userData.road_trips[userData.road_trips.length-1]);
-            setStartingPoint({
-              name: `Starting Point`,
-              coordinates: {
-                  lat: 39.82818518880172,
-                  lng: -98.57938314610301
-                },
-              zoom: 5,
-              state: "Lebanon",
-              city: "Kansas"
-          })
+            console.log(userData)
+          //   setUser(userData);
+          //   setRenderNewTripForm(false);
+          //   setActiveTrip(userData.road_trips[userData.road_trips.length-1]);
+          //   setStartingPoint({
+          //     name: `Starting Point`,
+          //     coordinates: {
+          //         lat: 39.82818518880172,
+          //         lng: -98.57938314610301
+          //       },
+          //     zoom: 5,
+          //     state: "Lebanon",
+          //     city: "Kansas"
+          // })
           })
       }
 

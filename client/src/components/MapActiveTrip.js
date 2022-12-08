@@ -9,6 +9,8 @@ import MapActiveTripPitStopContainer from "./MapActiveTripPitStopContainer";
 function MapActiveTrip({ findActiveTrip }){
     const { activeTrip, user, pitStopForm, setPitStopForm, startingPoint, setStartingPoint } = useContext(UserContext)
 
+    console.log("HERE!!!!!!!!!!" + activeTrip)
+    
     function renderPitStopForm(){
         setPitStopForm(true)
         setStartingPoint({
