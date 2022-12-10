@@ -4,7 +4,7 @@ import "../styles/MapNewTripForm.css"
 
 function MapNewTripForm({ findActiveTrip  }){
     const { setUser, setActiveTrip, setStartingPoint, startingPoint, setRenderNewTripForm } = useContext(UserContext)
-    const [tripName, setTripName] = useState("")
+    const [tripName, setTripName] = useState(startingPoint.name)
 
     function handleNameChange(event){
         setTripName(event.target.value)
@@ -15,13 +15,12 @@ function MapNewTripForm({ findActiveTrip  }){
     function handleNewTripSubmit(event){
         event.preventDefault()
         const newTripObject = {
-          name: tripName,
-          departure: [{
-            city: startingPoint.city,
-            state: startingPoint.state,
-            lat: startingPoint.coordinates.lat,
-            lng: startingPoint.coordinates.lng
-          }]
+          trip_name: tripName,
+          city_name: startingPoint.city,
+          state_name: startingPoint.state,
+          departure_lat: startingPoint.coordinates.lat,
+          departure_lng: startingPoint.coordinates.lng
+
         }
         fetch("/road_trips",{
           method: "POST",

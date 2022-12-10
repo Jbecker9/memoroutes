@@ -1,5 +1,5 @@
 class State < ApplicationRecord
-    validates :name, presence: true
+    validates :state_name, presence: true
     has_many :cities
     has_many :departures
     has_many :pit_stops
