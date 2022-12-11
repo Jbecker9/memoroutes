@@ -9,7 +9,7 @@ import MapActiveTripPitStopContainer from "./MapActiveTripPitStopContainer";
 function MapActiveTrip({ findActiveTrip }){
     const { activeTrip, user, pitStopForm, setPitStopForm, startingPoint, setStartingPoint } = useContext(UserContext)
 
-    console.log("HERE!!!!!!!!!!" + activeTrip)
+    console.log(activeTrip)
     
     function renderPitStopForm(){
         setPitStopForm(true)
@@ -30,7 +30,7 @@ function MapActiveTrip({ findActiveTrip }){
     return(
         <div className="MapActiveTrip-div">
                 <div className="MapActiveTrip-titleDiv">
-                    <h2>{activeTrip.name}</h2>
+                    <h2>{activeTrip.trip_name}</h2>
                 </div>
                 <div className="MapActiveTrip-departureDiv">
                 <MapActiveTripDeparture />

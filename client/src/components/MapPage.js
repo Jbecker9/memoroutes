@@ -9,18 +9,16 @@ import { useDispatch, useSelector } from "react-redux";
 function MapPage(){
     const { user, activeTrip, setActiveTrip, startingPoint, setStartingPoint, setPath, renderNewTripForm, setRenderNewTripForm, path, fillPathContents, pathStops } = useContext(UserContext)
     const [existingTripId, setExistingTripId] = useState(checkLikeOrCreatedTrips())
-    const state = useSelector((state)=>state.roadTrips)
     const dispatch = useDispatch()
+    const state = useSelector((state)=>state.roadTrips)
     console.log(state)
 
     function checkLikeOrCreatedTrips(){
         switch(user){
             case user.created_trips > 0:
                 return user.created_trips[0].id;
-                break;
             case user.liked_trips > 0:
                 return user.liked_trips[0].id;
-                break;
             default:
                 return "No Trips!"
         }
@@ -60,7 +58,9 @@ function MapPage(){
 
     function handleExistingTripFormSubmit(event){
         event.preventDefault();
+        console.log(existingTripId)
         
+            // .filter((trip) => trip.id === event.target.value))
     }
 
     function handleNewTripFormRender(){
@@ -96,8 +96,8 @@ function MapPage(){
             <div className="MapPage-selectRouteDiv">
             <form onSubmit={handleExistingTripFormSubmit}>
                 <select onChange={handleExistingTripOptionChange} className="MapPage-selectExistingTrip" >
-                    { user.created_trips.map((roadTrip) => <option label={roadTrip.name} value={roadTrip.id} key={roadTrip.id} />) }
-                    { user.liked_routes.map((roadTrip) => <option label={roadTrip.name} value={roadTrip.name} key={roadTrip.id} ></option>) }
+                    { user.created_trips.map((roadTrip) => <option label={roadTrip.trip_name} value={roadTrip.id} key={roadTrip.id} />) }
+                    {/* { user.liked_routes.map((roadTrip) => <option label={roadTrip.trip_name} value={roadTrip.name} key={roadTrip.id} />) } */}
                 </select>
                 <button> Set Active Trip! </button>
             </form>

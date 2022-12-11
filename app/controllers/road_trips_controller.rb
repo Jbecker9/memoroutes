@@ -15,18 +15,15 @@ class RoadTripsController < ApplicationController
 
     def search
         road_trips = RoadTrip.select { |trip| trip.name.include?(params[:trip_name]) }
-        # byebug
         render json: road_trips
     end
 
     def create
         user = find_user
-        # byebug
         trip = user.created_trips.create(params.permit(:trip_name))
-        state = State.find_or_create_by(state_name: params[:state_name])
-        city = state.cities.where(city_name: params[:city_name]).first_or_create
-        departure = trip.create_departure(state_id: state.id, city_id: city.id, lat: params[:departure_lat], lng: params[:departure_lng])
-        # byebug
+        state = find_or_create_state
+        city = find_or_create_city(state)
+        departure = trip.create_departure(state_id: state.id, state_name: state.state_name, city_id: city.id, city_name: city.city_name, lat: params[:departure_lat], lng: params[:departure_lng])
         render json: user
     end
 
@@ -53,22 +50,12 @@ private
         user.road_trips.find_by(creator_id: params[:id])
     end
 
-    def find_state(name)
-    state = State.find_by(name)
-        unless state
-            return State.create(state_name: name)
-        else
-            return state
-        end
+    def find_or_create_state
+        State.find_or_create_by(state_name: params[:state_name])
     end
 
-    def find_city(name, state)
-    city = state.cities.find_by(city_name: name)
-        unless city
-            return state.create_city(city_name: name)
-        else
-            return city
-        end
+    def find_or_create_city(state)
+        state.cities.where(city_name: params[:city_name]).first_or_create
     end
 
     def road_trip_params

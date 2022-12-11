@@ -7,7 +7,7 @@ class PitStopsController < ApplicationController
         trip = find_road_trip(user)
         state = find_or_create_state
         city = find_or_create_city(state)
-        stop = trip.pit_stops.create(location_name: params[:name], stop_city: city.name, stop_state: state.name, city_id: city.id, state_id: state.id, lat: params[:coordinates][:lat], lng: params[:coordinates][:lng])
+        stop = trip.pit_stops.create(location_name: params[:location_name], city_name: city.city_name, state_name: state.state_name, city_id: city.id, state_id: state.id, lat: params[:lat], lng: params[:lng])
         render json: user
     end
 
@@ -38,7 +38,7 @@ private
     end
 
     def find_road_trip(user)
-        user.road_trips.find_by!(id: params[:road_trip_id])
+        user.created_trips.find_by!(id: params[:road_trip_id])
     end
 
     def find_pit_stop(user)
@@ -47,13 +47,11 @@ private
     end
 
     def find_or_create_state
-        State.find_or_create_by(name: params[:state])
+        State.find_or_create_by(state_name: params[:state_name])
     end
 
     def find_or_create_city(state)
-        City.find_or_create_by(name: params[:city]) do |city|
-            city.state_id = state.id
-        end
+        state.cities.where(city_name: params[:city_name]).first_or_create
     end
 
     def render_unauthorized_response

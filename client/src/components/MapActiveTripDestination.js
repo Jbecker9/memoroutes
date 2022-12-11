@@ -11,7 +11,7 @@ function MapActiveTripDestination(){
         return(
             <div>
                 <h4 className="MapActiveTripDestination-destinationText"> Destination: </h4>
-                <h3>{ activeTrip.destination.destination_city }, { activeTrip.destination.destination_state }</h3>
+                <h3>{ activeTrip.destination.city_name }, { activeTrip.destination.state_name }</h3>
             </div>
         )
     } else {

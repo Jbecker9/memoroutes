@@ -1,15 +1,5 @@
 class DeparturesController < ApplicationController
 
-    def create
-        user = find_user
-        state = State.find_or_create_by(name: params[:state])
-        city = City.find_or_create_by(name: params[:city]) do |city|
-            city.state_id = state.id
-        end
-        trip = user.created_trips.create(road_trip_params(city, state))
-        # byebug
-        render json: user
-    end
 
 private
 

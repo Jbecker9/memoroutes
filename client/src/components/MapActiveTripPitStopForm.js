@@ -17,12 +17,19 @@ function MapActiveTripPitStopForm({ findActiveTrip }){
 
     function handleFormSubmit(event){
         event.preventDefault()
+        const newPitStopObject = {
+            location_name: startingPoint.name,
+            city_name: startingPoint.city,
+            state_name: startingPoint.state,
+            lat: startingPoint.coordinates.lat,
+            lng: startingPoint.coordinates.lng
+        }
         fetch(`/road_trips/${activeTrip.id}/pit_stops`,{
                 method: "POST",
                 headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify(startingPoint)
+                    body: JSON.stringify(newPitStopObject)
                 }).then((response)=>response.json())
                     .then((userData) => {
                         setUser(userData);

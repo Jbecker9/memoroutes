@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { UserContext } from "../context/user";
 import "../styles/MapActiveTripPitStop.css"
 
@@ -46,8 +46,8 @@ function MapActiveTripPitStop({ findActiveTrip, pitStop }){
         <div className="MapActiveTripPitStop-div">
             <div>
                 <h3 className="MapActiveTripPitStop-textSpacing">{ pitStop.location_name }</h3>
-                <h5 className="MapActiveTripPitStop-textSpacing">{ pitStop.stop_city },</h5>
-                <h5 className="MapActiveTripPitStop-textSpacing">{ pitStop.stop_state }</h5>
+                <h5 className="MapActiveTripPitStop-textSpacing">{ pitStop.city_name },</h5>
+                <h5 className="MapActiveTripPitStop-textSpacing">{ pitStop.state_name }</h5>
                 <button onClick={showPitStop}> Go to Pit Stop! </button>
                 <button id={`pitStopButton_${pitStop.id}`} onClick={handlePitStopFormClick}> Update Pit Stop! </button>
                 <button onClick={handlePitStopDelete}> Delete Pit Stop </button>

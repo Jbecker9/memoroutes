@@ -4,13 +4,11 @@ class DestinationsController < ApplicationController
 
     def create
         user = find_user
-        trip = user.road_trips.find_by(id: params[:road_trip_id])
-        state = State.find_or_create_by(name: params[:state])
-        city = City.find_or_create_by(name: params[:city]) do |city|
-            city.state_id = state.id
-        end
-        trip.update!(road_trip_distance_miles: convert_coord_to_distance(trip.departure.lat, trip.departure.lng, params[:coordinates][:lat], params[:coordinates][:lng]))
-        dest = trip.create_destination(city_id: city.id, state_id: state.id, destination_city: city.name, destination_state: state.name, lat: params[:coordinates][:lat], lng: params[:coordinates][:lng]).save
+        trip = user.created_trips.find_by(id: params[:road_trip_id])
+        state = find_or_create_state
+        city = find_or_create_city(state)
+        trip.update!(road_trip_distance_miles: convert_coord_to_distance(trip.departure.lat, trip.departure.lng, params[:lat], params[:lng]))
+        dest = trip.create_destination(city_id: city.id, state_id: state.id, city_name: city.city_name, state_name: state.state_name, lat: params[:lat], lng: params[:lng])
         # byebug
         render json: user
     end
@@ -23,6 +21,14 @@ private
 
     def require_user
         user = User.find_by!(id: session[:user_id])
+    end
+
+    def find_or_create_state
+        State.find_or_create_by(state_name: params[:state_name])
+    end
+
+    def find_or_create_city(state)
+        state.cities.where(city_name: params[:city_name]).first_or_create
     end
     
     def render_unauthorized_response
