@@ -29,7 +29,8 @@ class RoadTripsController < ApplicationController
 
     def show
         user = find_user
-        trip = find_trip(user)
+        trip = user.created_trips.find_by(id: params[:id])
+        # byebug
         render json: trip
     end
 

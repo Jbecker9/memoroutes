@@ -11,17 +11,17 @@ function MapPage(){
     const [existingTripId, setExistingTripId] = useState(checkLikeOrCreatedTrips())
     const dispatch = useDispatch()
     const state = useSelector((state)=>state.roadTrips)
-    console.log(state)
+    console.log(checkLikeOrCreatedTrips())
 
     function checkLikeOrCreatedTrips(){
-        switch(user){
-            case user.created_trips > 0:
-                return user.created_trips[0].id;
-            case user.liked_trips > 0:
-                return user.liked_trips[0].id;
-            default:
+        // Switch going to default on first option, unless another is chosen.
+            if (user.created_trips > 0){
+                return user.created_trips[0].id
+            } else if (user.liked_trips > 0) {
+                return user.liked_trips[0].id
+            } else {
                 return "No Trips!"
-        }
+            }
     }
     
     function findCityOrState(geoInfo, locationType){
@@ -59,7 +59,9 @@ function MapPage(){
     function handleExistingTripFormSubmit(event){
         event.preventDefault();
         console.log(existingTripId)
-        
+        fetch(`/road_trips/${existingTripId}`)
+            .then((response) => response.json())
+            .then((activeTripData) => setActiveTrip(activeTripData))
             // .filter((trip) => trip.id === event.target.value))
     }
 
