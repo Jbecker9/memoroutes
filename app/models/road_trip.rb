@@ -1,11 +1,10 @@
 class RoadTrip < ApplicationRecord
-    belongs_to :creator, class_name: "User", foreign_key: "creator_id"
-    has_many :liked_routes, foreign_key: :liked_route_id
-    has_many :likes, through: :liked_routes, source: :liked_trip
-    has_one :departure, dependent: :destroy
-    has_many :pit_stops, -> { order(id: :asc) }, dependent: :destroy
-    has_one :destination, dependent: :destroy
-    accepts_nested_attributes_for :departure
+    belongs_to :user
+    has_one :departure, class_name: "Location", foreign_key: "departure_id", dependent: :destroy
+    has_many :pit_stops, class_name: "Location", foreign_key: "pit_stop_id", -> { order(id: :asc) }, dependent: :destroy
+    has_one :destination, class_name: "Location", foreign_key: "destination_id" dependent: :destroy
     paginates_per 25
+
+    
     # named_scope :ordered, lambda {|args| (args.first || "created_at DESC")}
 end

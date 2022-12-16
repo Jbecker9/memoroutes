@@ -1,9 +1,9 @@
 class RoadTripSerializer < ActiveModel::Serializer
-  attributes :id, :trip_name, :departure, :destination, :pit_stops, :road_trip_distance_miles
+  attributes :id, :trip_name, :user_likes, :road_trip_distance_miles
   belongs_to :creator
-  has_one :departure, serializer: RoadTripDepartureSerializer
-  has_many :pit_stops, serializer: RoadTripPitStopSerializer
-  has_one :destination, serializer: RoadTripDestinationSerializer
+  has_one :departure
+  has_many :pit_stops
+  has_one :destination
 
   # def trip_distance_miles
   #   # https://gist.github.com/timols/5268103
