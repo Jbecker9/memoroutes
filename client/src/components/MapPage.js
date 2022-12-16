@@ -95,11 +95,11 @@ function MapPage(){
 
     return(
         <div className="MapPage-div">
-            <div className="MapPage-selectRouteDiv">
+            Map Page
+            {/* <div className="MapPage-selectRouteDiv">
             <form onSubmit={handleExistingTripFormSubmit}>
                 <select onChange={handleExistingTripOptionChange} className="MapPage-selectExistingTrip" >
                     { user.created_trips.map((roadTrip) => <option label={roadTrip.trip_name} value={roadTrip.id} key={roadTrip.id} />) }
-                    {/* { user.liked_routes.map((roadTrip) => <option label={roadTrip.trip_name} value={roadTrip.name} key={roadTrip.id} />) } */}
                 </select>
                 <button> Set Active Trip! </button>
             </form>
@@ -131,7 +131,7 @@ function MapPage(){
                             </div>
                         </GoogleMap>
                     </LoadScript>
-            </div>
+            </div> */}
         </div>
     )
 }

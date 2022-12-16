@@ -21,11 +21,12 @@ function UserPage(){
 
     return(
         <div>
-            <h1>{ user.username }</h1>
+            User Page
+            {/* <h1>{ user.username }</h1>
             <button onClick={createTripRedirect}> Create Trip! </button>
             <div>
                 { user.created_trips.map((trip) => <UserPageTrips key={trip.id} trip={trip} /> ) }
-            </div>
+            </div> */}
         </div>
     )
 }

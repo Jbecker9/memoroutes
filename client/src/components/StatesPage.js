@@ -15,7 +15,7 @@ function StatesPage(){
     return(
         <div>
             States
-            { states.entities?.map((state) => <StateCard setActiveState={setActiveState} activeState={activeState} state={state} key={state.id} /> ) }
+            {/* { states.entities?.map((state) => <StateCard setActiveState={setActiveState} activeState={activeState} state={state} key={state.id} /> ) } */}
         </div>
     )
 }

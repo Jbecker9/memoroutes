@@ -24,18 +24,18 @@ function RoadTripsPage(){
 
     return(
         <div>
-            <label>
+            Road Trips Page
+            {/* <label>
                 Filter by:
                 <select onChange={renderFilterByOption}>
                     <option value={"Default"} >Filter by...</option>
                     <option value={"DESC"}> Length: High to Low </option>
                     <option value={"ASC"}> Length: Low to High </option>
                     <option value={"Search"} >Search</option>
-                    {/* <option value={"Popular"}>Most Popular</option> */}
                 </select>
             </label>
             { search ? <RoadTripSearch /> : null }
-            { roadTrips.entities ? <RoadTripsContainer roadTrips={roadTrips.entities} /> : null }
+            { roadTrips.entities ? <RoadTripsContainer roadTrips={roadTrips.entities} /> : null } */}
         </div>
     )
 }
