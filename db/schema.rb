@@ -10,8 +10,71 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_12_172043) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cities", force: :cascade do |t|
+    t.string "city_name"
+    t.string "state_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "location_name"
+    t.integer "city_id"
+    t.integer "state_id"
+    t.string "city_name"
+    t.string "state_name"
+    t.integer "road_trip_id"
+    t.bigint "departure_id"
+    t.bigint "pit_stop_id"
+    t.bigint "destination_id"
+    t.decimal "lat", precision: 15, scale: 10
+    t.decimal "lng", precision: 15, scale: 10
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["departure_id"], name: "index_locations_on_departure_id"
+    t.index ["destination_id"], name: "index_locations_on_destination_id"
+    t.index ["pit_stop_id"], name: "index_locations_on_pit_stop_id"
+  end
+
+  create_table "pit_stops", force: :cascade do |t|
+    t.string "location_name"
+    t.decimal "lat", precision: 15, scale: 10
+    t.decimal "lng", precision: 15, scale: 10
+    t.integer "city_id"
+    t.integer "state_id"
+    t.string "city_name"
+    t.string "state_name"
+    t.integer "road_trip_id"
+    t.integer "user_id"
+    t.string "user_likes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "road_trips", force: :cascade do |t|
+    t.string "trip_name"
+    t.bigint "user_id"
+    t.string "road_trip_distance_miles"
+    t.integer "user_likes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "states", force: :cascade do |t|
+    t.string "state_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
 end
