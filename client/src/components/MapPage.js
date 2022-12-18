@@ -8,21 +8,9 @@ import { useDispatch, useSelector } from "react-redux";
 
 function MapPage(){
     const { user, activeTrip, setActiveTrip, startingPoint, setStartingPoint, setPath, renderNewTripForm, setRenderNewTripForm, path, fillPathContents, pathStops } = useContext(UserContext)
-    const [existingTripId, setExistingTripId] = useState(checkLikeOrCreatedTrips())
+    const [existingTripId, setExistingTripId] = useState(user.road_trips?[0].id : "No Trips")
     const dispatch = useDispatch()
     const state = useSelector((state)=>state.roadTrips)
-    console.log(checkLikeOrCreatedTrips())
-
-    function checkLikeOrCreatedTrips(){
-        // Switch going to default on first option, unless another is chosen.
-            if (user.created_trips > 0){
-                return user.created_trips[0].id
-            } else if (user.liked_trips > 0) {
-                return user.liked_trips[0].id
-            } else {
-                return "No Trips!"
-            }
-    }
     
     function findCityOrState(geoInfo, locationType){
        return geoInfo.results[0].address_components.find((addressComponent) => addressComponent.types.includes(locationType)).long_name
@@ -70,12 +58,12 @@ function MapPage(){
         setActiveTrip(false)
         setStartingPoint({
             ...startingPoint,
-            name: `${user.username}'s Road Trip #${user.created_trips.length + 1}`
+            name: `${user.username}'s Road Trip #${user.road_trips.length + 1}`
         })
     }
 
     function findActiveTrip(userObj){
-        return userObj.created_trips.find((trip) => trip.id === activeTrip.id )
+        return userObj.road_trips.find((trip) => trip.id === activeTrip.id )
     }
 
     const styling = {
@@ -96,10 +84,10 @@ function MapPage(){
     return(
         <div className="MapPage-div">
             Map Page
-            {/* <div className="MapPage-selectRouteDiv">
+            <div className="MapPage-selectRouteDiv">
             <form onSubmit={handleExistingTripFormSubmit}>
                 <select onChange={handleExistingTripOptionChange} className="MapPage-selectExistingTrip" >
-                    { user.created_trips.map((roadTrip) => <option label={roadTrip.trip_name} value={roadTrip.id} key={roadTrip.id} />) }
+                    { user.road_trips.map((roadTrip) => <option label={roadTrip.trip_name} value={roadTrip.id} key={roadTrip.id} />) }
                 </select>
                 <button> Set Active Trip! </button>
             </form>
@@ -131,7 +119,7 @@ function MapPage(){
                             </div>
                         </GoogleMap>
                     </LoadScript>
-            </div> */}
+            </div>
         </div>
     )
 }
