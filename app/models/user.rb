@@ -5,6 +5,6 @@ class User < ApplicationRecord
     
 
     has_many :road_trips
-    has_many :locations, through: :road_trips
+    has_many :departures
 
 end
