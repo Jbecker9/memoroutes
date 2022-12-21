@@ -7,6 +7,8 @@ class RoadTrip < ApplicationRecord
     
     has_many :cities, through: :pit_stops
     has_many :states, through: :cities
+
+    validates :trip_name, presence: true, length: { minimum: 4 }
     
     # paginates_per 25
     

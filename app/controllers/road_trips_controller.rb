@@ -22,10 +22,10 @@ class RoadTripsController < ApplicationController
 
     def create
         user = find_user
-        trip = user.created_trips.create(params.permit(:trip_name))
+        trip = user.road_trips.create!(trip_params)
         state = find_or_create_state
         city = find_or_create_city(state)
-        departure = trip.create_departure(state_id: state.id, state_name: state.state_name, city_id: city.id, city_name: city.city_name, lat: params[:departure_lat], lng: params[:departure_lng])
+        departure = trip.create_departure(state_id: state.id, city_id: city.id, lat: params.permit[:departure_lat], lng: params.permit[:departure_lng])
         render json: user
     end
 
@@ -49,6 +49,9 @@ private
         User.find_by!(id: session[:user_id])
     end
 
+    def trip_params
+        params.permit(:trip_name, departure_attributes: {:lat, :lng})
+    end
     
     # def validates_user
     #     unless params[:user_id] = session[:user_id]
