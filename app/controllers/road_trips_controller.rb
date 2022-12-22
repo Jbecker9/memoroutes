@@ -1,8 +1,8 @@
 class RoadTripsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_unauthorized_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
+    
     # before_action :validates_user, only: [:create, :destroy]
-
 
     def filter_by_length
         case params[:format]
@@ -22,10 +22,12 @@ class RoadTripsController < ApplicationController
 
     def create
         user = find_user
-        trip = user.road_trips.create!(trip_params)
         state = find_or_create_state
         city = find_or_create_city(state)
-        departure = trip.create_departure(state_id: state.id, city_id: city.id, lat: params.permit[:departure_lat], lng: params.permit[:departure_lng])
+        trip = user.road_trips.create!(trip_params)
+        # departure = joins_departure(trip, state, city, user)
+        # byebug
+        # departure = trip.create_departure!(state_id: state.id, city_id: city.id)
         render json: user
     end
 
@@ -50,29 +52,23 @@ private
     end
 
     def trip_params
-        params.permit(:trip_name, departure_attributes: {:lat, :lng})
+        params.require(:road_trip).permit(:trip_name, departure: [:location_name, :lat, :lng, state: [:state_name], city: [:city_name]])
     end
-    
-    # def validates_user
-    #     unless params[:user_id] = session[:user_id]
-    #         flash[:error] = "Unauthorized User"
-    #     end
-    # end
 
     def find_trip(user)
         user.road_trips.find_by(creator_id: params[:id])
     end
 
     def find_or_create_state
-        State.find_or_create_by(state_name: params[:state_name])
+        State.find_or_create_by!(state_name: params[:state_name])
     end
 
     def find_or_create_city(state)
-        state.cities.where(city_name: params[:city_name]).first_or_create
+        state.cities.where(city_name: params[:city_name]).first_or_create!
     end
 
-    def road_trip_params
-        params.require(:road_trip).permit(:trip_name, :city_name, :state_name, departure: [ :lat, :lng ])
+    def joins_departure(trip, state, city, user)
+        trip.create_departure!(user_id: user.id, location_name: params[:location_name], state_id: state.id, city_id: city.id, lat: params[:lat], lng: params[:lng])
     end
 
     def render_unauthorized_response

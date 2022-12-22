@@ -4,11 +4,19 @@ class RoadTrip < ApplicationRecord
     has_one :departure
     has_many :pit_stops
     has_one :destination
-    
-    has_many :cities, through: :pit_stops
-    has_many :states, through: :cities
+
+    accepts_nested_attributes_for :departure
 
     validates :trip_name, presence: true, length: { minimum: 4 }
+    
+    before_validation :add_city_and_state_to_departure
+
+private
+
+    def add_city_and_state_to_departure
+        byebug
+        # Self.departure.state = State.find_or_create_by(state_name: )
+    end
     
     # paginates_per 25
     

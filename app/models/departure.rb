@@ -4,4 +4,6 @@ class Departure < ApplicationRecord
 
     belongs_to :city
     belongs_to :state
+
+    accepts_nested_attributes_for :city, :state
 end

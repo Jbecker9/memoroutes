@@ -4,4 +4,13 @@ class City < ApplicationRecord
     has_many :departures
     has_many :pit_stops
     has_many :destinations
+
+    before_validation :initialize_state
+
+private
+    
+        def initialize_state
+            byebug
+        end
+
 end

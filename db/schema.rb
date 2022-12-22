@@ -24,7 +24,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_20_152859) do
   create_table "departures", force: :cascade do |t|
     t.string "location_name"
     t.integer "city_id"
+    t.string "city_name"
     t.integer "state_id"
+    t.string "state_name"
     t.integer "road_trip_id"
     t.integer "user_id"
     t.decimal "lat", precision: 15, scale: 10
@@ -36,7 +38,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_20_152859) do
   create_table "destinations", force: :cascade do |t|
     t.string "location_name"
     t.integer "city_id"
+    t.string "city_name"
     t.integer "state_id"
+    t.string "state_name"
     t.integer "road_trip_id"
     t.integer "user_id"
     t.decimal "lat", precision: 15, scale: 10
@@ -48,7 +52,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_20_152859) do
   create_table "pit_stops", force: :cascade do |t|
     t.string "location_name"
     t.integer "city_id"
+    t.string "city_name"
     t.integer "state_id"
+    t.string "state_name"
     t.integer "road_trip_id"
     t.integer "user_id"
     t.decimal "lat", precision: 15, scale: 10
