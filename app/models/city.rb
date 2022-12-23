@@ -5,7 +5,7 @@ class City < ApplicationRecord
     has_many :pit_stops
     has_many :destinations
 
-    before_validation :initialize_state
+    # before_validation :initialize_state
 
 private
     

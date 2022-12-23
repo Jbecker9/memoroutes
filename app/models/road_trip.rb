@@ -9,12 +9,11 @@ class RoadTrip < ApplicationRecord
 
     validates :trip_name, presence: true, length: { minimum: 4 }
     
-    before_validation :add_city_and_state_to_departure
+    # before_validation :add_city_and_state_to_departure
 
 private
 
     def add_city_and_state_to_departure
-        byebug
         # Self.departure.state = State.find_or_create_by(state_name: )
     end
     
