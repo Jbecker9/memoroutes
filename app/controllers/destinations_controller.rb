@@ -1,15 +1,16 @@
 class DestinationsController < ApplicationController
+    require 'bigdecimal/util'
+    
     rescue_from ActiveRecord::RecordNotFound, with: :render_unauthorized_response
     before_action :require_user, only: [:create]
 
     def create
         user = find_user
-        trip = user.created_trips.find_by(id: params[:road_trip_id])
-        state = find_or_create_state
-        city = find_or_create_city(state)
+        trip = user.road_trips.find_by(id: params[:road_trip_id])
         trip.update!(road_trip_distance_miles: convert_coord_to_distance(trip.departure.lat, trip.departure.lng, params[:lat], params[:lng]))
-        dest = trip.create_destination(city_id: city.id, state_id: state.id, city_name: city.city_name, state_name: state.state_name, lat: params[:lat], lng: params[:lng])
-        # byebug
+        destination = trip.create_destination(destination_params)
+        destination.user = user
+        destination.save!
         render json: user
     end
 
@@ -23,12 +24,8 @@ private
         user = User.find_by!(id: session[:user_id])
     end
 
-    def find_or_create_state
-        State.find_or_create_by(state_name: params[:state_name])
-    end
-
-    def find_or_create_city(state)
-        state.cities.where(city_name: params[:city_name]).first_or_create
+    def destination_params
+        params.require(:destination).permit(:location_name, :city_name, :state_name, :lat, :lng)
     end
     
     def render_unauthorized_response
@@ -43,17 +40,18 @@ private
           coordinate * ((Math::PI)/180)
         end
     
-        departure_lat = x1.to_f
-        departure_lng = y1.to_f
+        departure_lat = x1.to_d
+        departure_lng = y1.to_d
         
-        destination_lat = x2.to_f
-        destination_lng = y2.to_f
+        destination_lat = x2.to_d
+        destination_lng = y2.to_d
 
         lat_difference = destination_lat - departure_lat
         lng_difference = destination_lng - departure_lng
 
-        lat_radial_arc = radian_conversion(destination_lat - departure_lat)
-        lng_radial_arc = radian_conversion(destination_lng - departure_lng)
+        
+        lat_radial_arc = radian_conversion(lat_difference)
+        lng_radial_arc = radian_conversion(lng_difference)
         
         haversine_function = 
         (Math::sin(lat_radial_arc / 2) ** 2) +
@@ -63,14 +61,14 @@ private
         
         archaversine_method = 
         2 * Math::atan2(Math::sqrt(haversine_function), Math::sqrt(1 - haversine_function)) 
-
+        
         earth_radius_miles = 3958.8
-
+        
         feet_in_mile = 5280
         
         distance_miles = 
         earth_radius_miles * archaversine_method
 
-        return distance_miles.round
+        return distance_miles.round(2).to_s
     end
 end

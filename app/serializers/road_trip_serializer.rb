@@ -1,7 +1,7 @@
 class RoadTripSerializer < ActiveModel::Serializer
-  attributes :id, :trip_name, :user_likes, :road_trip_distance_miles
+  attributes :id, :trip_name
   belongs_to :user
-  has_one :departure
+  has_one :departure, serializer: RoadTripDepartureSerializer
   has_many :pit_stops
   has_one :destination
 

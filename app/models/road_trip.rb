@@ -1,9 +1,9 @@
 class RoadTrip < ApplicationRecord
     belongs_to :user
 
-    has_one :departure
+    has_one :departure, dependent: :destroy
     has_many :pit_stops
-    has_one :destination
+    has_one :destination, dependent: :destroy
 
     accepts_nested_attributes_for :departure
 

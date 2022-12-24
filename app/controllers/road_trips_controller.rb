@@ -1,4 +1,5 @@
 class RoadTripsController < ApplicationController
+   
     rescue_from ActiveRecord::RecordNotFound, with: :render_unauthorized_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
     
@@ -48,7 +49,7 @@ private
     end
 
     def trip_params
-        params.require(:road_trip).permit(:trip_name, departure_attributes: [:location_name, :lat, :lng, :state_name, :city_name])
+        params.permit(:trip_name, departure_attributes: [:location_name, :lat, :lng, :state_name, :city_name])
     end
 
     def find_trip(user)
