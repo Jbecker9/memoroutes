@@ -14,9 +14,7 @@ class PitStopsController < ApplicationController
     def update
         user = find_user
         stop = find_pit_stop(user)
-        state = find_or_create_state
-        city = find_or_create_city(state)
-        stop.update!(location_name: params[:location_name], stop_city: city.name, stop_state: state.name, lat: params[:lat], lng: params[:lng], city_id: city.id, state_id: state.id)
+        stop.update!(pit_stop_params)
         render json: user
     end
 
