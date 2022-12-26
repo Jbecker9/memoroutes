@@ -1,5 +1,4 @@
 class RoadTripsController < ApplicationController
-   
     rescue_from ActiveRecord::RecordNotFound, with: :render_unauthorized_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
     
@@ -37,8 +36,9 @@ class RoadTripsController < ApplicationController
 
     def destroy
         user = find_user
-        trip = find_trip(user)
-        trip.delete
+        road_trip = user.road_trips.find_by(id: params[:id])
+        # byebug
+        road_trip.destroy
         render json: user
     end
 
@@ -53,7 +53,7 @@ private
     end
 
     def find_trip(user)
-        user.road_trips.find_by(creator_id: params[:id])
+        user.road_trips.find_by(user_id: params[:id])
     end
 
     def render_unauthorized_response
