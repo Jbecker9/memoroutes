@@ -6,9 +6,5 @@ class State < ApplicationRecord
     has_many :destinations, through: :cities
     
     validates :state_name, presence: true, uniqueness: true
-
-    # before_validation :initialize_state
-
-private
-
+    
 end
