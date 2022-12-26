@@ -1,6 +1,6 @@
 class PitStopsController < ApplicationController
     rescue_from ActiveRecord::RecordInvalid, with: :render_unauthorized_response
-    before_action :verify_user
+    before_action :validates_user, only: [:create, :update, :destroy]
 
     def create
         user = find_user
@@ -31,8 +31,12 @@ private
         User.find_by!(id: session[:user_id])
     end
 
-    def verify_user
-        user = find_user
+    def validates_user
+        user = User.find_by(id: session[:user_id])
+        unless user
+            render_unauthorized_response
+        else
+        end
     end
 
     def find_road_trip(user)

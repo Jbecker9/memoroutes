@@ -2,7 +2,7 @@ class RoadTripsController < ApplicationController
     rescue_from ActiveRecord::RecordNotFound, with: :render_unauthorized_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
     
-    # before_action :validates_user, only: [:create, :destroy]
+    before_action :validates_user, only: [:create, :destroy]
 
     def filter_by_length
         case params[:format]
@@ -46,6 +46,14 @@ private
 
     def find_user
         User.find_by!(id: session[:user_id])
+    end
+
+    def validates_user
+        user = User.find_by(id: session[:user_id])
+        unless user
+            render_unauthorized_response
+        else
+        end
     end
 
     def trip_params
