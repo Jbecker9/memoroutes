@@ -2,6 +2,7 @@ class DestinationsController < ApplicationController
     require 'bigdecimal/util'
     
     rescue_from ActiveRecord::RecordNotFound, with: :render_unauthorized_response
+    rescue_from ActiveRecord::RecordInvalid, with: render_unprocessable_entity
     before_action :require_user, only: [:create]
 
     def create
@@ -30,6 +31,10 @@ private
     
     def render_unauthorized_response
         render json: { error: "Not Authorized" }, status: :unauthorized 
+    end
+
+    def render_unprocessable_entity(invalid)
+        render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
     end
 
     def convert_coord_to_distance(x1, y1, x2, y2)
