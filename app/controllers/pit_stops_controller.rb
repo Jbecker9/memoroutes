@@ -5,9 +5,9 @@ class PitStopsController < ApplicationController
     def create
         user = find_user
         trip = find_road_trip(user)
-        state = find_or_create_state
-        city = find_or_create_city(state)
-        stop = trip.pit_stops.create(location_name: params[:location_name], city_name: city.city_name, state_name: state.state_name, city_id: city.id, state_id: state.id, lat: params[:lat], lng: params[:lng])
+        stop = trip.pit_stops.create(pit_stop_params)
+        stop.user = user
+        stop.save!
         render json: user
     end
 
@@ -38,7 +38,11 @@ private
     end
 
     def find_road_trip(user)
-        user.created_trips.find_by!(id: params[:road_trip_id])
+        user.road_trips.find_by!(id: params[:road_trip_id])
+    end
+
+    def pit_stop_params
+        params.permit(:location_name, :city_name, :state_name, :lat, :lng)
     end
 
     def find_pit_stop(user)
