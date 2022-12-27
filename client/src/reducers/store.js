@@ -1,11 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 import statesReducer from "./stateSlice"
 import roadTripsReducer from "./roadTripSlice"
+import userReducer from "./userSlice"
+
 
 const store = configureStore({
     reducer: {
-        states: statesReducer,
-        roadTrips: roadTripsReducer
+        user: userReducer,
+        roadTrips: roadTripsReducer,
+        states: statesReducer
     }
 });
 

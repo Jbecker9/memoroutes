@@ -1,10 +1,11 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { UserContext } from "../context/user";
+import { logOutUser } from "../reducers/userSlice";
 import "../styles/NavBar.css"
 
 function NavBar(){
-    const { fetchLogout } = useContext(UserContext)
+    const dispatch = useDispatch();
 
     // function logout(){
     //     setUser(null)
@@ -58,7 +59,7 @@ function NavBar(){
             >
                 Profile 
             </Link>
-            <div onClick={()=>fetchLogout()} className="NavBar-logOutButton"> Logout </div>
+            <div onClick={()=>dispatch(logOutUser())} className="NavBar-logOutButton"> Logout </div>
         </div>
     )
 }

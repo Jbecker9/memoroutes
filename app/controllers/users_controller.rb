@@ -2,7 +2,6 @@ class UsersController < ApplicationController
 rescue_from ActiveRecord::RecordNotFound, with: :render_unauthorized_response
 rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
 
-
     def show
         user = find_user
         render json: user
@@ -21,7 +20,7 @@ private
 
 
     def user_params
-        params.permit(:username, :password, :password_confirmation)
+        params.require(:user).permit(:username, :password, :password_confirmation)
     end
 
     def render_unauthorized_response

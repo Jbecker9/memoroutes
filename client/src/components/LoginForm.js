@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useDispatch } from "react-redux";
 import { UserContext } from "../context/user";
 
 function LoginForm({ closeForm }){
@@ -6,6 +7,7 @@ function LoginForm({ closeForm }){
         username: "",
         password: ""
     });
+    const dispatch = useDispatch();
     const { setUser } = useContext(UserContext);
 
     function handleChange(event){
