@@ -26,7 +26,7 @@ export const logInUser = createAsyncThunk( "user/logInUser", (userObject) => {
         },
         body: JSON.stringify(userObject)
     }).then((r)=>r.json())
-        .then(userData => console.log(userData))
+        .then(userData => userData)
 })
 
 export const logOutUser = createAsyncThunk( "user/logOutUser", () => {
@@ -34,6 +34,7 @@ export const logOutUser = createAsyncThunk( "user/logOutUser", () => {
         method: "DELETE"
     })
     .then((response) => response.json())
+    .then(userData => userData)
 })
 
 const initialState = {
@@ -44,20 +45,24 @@ const initialState = {
 const userSlice = createSlice({
     name: "user",
     initialState,
-    reducers: {},
+    reducers: {
+        userLogout(state){
+            state.entities = []
+        }
+    },
     extraReducers: {
         [fetchUser.pending](state){
             state.status = "loading...";
         },
         [fetchUser.fulfilled](state, action){
-            state.entities = action.payload
+            state.entities = action.payload;
             state.status = "idle";
         },
         [logInUser.pending](state){
             state.status = "loading...";
         },
         [logInUser.fulfilled](state, action){
-            state.entities = action.payload
+            state.entities = action.payload;
             state.status = "idle";
         },
         [logOutUser.pending](state){
@@ -69,5 +74,7 @@ const userSlice = createSlice({
         }
     }
 })
+
+export const { userLogout } = userSlice.actions
 
 export default userSlice.reducer

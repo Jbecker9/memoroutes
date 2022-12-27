@@ -7,15 +7,23 @@ import "../styles/NavRoutes.css";
 import MapPage from "./MapPage";
 import RoadTripsPage from "./RoadTripsPage";
 import StatesPage from "./StatesPage";
+import { useDispatch } from "react-redux";
+import { logOutUser } from "../reducers/userSlice";
 
 
 function NavRoutes(){
     const [showMenu, setShowMenu] = useState(null)
+    const dispatch = useDispatch();
+
+    function logout(){
+        dispatch(logOutUser())
+    }
 
     return(
         <div className="NavRoutes-div">
             <div className="NavRoutes-navBarContainer">
                 <div className="NavRoutesMenuButton" onClick={()=>setShowMenu(!showMenu)} > { showMenu ? "Close Menu" : "Menu" } </div>
+                <div onClick={logout} className="NavBar-logOutButton"> Logout </div>
                 { showMenu ? <NavBar /> : null }
             </div>
             <Routes>

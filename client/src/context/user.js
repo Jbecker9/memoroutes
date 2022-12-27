@@ -4,7 +4,6 @@ const UserContext = React.createContext();
 
 function UserProvider({ children }) {
     const [user, setUser] = useState(null)
-    const [loginError, setLoginError] = useState(null)
     const [activeTrip, setActiveTrip] = useState(null)
     const [pitStopForm, setPitStopForm] = useState(false)
     const [renderNewTripForm, setRenderNewTripForm] = useState(false)
@@ -25,27 +24,6 @@ function UserProvider({ children }) {
       city: "Lebanon"
     })
 
-    useEffect(() => {
-        fetch("/me")
-          .then((r)=>{
-            if (r.ok){
-              return r.json()
-            } else {
-              throw new Error("User not found")
-            }
-          }).then((userData)=>setUser(userData))
-            .catch((error)=> setLoginError(error))
-      }, []);
-
-    function fetchLogout(){
-      fetch("/logout", {
-        method: "DELETE"
-      }).then(()=> { 
-        setActiveTrip(null)
-        setUser(null)
-       })
-    }
-
     function fillPathContents(route){
       // console.log(route.destination)
       if (!route.destination){
@@ -63,7 +41,7 @@ function UserProvider({ children }) {
       }
     }
 
-    return <UserContext.Provider value={{ user, setUser, fetchLogout, setActiveTrip, activeTrip, loginError, pitStopForm, setPitStopForm, startingPoint, setStartingPoint, renderNewTripForm, setRenderNewTripForm, renderUpdatePitStopForm, setRenderUpdatePitStopForm, path, setPath, pathStops, setPathStops, fillPathContents }}>{ children }</UserContext.Provider>
+    return <UserContext.Provider value={{ user, setUser, setActiveTrip, activeTrip, pitStopForm, setPitStopForm, startingPoint, setStartingPoint, renderNewTripForm, setRenderNewTripForm, renderUpdatePitStopForm, setRenderUpdatePitStopForm, path, setPath, pathStops, setPathStops, fillPathContents }}>{ children }</UserContext.Provider>
 };
 
 export { UserContext, UserProvider };
