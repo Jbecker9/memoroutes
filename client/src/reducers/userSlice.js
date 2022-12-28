@@ -25,16 +25,15 @@ export const logInUser = createAsyncThunk( "user/logInUser", (userObject) => {
             "Content-Type": "application/json"
         },
         body: JSON.stringify(userObject)
-    }).then((r)=>r.json())
+    }).then((response)=>response.json())
         .then(userData => userData)
 })
 
 export const logOutUser = createAsyncThunk( "user/logOutUser", () => {
     return fetch('/logout',{
         method: "DELETE"
-    })
-    .then((response) => response.json())
-    .then(userData => userData)
+    }).then((response) => response.json())
+        .then((error) => error)
 })
 
 const initialState = {
@@ -46,9 +45,6 @@ const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        userLogout(state){
-            state.entities = []
-        }
     },
     extraReducers: {
         [fetchUser.pending](state){
@@ -68,8 +64,8 @@ const userSlice = createSlice({
         [logOutUser.pending](state){
             state.status = "loading...";
         },
-        [logOutUser.fulfilled](state){
-            state.entities = [];
+        [logOutUser.fulfilled](state, action){
+            state.entities = action.payload;
             state.status = "idle";
         }
     }

@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
 
     def destroy
         session.delete :user_id
-        head :no_content
+        render json: { error: "Not Authorized" }, status: :unauthorized
     end
 
 private
