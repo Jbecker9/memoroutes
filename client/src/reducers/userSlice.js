@@ -38,7 +38,7 @@ export const logOutUser = createAsyncThunk( "user/logOutUser", () => {
 
 export const userCreateRoadTrip = createAsyncThunk ( "user/userCreateRoadTrip", (newRoadTripObject) => {
     return fetch('/road_trips', {
-        mehtod: "POST",
+        method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
