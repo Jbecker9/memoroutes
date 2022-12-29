@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 
-const UserContext = React.createContext();
+const MapPageContext = React.createContext();
 
-function UserProvider({ children }) {
+function MapPageProvider({ children }) {
     const [activeTrip, setActiveTrip] = useState(null)
     const [pitStopForm, setPitStopForm] = useState(false)
     const [renderNewTripForm, setRenderNewTripForm] = useState(false)
@@ -23,6 +23,12 @@ function UserProvider({ children }) {
       city: "Lebanon"
     })
 
+    function showActiveRoadTrip(tripID){
+      fetch(`road_trips/${tripID}`)
+        .then((response) => response.json())
+        .then((activeTripData) => setActiveTrip(activeTripData))
+    }
+
     function fillPathContents(route){
       // console.log(route.destination)
       if (!route.destination){
@@ -40,7 +46,7 @@ function UserProvider({ children }) {
       }
     }
 
-    return <UserContext.Provider value={{ setActiveTrip, activeTrip, pitStopForm, setPitStopForm, startingPoint, setStartingPoint, renderNewTripForm, setRenderNewTripForm, renderUpdatePitStopForm, setRenderUpdatePitStopForm, path, setPath, pathStops, setPathStops, fillPathContents }}>{ children }</UserContext.Provider>
+    return <MapPageContext.Provider value={{ showActiveRoadTrip, setActiveTrip, activeTrip, pitStopForm, setPitStopForm, startingPoint, setStartingPoint, renderNewTripForm, setRenderNewTripForm, renderUpdatePitStopForm, setRenderUpdatePitStopForm, path, setPath, pathStops, setPathStops, fillPathContents }}>{ children }</MapPageContext.Provider>
 };
 
-export { UserContext, UserProvider };
+export { MapPageContext, MapPageProvider };

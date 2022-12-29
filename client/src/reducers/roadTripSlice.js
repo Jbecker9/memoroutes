@@ -49,7 +49,7 @@ const roadTripSlice = createSlice({
         [fetchRoadTripsSearch.fulfilled](state, action){
             state.entities = action.payload;
             state.status = "idle";
-        },
+        }
     },
 });
 

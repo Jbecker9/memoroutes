@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
-import { UserContext } from "../context/user";
+import { MapPageContext } from "../context/mapPage";
 
 function MapDestinationForm({ setDestinationForm }){
-    const { setUser, startingPoint } = useContext(UserContext)
-    const { activeTrip, setActiveTrip } = useContext(UserContext)
+    const { setUser, startingPoint, activeTrip, setActiveTrip } = useContext(MapPageContext)
     console.log(startingPoint)
 
     function handleDestinationFormSubmit(event){

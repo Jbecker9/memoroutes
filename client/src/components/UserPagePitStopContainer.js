@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../context/user";
+import { MapPageContext } from "../context/mapPage";
 import UserPagePitStop from "./UserPagePitStop";
 
 function UserPagePitStopContainer({ trip, setPitStopClick, pitStops }){
-const { setActiveTrip, setPitStopForm, setStartingPoint, startingPoint } = useContext(UserContext)
+const { setActiveTrip, setPitStopForm, setStartingPoint, startingPoint } = useContext(MapPageContext)
 const navigate = useNavigate()
 
     function updateRedirect(){

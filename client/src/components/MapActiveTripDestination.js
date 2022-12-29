@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
-import { UserContext } from "../context/user";
+import { MapPageContext } from "../context/mapPage";
 import MapDestinationForm from "./MapDestinationForm"
 import "../styles/MapActiveTripDestination.css"
 
 function MapActiveTripDestination(){
-    const { activeTrip, startingPoint } = useContext(UserContext)
+    const { activeTrip, startingPoint } = useContext(MapPageContext)
     const [destinationForm, setDestinationForm] = useState(null)
 
     if (activeTrip.destination){

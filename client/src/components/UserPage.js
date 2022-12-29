@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { UserContext } from "../context/user";
+import { MapPageContext } from "../context/mapPage";
 import UserPageTrips from "./UserPageTrips"
 
 function UserPage(){
-    const { user, setRenderNewTripForm, setPitStopForm, setStartingPoint, setActiveTrip, startingPoint } = useContext(UserContext)
+    const { user, setRenderNewTripForm, setPitStopForm, setStartingPoint, setActiveTrip, startingPoint } = useContext(MapPageContext)
     const navigate = useNavigate()
     // console.log(user)
 

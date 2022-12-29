@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom"
-import { UserContext } from "../context/user";
+import { MapPageContext } from "../context/mapPage";
 
 function UserPagePitStop({ trip, pitStop }){
-    const { setActiveTrip, setRenderUpdatePitStopForm, setStartingPoint, setUser } = useContext(UserContext)
+    const { setActiveTrip, setRenderUpdatePitStopForm, setStartingPoint, setUser } = useContext(MapPageContext)
     const navigate = useNavigate()
 
     function handleStopUpdateRedirect(){

@@ -1,11 +1,11 @@
 import React, { useContext } from "react";
-import { UserContext } from "../context/user";
+import { MapPageContext } from "../context/mapPage";
 import MapActiveTripPitStop from "./MapActiveTripPitStop";
 import "../styles/MapActiveTripPitStopContainer.css"
 import MapActiveTripPitStopUpdateForm from "./MapActiveTripPitStopUpdateForm";
 
 function MapActiveTripPitStopContainer({ findActiveTrip }){
-    const { activeTrip, renderUpdatePitStopForm, setRenderUpdatePitStopForm } = useContext(UserContext)
+    const { activeTrip, renderUpdatePitStopForm, setRenderUpdatePitStopForm } = useContext(MapPageContext)
 
     return(
         <div className="MapActiveTripPitStopContainer-div">

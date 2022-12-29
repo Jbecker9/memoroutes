@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { UserContext } from "../context/user";
+import { MapPageContext } from "../context/mapPage";
 import MapActiveTripDeparture from "./MapActiveTripDeparture";
 import "../styles/MapActiveTrip.css"
 import MapActiveTripDestination from "./MapActiveTripDestination";
@@ -7,7 +7,7 @@ import MapActiveTripPitStopForm from "./MapActiveTripPitStopForm";
 import MapActiveTripPitStopContainer from "./MapActiveTripPitStopContainer";
 
 function MapActiveTrip({ findActiveTrip }){
-    const { activeTrip, user, pitStopForm, setPitStopForm, startingPoint, setStartingPoint } = useContext(UserContext)
+    const { activeTrip, user, pitStopForm, setPitStopForm, startingPoint, setStartingPoint } = useContext(MapPageContext)
 
     console.log(activeTrip)
     
@@ -33,16 +33,16 @@ function MapActiveTrip({ findActiveTrip }){
                     <h2>{activeTrip.trip_name}</h2>
                 </div>
                 <div className="MapActiveTrip-departureDiv">
-                <MapActiveTripDeparture />
+                {/* <MapActiveTripDeparture /> */}
                 </div>
                 <div className="MapActiveTrip-destinationDiv">
-                    <MapActiveTripDestination />
+                    {/* <MapActiveTripDestination /> */}
                 </div>
                 <div className="MapActiveTrip-pitStopFormButton" >  
-                    { pitStopForm ? <MapActiveTripPitStopForm findActiveTrip={findActiveTrip} setPitStopForm={setPitStopForm} /> : <button onClick={renderPitStopForm}> Add a Pit Stop! </button> }
+                    {/* { pitStopForm ? <MapActiveTripPitStopForm findActiveTrip={findActiveTrip} setPitStopForm={setPitStopForm} /> : <button onClick={renderPitStopForm}> Add a Pit Stop! </button> } */}
                 </div>
                 <div>
-                    { isPitStopArrayEmpty() ? <MapActiveTripPitStopContainer findActiveTrip={findActiveTrip} />  : null }
+                    {/* { isPitStopArrayEmpty() ? <MapActiveTripPitStopContainer findActiveTrip={findActiveTrip} />  : null } */}
                 </div>
         </div> 
     )

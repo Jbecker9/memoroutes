@@ -1,11 +1,11 @@
 import React, { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { UserContext } from "../context/user";
+import { MapPageContext } from "../context/mapPage";
 import { userCreateRoadTrip } from "../reducers/userSlice";
 import "../styles/MapNewTripForm.css"
 
 function MapNewTripForm({ findActiveTrip  }){
-    const { setActiveTrip, setStartingPoint, startingPoint, setRenderNewTripForm } = useContext(UserContext)
+    const { setActiveTrip, setStartingPoint, startingPoint, setRenderNewTripForm } = useContext(MapPageContext)
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user.entities)
     const [tripName, setTripName] = useState(startingPoint.name)

@@ -1,13 +1,13 @@
 import React, { useContext, useState } from "react";
 import UserPagePitStopContainer from "./UserPagePitStopContainer";
 import "../styles/UserPageTrip.css"
-import { UserContext } from "../context/user";
+import { MapPageContext } from "../context/mapPage";
 import { useNavigate } from "react-router-dom";
 
 
 function UserPageTrip({ trip }){
     const [pitStopClick, setPitStopClick] = useState(false)
-    const { setActiveTrip, setStartingPoint, setUser, fillPathContents } = useContext(UserContext)
+    const { setActiveTrip, setStartingPoint, setUser, fillPathContents } = useContext(MapPageContext)
     const navigate = useNavigate()
     
     function renderActiveTrip(){

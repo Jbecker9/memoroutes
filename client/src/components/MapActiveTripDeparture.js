@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
-import { UserContext } from "../context/user";
+import { MapPageContext } from "../context/mapPage";
 import "../styles/MapActiveTripDeparture.css"
 
 function MapActiveTripDeparture(){
-    const { activeTrip } = useContext(UserContext)
+    const { activeTrip } = useContext(MapPageContext)
     
     return(
         <div className="MapActiveTripDeparture-div">

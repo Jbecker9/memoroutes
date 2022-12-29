@@ -6,7 +6,7 @@ import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from './reportWebVitals';
 import store from './reducers/store';
-import { UserProvider } from './context/user';
+import { MapPageProvider } from './context/mapPage';
 
 // create reducer for user model
 
@@ -15,11 +15,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
     <BrowserRouter>
-      <UserProvider>
+      <MapPageProvider>
         <Provider store={store} >
             <App />
         </Provider>
-      </UserProvider>
+      </MapPageProvider>
     </BrowserRouter>
   //  </React.StrictMode> 
 );

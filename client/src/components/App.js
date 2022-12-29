@@ -1,6 +1,5 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { UserContext } from "../context/user";
 import { fetchUser, logOutUser } from "../reducers/userSlice";
 import "../styles/App.css"
 import Login from "./Login";
