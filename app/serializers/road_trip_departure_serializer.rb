@@ -1,5 +1,5 @@
 class RoadTripDepartureSerializer < ActiveModel::Serializer
-  attributes :id, :location_name, :lat, :lng
+  attributes :id, :location_name, :lat, :lng, :city_name, :state_name
   
   belongs_to :user
 

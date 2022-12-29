@@ -2,7 +2,7 @@ class DestinationsController < ApplicationController
     require 'bigdecimal/util'
     
     rescue_from ActiveRecord::RecordNotFound, with: :render_unauthorized_response
-    rescue_from ActiveRecord::RecordInvalid, with: render_unprocessable_entity
+    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
     before_action :require_user, only: [:create]
 
     def create

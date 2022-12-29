@@ -5,7 +5,7 @@ import { userCreateRoadTrip } from "../reducers/userSlice";
 import "../styles/MapNewTripForm.css"
 
 function MapNewTripForm({ findActiveTrip  }){
-    const { setActiveTrip, setStartingPoint, startingPoint, setRenderNewTripForm } = useContext(MapPageContext)
+    const { setActiveTrip, setStartingPoint, startingPoint, setRenderNewTripForm, fillPathContents } = useContext(MapPageContext)
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user.entities)
     const [tripName, setTripName] = useState(startingPoint.name)
@@ -36,7 +36,7 @@ function MapNewTripForm({ findActiveTrip  }){
         }
         dispatch(userCreateRoadTrip(newTripObject))
         setRenderNewTripForm(false);
-        setActiveTrip(user.road_trips[user.road_trips.length-1]);
+        setActiveTrip(user.road_trips.find((trip) => trip.name === newTripObject.name));
         setStartingPoint({
           name: `Starting Point`,
           coordinates: {

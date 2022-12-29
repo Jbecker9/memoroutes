@@ -30,7 +30,7 @@ class RoadTripsController < ApplicationController
 
     def show
         user = find_user
-        trip = user.created_trips.find_by(id: params[:id])
+        trip = user.road_trips.find_by(id: params[:id])
         render json: trip
     end
 

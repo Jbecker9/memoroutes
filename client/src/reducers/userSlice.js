@@ -57,6 +57,9 @@ const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
+        updateUserData(state, action){
+            state.entities = action.payload
+        }
     },
     extraReducers: {
         [fetchUser.pending](state){
@@ -90,6 +93,6 @@ const userSlice = createSlice({
     }
 })
 
-export const { userLogout } = userSlice.actions
+export const { updateUserData } = userSlice.actions
 
 export default userSlice.reducer

@@ -32,17 +32,20 @@ function MapActiveTrip({ findActiveTrip }){
                 <div className="MapActiveTrip-titleDiv">
                     <h2>{activeTrip.trip_name}</h2>
                 </div>
+                <div>
+                    <h3>{activeTrip.road_trip_distance_miles} miles (Direct / No Roads)</h3>
+                </div>
                 <div className="MapActiveTrip-departureDiv">
-                {/* <MapActiveTripDeparture /> */}
+                    <MapActiveTripDeparture />
                 </div>
                 <div className="MapActiveTrip-destinationDiv">
-                    {/* <MapActiveTripDestination /> */}
+                    <MapActiveTripDestination />
                 </div>
                 <div className="MapActiveTrip-pitStopFormButton" >  
-                    {/* { pitStopForm ? <MapActiveTripPitStopForm findActiveTrip={findActiveTrip} setPitStopForm={setPitStopForm} /> : <button onClick={renderPitStopForm}> Add a Pit Stop! </button> } */}
+                    { pitStopForm ? <MapActiveTripPitStopForm findActiveTrip={findActiveTrip} setPitStopForm={setPitStopForm} /> : <button onClick={renderPitStopForm}> Add a Pit Stop! </button> }
                 </div>
                 <div>
-                    {/* { isPitStopArrayEmpty() ? <MapActiveTripPitStopContainer findActiveTrip={findActiveTrip} />  : null } */}
+                    { isPitStopArrayEmpty() ? <MapActiveTripPitStopContainer findActiveTrip={findActiveTrip} />  : null }
                 </div>
         </div> 
     )

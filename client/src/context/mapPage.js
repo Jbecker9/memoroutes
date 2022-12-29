@@ -24,9 +24,13 @@ function MapPageProvider({ children }) {
     })
 
     function showActiveRoadTrip(tripID){
+      console.log(tripID)
       fetch(`road_trips/${tripID}`)
         .then((response) => response.json())
-        .then((activeTripData) => setActiveTrip(activeTripData))
+        .then((activeTripData) => {
+          setActiveTrip(activeTripData)
+          fillPathContents(activeTripData)
+        })
     }
 
     function fillPathContents(route){

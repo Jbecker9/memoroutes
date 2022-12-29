@@ -5,13 +5,11 @@ import MapNewTripForm from "./MapNewTripForm";
 import { MapPageContext } from "../context/mapPage";
 import MapActiveTrip from "./MapActiveTrip";
 import { useDispatch, useSelector } from "react-redux";
-import { showActiveRoadTrip } from "../reducers/roadTripSlice";
 
 function MapPage(){
-    const { activeTrip, setActiveTrip, startingPoint, setStartingPoint, setPath, renderNewTripForm, setRenderNewTripForm, path, fillPathContents, pathStops } = useContext(MapPageContext)
+    const { activeTrip, setActiveTrip, showActiveRoadTrip, startingPoint, setStartingPoint, setPath, renderNewTripForm, setRenderNewTripForm, path } = useContext(MapPageContext)
     const user = useSelector((state) => state.user.entities)
-    const dispatch = useDispatch()
-    const [existingTripId, setExistingTripId] = useState(user.road_trips?[0].id : "No Trips")
+    const [existingTripId, setExistingTripId] = useState(1)
     console.log(user)
     
     function findCityOrState(geoInfo, locationType){
@@ -40,6 +38,11 @@ function MapPage(){
                     city: findCityOrState(locationData, "locality")
             });
         })
+    }
+
+    function renderActiveTrip(event){
+        event.preventDefault()
+        showActiveRoadTrip(existingTripId)
     }
 
     function handleNewTripFormRender(){
@@ -74,7 +77,7 @@ function MapPage(){
         <div className="MapPage-div">
             Map Page
             <div className="MapPage-selectRouteDiv">
-                <form>
+                <form onSubmit={renderActiveTrip}>
                     <select onChange={(event)=>setExistingTripId(event.target.value)}>
                         { user.road_trips?.map((trip) => <option value={trip.id} key={trip.id}>{trip.trip_name}</option>) }
                     </select>
