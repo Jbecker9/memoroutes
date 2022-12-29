@@ -12,9 +12,9 @@ export const fetchRoadTripsSearch = createAsyncThunk("roadTrips/fetchRoadTripsSe
             .then((roadTripData) => roadTripData)
 })
 
-export const fetchActiveRoadTrip = createAsyncThunk("roadTrips/fetchActiveRoadTrip", (tripId) => {
-    return fetch(`road`)
-})
+// export const fetchActiveRoadTrip = createAsyncThunk("roadTrips/fetchActiveRoadTrip", (tripId) => {
+//     return fetch(`road`)
+// })
 
 const initialState = {
     entities: [],

@@ -57,7 +57,7 @@ private
     end
 
     def trip_params
-        params.permit(:trip_name, departure_attributes: [:location_name, :lat, :lng, :state_name, :city_name])
+        params.require(:road_trip).permit(:trip_name, departure_attributes: [:location_name, :lat, :lng, :state_name, :city_name])
     end
 
     def find_trip(user)

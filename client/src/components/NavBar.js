@@ -1,12 +1,15 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { logOutUser, userLogout } from "../reducers/userSlice";
+import { logOutUser } from "../reducers/userSlice";
 import "../styles/NavBar.css"
 
 function NavBar(){
     const dispatch = useDispatch();
 
+    function logout(){
+        dispatch(logOutUser())
+    }
 
     const linkStyles = {
         width: "97%",
@@ -56,6 +59,7 @@ function NavBar(){
             >
                 Profile 
             </Link>
+            <div onClick={()=>logout()} className="NavBar-logOutButton"> Logout </div>
         </div>
     )
 }

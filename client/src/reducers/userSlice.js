@@ -36,6 +36,18 @@ export const logOutUser = createAsyncThunk( "user/logOutUser", () => {
         .then((error) => error)
 })
 
+export const userCreateRoadTrip = createAsyncThunk ( "user/userCreateRoadTrip", (newRoadTripObject) => {
+    return fetch('/road_trips', {
+        mehtod: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newRoadTripObject)
+    })
+    .then((response)=>response.json())
+    .then((roadTripData) => roadTripData)
+})
+
 const initialState = {
     entities: [],
     status: "idle"
@@ -67,6 +79,13 @@ const userSlice = createSlice({
         [logOutUser.fulfilled](state, action){
             state.entities = action.payload;
             state.status = "idle";
+        },
+        [userCreateRoadTrip.pending](state){
+            state.status = "loading...";
+        },
+        [userCreateRoadTrip.fulfilled](state, action){
+            state.entities = action.payload
+            state.status = "idle"
         }
     }
 })

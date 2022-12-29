@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 const UserContext = React.createContext();
 
 function UserProvider({ children }) {
-    const [user, setUser] = useState(null)
     const [activeTrip, setActiveTrip] = useState(null)
     const [pitStopForm, setPitStopForm] = useState(false)
     const [renderNewTripForm, setRenderNewTripForm] = useState(false)
@@ -41,7 +40,7 @@ function UserProvider({ children }) {
       }
     }
 
-    return <UserContext.Provider value={{ user, setUser, setActiveTrip, activeTrip, pitStopForm, setPitStopForm, startingPoint, setStartingPoint, renderNewTripForm, setRenderNewTripForm, renderUpdatePitStopForm, setRenderUpdatePitStopForm, path, setPath, pathStops, setPathStops, fillPathContents }}>{ children }</UserContext.Provider>
+    return <UserContext.Provider value={{ setActiveTrip, activeTrip, pitStopForm, setPitStopForm, startingPoint, setStartingPoint, renderNewTripForm, setRenderNewTripForm, renderUpdatePitStopForm, setRenderUpdatePitStopForm, path, setPath, pathStops, setPathStops, fillPathContents }}>{ children }</UserContext.Provider>
 };
 
 export { UserContext, UserProvider };

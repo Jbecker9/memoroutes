@@ -1,14 +1,23 @@
 import React, { useContext, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { UserContext } from "../context/user";
+import { userCreateRoadTrip } from "../reducers/userSlice";
 import "../styles/MapNewTripForm.css"
 
 function MapNewTripForm({ findActiveTrip  }){
-    const { setUser, user, setActiveTrip, setStartingPoint, startingPoint, setRenderNewTripForm } = useContext(UserContext)
+    const { setActiveTrip, setStartingPoint, startingPoint, setRenderNewTripForm } = useContext(UserContext)
+    const dispatch = useDispatch();
+    const user = useSelector((state) => state.user.entities)
     const [tripName, setTripName] = useState(startingPoint.name)
+    const [locationName, setLocationName] = useState(`${user.username}'s departure #${user.road_trips.length + 1}`)
     console.log(user)
 
-    function handleNameChange(event){
+    function handleTripNameChange(event){
         setTripName(event.target.value)
+    }
+
+    function handleLocationNameChange(event){
+        setLocationName(event.target.value)
     }
 
     console.log(startingPoint)
@@ -17,36 +26,27 @@ function MapNewTripForm({ findActiveTrip  }){
         event.preventDefault()
         const newTripObject = {
           trip_name: tripName,
-          city_name: startingPoint.city,
-          state_name: startingPoint.state,
-          departure_lat: startingPoint.coordinates.lat,
-          departure_lng: startingPoint.coordinates.lng
-
+          departure_attributes: {
+            location_name: `${user.username}'s departure #${user.road_trips.length + 1}`,
+            city_name: startingPoint.city,
+            state_name: startingPoint.state,
+            lat: startingPoint.coordinates.lat,
+            lng: startingPoint.coordinates.lng
+          }
         }
-        fetch("/road_trips",{
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json"
-          },
-          body: JSON.stringify(newTripObject)
-        })
-          .then((response)=>response.json())
-          .then((userData)=>{
-            // console.log(userData)
-            setUser(userData);
-            setRenderNewTripForm(false);
-            setActiveTrip(userData.created_trips[userData.created_trips.length-1]);
-            setStartingPoint({
-              name: `Starting Point`,
-              coordinates: {
-                  lat: 39.82818518880172,
-                  lng: -98.57938314610301
-                },
-              zoom: 5,
-              state: "Lebanon",
-              city: "Kansas"
-          })
-          })
+        dispatch(userCreateRoadTrip(newTripObject))
+        setRenderNewTripForm(false);
+        setActiveTrip(user.road_trips[user.road_trips.length-1]);
+        setStartingPoint({
+          name: `Starting Point`,
+          coordinates: {
+              lat: 39.82818518880172,
+              lng: -98.57938314610301
+            },
+          zoom: 5,
+          state: "Lebanon",
+          city: "Kansas"
+      })
       }
 
     return(
@@ -55,9 +55,9 @@ function MapNewTripForm({ findActiveTrip  }){
             <form onSubmit={handleNewTripSubmit}>
                 <p> Road Trip Name: </p>
                 <input 
-                name="name"
+                name="trip_name"
                 placeholder="Trip Name..."
-                onChange={handleNameChange}
+                onChange={handleTripNameChange}
                 value={startingPoint.name}
                 />
                 <button onClick={handleNewTripSubmit}> Start Planning! </button>
