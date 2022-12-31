@@ -23,7 +23,8 @@ class RoadTripsController < ApplicationController
     def create
         user = find_user
         trip = user.road_trips.create(trip_params)
-        trip.departure.user_id = user.id
+        trip.departure.user = user
+        # byebug
         trip.save!
         render json: user
     end

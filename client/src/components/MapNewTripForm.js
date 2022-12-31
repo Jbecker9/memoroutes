@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MapPageContext } from "../context/mapPage";
-import { userCreateRoadTrip } from "../reducers/userSlice";
+import { updateUserData, userCreateRoadTrip } from "../reducers/userSlice";
 import "../styles/MapNewTripForm.css"
 
-function MapNewTripForm({ findActiveTrip  }){
+function MapNewTripForm(){
     const { setActiveTrip, setStartingPoint, startingPoint, setRenderNewTripForm, fillPathContents } = useContext(MapPageContext)
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user.entities)
@@ -34,9 +34,19 @@ function MapNewTripForm({ findActiveTrip  }){
             lng: startingPoint.coordinates.lng
           }
         }
-        dispatch(userCreateRoadTrip(newTripObject))
+        // dispatch(userCreateRoadTrip(newTripObject))
+        fetch('/road_trips', {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify(newTripObject)
+      })
+      .then((response)=>response.json())
+      .then((userData) => {
+        setActiveTrip(userData.road_trips[userData.road_trips.length - 1])
+        dispatch(updateUserData(userData))
         setRenderNewTripForm(false);
-        setActiveTrip(user.road_trips.find((trip) => trip.name === newTripObject.name));
         setStartingPoint({
           name: `Starting Point`,
           coordinates: {
@@ -47,7 +57,7 @@ function MapNewTripForm({ findActiveTrip  }){
           state: "Lebanon",
           city: "Kansas"
       })
-      }
+      })}
 
     return(
         <div className="MapNewTripForm-div">

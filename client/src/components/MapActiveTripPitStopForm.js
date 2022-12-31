@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { useDispatch } from "react-redux";
 import { MapPageContext } from "../context/mapPage";
 
-function MapActiveTripPitStopForm({ findActiveTrip }){
-    const { activeTrip, setActiveTrip, setUser, setPitStopForm, startingPoint, setStartingPoint } = useContext(MapPageContext)
+function MapActiveTripPitStopForm(){
+    const { findActiveTrip, activeTrip, setActiveTrip, setUser, setPitStopForm, startingPoint, setStartingPoint } = useContext(MapPageContext)
     const dispatch = useDispatch();
     
     function handleNameChange(event){

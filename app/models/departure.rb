@@ -1,6 +1,6 @@
 class Departure < ApplicationRecord
-    belongs_to :user
     belongs_to :road_trip
+    belongs_to :user, inverse_of: :departures
 
     belongs_to :city
     belongs_to :state

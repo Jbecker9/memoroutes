@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { MapPageContext } from "../context/mapPage";
 import "../styles/MapActiveTripPitStop.css"
 
-function MapActiveTripPitStop({ findActiveTrip, pitStop }){
-    const { setUser, setActiveTrip, setStartingPoint, startingPoint, setRenderUpdatePitStopForm } = useContext(MapPageContext)
+function MapActiveTripPitStop({ pitStop }){
+    const { findActiveTrip, setUser, setActiveTrip, setStartingPoint, startingPoint, setRenderUpdatePitStopForm } = useContext(MapPageContext)
 
     function updateStartingPoint(){
         setStartingPoint({

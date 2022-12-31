@@ -8,5 +8,5 @@ class RoadTrip < ApplicationRecord
     accepts_nested_attributes_for :departure
 
     validates :trip_name, presence: true, length: { minimum: 4 }
-    
+
 end

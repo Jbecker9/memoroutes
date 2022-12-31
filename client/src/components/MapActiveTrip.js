@@ -6,8 +6,8 @@ import MapActiveTripDestination from "./MapActiveTripDestination";
 import MapActiveTripPitStopForm from "./MapActiveTripPitStopForm";
 import MapActiveTripPitStopContainer from "./MapActiveTripPitStopContainer";
 
-function MapActiveTrip({ findActiveTrip }){
-    const { activeTrip, user, pitStopForm, setPitStopForm, startingPoint, setStartingPoint } = useContext(MapPageContext)
+function MapActiveTrip(){
+    const { activeTrip, pitStopForm, setPitStopForm, startingPoint, setStartingPoint } = useContext(MapPageContext)
 
     console.log(activeTrip)
     
@@ -15,7 +15,7 @@ function MapActiveTrip({ findActiveTrip }){
         setPitStopForm(true)
         setStartingPoint({
             ...startingPoint,
-            name: `Pit-Stop #${findActiveTrip(user).pit_stops.length + 1}`
+            name: `Pit-Stop #${activeTrip.pit_stops.length + 1}`
         })
     }
 
@@ -33,7 +33,7 @@ function MapActiveTrip({ findActiveTrip }){
                     <h2>{activeTrip.trip_name}</h2>
                 </div>
                 <div>
-                    <h3>{activeTrip.road_trip_distance_miles} miles (Direct / No Roads)</h3>
+                    { activeTrip.road_trip_distance_miles ? <h3>{activeTrip.road_trip_distance_miles} miles (Direct / No Roads)</h3> : null }
                 </div>
                 <div className="MapActiveTrip-departureDiv">
                     <MapActiveTripDeparture />
@@ -42,10 +42,10 @@ function MapActiveTrip({ findActiveTrip }){
                     <MapActiveTripDestination />
                 </div>
                 <div className="MapActiveTrip-pitStopFormButton" >  
-                    { pitStopForm ? <MapActiveTripPitStopForm findActiveTrip={findActiveTrip} setPitStopForm={setPitStopForm} /> : <button onClick={renderPitStopForm}> Add a Pit Stop! </button> }
+                    { pitStopForm ? <MapActiveTripPitStopForm setPitStopForm={setPitStopForm} /> : <button onClick={renderPitStopForm}> Add a Pit Stop! </button> }
                 </div>
                 <div>
-                    { isPitStopArrayEmpty() ? <MapActiveTripPitStopContainer findActiveTrip={findActiveTrip} />  : null }
+                    { isPitStopArrayEmpty() ? <MapActiveTripPitStopContainer />  : null }
                 </div>
         </div> 
     )

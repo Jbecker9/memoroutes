@@ -50,7 +50,11 @@ function MapPageProvider({ children }) {
       }
     }
 
-    return <MapPageContext.Provider value={{ showActiveRoadTrip, setActiveTrip, activeTrip, pitStopForm, setPitStopForm, startingPoint, setStartingPoint, renderNewTripForm, setRenderNewTripForm, renderUpdatePitStopForm, setRenderUpdatePitStopForm, path, setPath, pathStops, setPathStops, fillPathContents }}>{ children }</MapPageContext.Provider>
+    function findActiveTrip(userObj){
+      return userObj.road_trips.find((trip) => trip.id === activeTrip.id )
+  }
+
+    return <MapPageContext.Provider value={{ findActiveTrip, showActiveRoadTrip, setActiveTrip, activeTrip, pitStopForm, setPitStopForm, startingPoint, setStartingPoint, renderNewTripForm, setRenderNewTripForm, renderUpdatePitStopForm, setRenderUpdatePitStopForm, path, setPath, pathStops, setPathStops, fillPathContents }}>{ children }</MapPageContext.Provider>
 };
 
 export { MapPageContext, MapPageProvider };

@@ -4,14 +4,14 @@ import MapActiveTripPitStop from "./MapActiveTripPitStop";
 import "../styles/MapActiveTripPitStopContainer.css"
 import MapActiveTripPitStopUpdateForm from "./MapActiveTripPitStopUpdateForm";
 
-function MapActiveTripPitStopContainer({ findActiveTrip }){
+function MapActiveTripPitStopContainer(){
     const { activeTrip, renderUpdatePitStopForm, setRenderUpdatePitStopForm } = useContext(MapPageContext)
 
     return(
         <div className="MapActiveTripPitStopContainer-div">
-            { renderUpdatePitStopForm ? <MapActiveTripPitStopUpdateForm findActiveTrip={findActiveTrip} /> : 
+            { renderUpdatePitStopForm ? <MapActiveTripPitStopUpdateForm /> : 
             <div className="MapActiveTripPitStopContainer-gridDiv">
-            { activeTrip.pit_stops.map((pitStop) => <MapActiveTripPitStop findActiveTrip={findActiveTrip} pitStop={pitStop} key={pitStop.id} /> ) }
+            { activeTrip.pit_stops.map((pitStop) => <MapActiveTripPitStop pitStop={pitStop} key={pitStop.id} /> ) }
             </div> }
         </div>
     )

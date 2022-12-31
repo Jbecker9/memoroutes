@@ -11,6 +11,7 @@ class DestinationsController < ApplicationController
         trip.update!(road_trip_distance_miles: convert_coord_to_distance(trip.departure.lat, trip.departure.lng, params[:lat], params[:lng]))
         destination = trip.create_destination(destination_params)
         destination.user = user
+        user.road_trips.order(:id)
         destination.save!
         render json: user
     end

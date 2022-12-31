@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import { MapPageContext } from "../context/mapPage";
 import "../styles/MapActiveTripPitStopUpdateForm.css"
 
-function MapActiveTripPitStopUpdateForm({ findActiveTrip }){
-    const { startingPoint, setStartingPoint, setUser, setActiveTrip, setRenderUpdatePitStopForm, renderUpdatePitStopForm } = useContext(MapPageContext)
+function MapActiveTripPitStopUpdateForm(){
+    const { findActiveTrip, startingPoint, setStartingPoint, setUser, setActiveTrip, setRenderUpdatePitStopForm, renderUpdatePitStopForm } = useContext(MapPageContext)
 
     function handleNameChange(event){
         let name = event.target.name
