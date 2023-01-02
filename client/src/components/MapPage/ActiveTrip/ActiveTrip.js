@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import { MapPageContext } from "../context/mapPage";
-import MapActiveTripDeparture from "./MapActiveTripDeparture";
-import "../styles/MapActiveTrip.css"
-import MapActiveTripDestination from "./MapActiveTripDestination";
-import MapActiveTripPitStopForm from "./MapActiveTripPitStopForm";
-import MapActiveTripPitStopContainer from "./MapActiveTripPitStopContainer";
+import { MapPageContext } from "../../../context/mapPage";
+import Departure from "./Departure/Departure";
+import "../../../styles/MapActiveTrip.css"
+import Destination from "./Destination/Destination";
+import PitStopForm from "./PitStops/PitStopForm";
+import PitStopContainer from "./PitStops/PitStopContainer";
 
-function MapActiveTrip(){
+function ActiveTrip(){
     const { activeTrip, pitStopForm, setPitStopForm, startingPoint, setStartingPoint } = useContext(MapPageContext)
 
     console.log(activeTrip)
@@ -36,19 +36,19 @@ function MapActiveTrip(){
                     { activeTrip.road_trip_distance_miles ? <h3>{activeTrip.road_trip_distance_miles} miles (Direct / No Roads)</h3> : null }
                 </div>
                 <div className="MapActiveTrip-departureDiv">
-                    <MapActiveTripDeparture />
+                    <Departure />
                 </div>
                 <div className="MapActiveTrip-destinationDiv">
-                    <MapActiveTripDestination />
+                    <Destination />
                 </div>
                 <div className="MapActiveTrip-pitStopFormButton" >  
-                    { pitStopForm ? <MapActiveTripPitStopForm setPitStopForm={setPitStopForm} /> : <button onClick={renderPitStopForm}> Add a Pit Stop! </button> }
+                    { pitStopForm ? <PitStopForm setPitStopForm={setPitStopForm} /> : <button onClick={renderPitStopForm}> Add a Pit Stop! </button> }
                 </div>
                 <div>
-                    { isPitStopArrayEmpty() ? <MapActiveTripPitStopContainer />  : null }
+                    { isPitStopArrayEmpty() ? <PitStopContainer />  : null }
                 </div>
         </div> 
     )
 }
 
-export default MapActiveTrip
+export default ActiveTrip

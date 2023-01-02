@@ -1,12 +1,12 @@
 import React, { useContext, useState } from "react";
 import {  GoogleMap, LoadScript, MarkerClusterer, Polyline, MarkerF } from '@react-google-maps/api'
-import "../styles/MapPage.css"
-import MapNewTripForm from "./MapNewTripForm";
-import { MapPageContext } from "../context/mapPage";
-import MapActiveTrip from "./MapActiveTrip";
+import "../../styles/MapPage.css"
+import NewTripForm from "./NewTripForm";
+import { MapPageContext } from "../../context/mapPage";
+import ActiveTrip from "./ActiveTrip/ActiveTrip";
 import { useSelector } from "react-redux";
 
-function MapPage(){
+function Map(){
     const { activeTrip, setActiveTrip, showActiveRoadTrip, startingPoint, setStartingPoint, setPath, renderNewTripForm, setRenderNewTripForm, path } = useContext(MapPageContext)
     const user = useSelector((state) => state.user.entities)
     const [existingTripId, setExistingTripId] = useState(1)
@@ -99,10 +99,10 @@ function MapPage(){
                             }
                             { activeTrip?.destination ? <Polyline path={path} options={styling} /> : null }
                             <div className="MapPage-formDiv">
-                                { renderNewTripForm ? <MapNewTripForm /> : <button className="MapPage-newRouteButton" onClick={handleNewTripFormRender}> Create A New Trip! </button> }
+                                { renderNewTripForm ? <NewTripForm /> : <button className="MapPage-newRouteButton" onClick={handleNewTripFormRender}> Create A New Trip! </button> }
                             </div>
                             <div className="MapPage-ActiveTripSideBarDiv">
-                                { activeTrip ? <MapActiveTrip /> : null }
+                                { activeTrip ? <ActiveTrip /> : null }
                             </div>
                         </GoogleMap>
                     </LoadScript>
@@ -111,4 +111,4 @@ function MapPage(){
     )
 }
 
-export default MapPage
+export default Map

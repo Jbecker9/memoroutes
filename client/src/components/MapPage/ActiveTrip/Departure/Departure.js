@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { MapPageContext } from "../context/mapPage";
-import "../styles/MapActiveTripDeparture.css"
+import { MapPageContext } from "../../../../context/mapPage";
+import "../../../../styles/MapActiveTripDeparture.css"
 
-function MapActiveTripDeparture(){
+function Departure(){
     const { activeTrip } = useContext(MapPageContext)
     
     return(
@@ -13,4 +13,4 @@ function MapActiveTripDeparture(){
     )
 }
 
-export default MapActiveTripDeparture
+export default Departure

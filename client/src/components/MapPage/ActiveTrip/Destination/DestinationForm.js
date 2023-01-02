@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 import { useDispatch } from "react-redux";
-import { MapPageContext } from "../context/mapPage";
-import { updateUserData } from "../reducers/userSlice";
+import { MapPageContext } from "../../../../context/mapPage";
+import { updateUserData } from "../../../../reducers/userSlice";
 
-function MapDestinationForm({ setDestinationForm }){
+function DestinationForm({ setDestinationForm }){
     const { startingPoint, setStartingPoint, activeTrip, setActiveTrip, fillPathContents } = useContext(MapPageContext)
     const dispatch = useDispatch();
     console.log(startingPoint)
@@ -50,4 +50,4 @@ function MapDestinationForm({ setDestinationForm }){
     )
 }
 
-export default MapDestinationForm
+export default DestinationForm

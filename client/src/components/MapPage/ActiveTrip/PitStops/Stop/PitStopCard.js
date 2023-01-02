@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { MapPageContext } from "../context/mapPage";
-import "../styles/MapActiveTripPitStop.css"
+import { MapPageContext } from "../../../../../context/mapPage";
+import "../../../../../styles/MapActiveTripPitStop.css"
 
-function MapActiveTripPitStop({ pitStop }){
+function PitStopCard({ pitStop }){
     const { findActiveTrip, setUser, setActiveTrip, setStartingPoint, startingPoint, setRenderUpdatePitStopForm } = useContext(MapPageContext)
 
     function updateStartingPoint(){
@@ -56,4 +56,4 @@ function MapActiveTripPitStop({ pitStop }){
     )
 }
 
-export default MapActiveTripPitStop
+export default PitStopCard

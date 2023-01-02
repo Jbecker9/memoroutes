@@ -1,9 +1,9 @@
 import React, { useState, useContext } from "react";
-import { MapPageContext } from "../context/mapPage";
-import MapDestinationForm from "./MapDestinationForm"
-import "../styles/MapActiveTripDestination.css"
+import { MapPageContext } from "../../../../context/mapPage";
+import DestinationForm from "./DestinationForm"
+import "../../../../styles/MapActiveTripDestination.css"
 
-function MapActiveTripDestination(){
+function Destination(){
     const { activeTrip, startingPoint } = useContext(MapPageContext)
     const [destinationForm, setDestinationForm] = useState(null)
 
@@ -18,11 +18,11 @@ function MapActiveTripDestination(){
         return(
             <div>
                 <h4 className="MapActiveTripDestination-destinationText"> No Destination! </h4>
-                { destinationForm ? <MapDestinationForm setDestinationForm={setDestinationForm} startingPoint={startingPoint} /> : <button onClick={()=>setDestinationForm(true)} > Add a Destination! </button> }
+                { destinationForm ? <DestinationForm setDestinationForm={setDestinationForm} startingPoint={startingPoint} /> : <button onClick={()=>setDestinationForm(true)} > Add a Destination! </button> }
             </div>
         )
     }
 
 }
 
-export default MapActiveTripDestination
+export default Destination

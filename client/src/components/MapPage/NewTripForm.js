@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { MapPageContext } from "../context/mapPage";
-import { updateUserData, userCreateRoadTrip } from "../reducers/userSlice";
-import "../styles/MapNewTripForm.css"
+import { MapPageContext } from "../../context/mapPage";
+import { updateUserData, userCreateRoadTrip } from "../../reducers/userSlice";
+import "../../styles/MapNewTripForm.css"
 
-function MapNewTripForm(){
+function NewTripForm(){
     const { setActiveTrip, setStartingPoint, startingPoint, setRenderNewTripForm, fillPathContents } = useContext(MapPageContext)
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user.entities)
@@ -81,4 +81,4 @@ function MapNewTripForm(){
     )
 }
 
-export default MapNewTripForm
+export default NewTripForm

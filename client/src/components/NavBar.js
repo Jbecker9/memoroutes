@@ -36,10 +36,10 @@ function NavBar(){
                 Welcome Page
             </Link>
             <Link
-            to="/mapPage"
+            to="/map"
             style={linkStyles}
             >
-                Map 
+                Map
             </Link>
             <Link
             to="/roadTripsPage"

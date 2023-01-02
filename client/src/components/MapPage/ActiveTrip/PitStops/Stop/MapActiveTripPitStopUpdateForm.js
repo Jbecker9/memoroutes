@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
-import { MapPageContext } from "../context/mapPage";
-import "../styles/MapActiveTripPitStopUpdateForm.css"
+import { MapPageContext } from "../../../../../context/mapPage";
+import "../../../../../styles/MapActiveTripPitStopUpdateForm.css"
 
-function MapActiveTripPitStopUpdateForm(){
+function PitStopUpdateForm(){
     const { findActiveTrip, startingPoint, setStartingPoint, setUser, setActiveTrip, setRenderUpdatePitStopForm, renderUpdatePitStopForm } = useContext(MapPageContext)
 
     function handleNameChange(event){
@@ -49,4 +49,4 @@ function MapActiveTripPitStopUpdateForm(){
     )
 }
 
-export default MapActiveTripPitStopUpdateForm
+export default PitStopUpdateForm

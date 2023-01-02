@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { useDispatch } from "react-redux";
-import { MapPageContext } from "../context/mapPage";
+import { MapPageContext } from "../../../../context/mapPage";
 
-function MapActiveTripPitStopForm(){
+function PitStopForm(){
     const { findActiveTrip, activeTrip, setActiveTrip, setUser, setPitStopForm, startingPoint, setStartingPoint } = useContext(MapPageContext)
     const dispatch = useDispatch();
     
@@ -59,4 +59,4 @@ function MapActiveTripPitStopForm(){
     </div> 
 )}
 
-export default MapActiveTripPitStopForm
+export default PitStopForm

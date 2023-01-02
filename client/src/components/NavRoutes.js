@@ -4,7 +4,7 @@ import { Route, Routes } from "react-router-dom"
 import UserPage from "./UserPage";
 import NavBar from "./NavBar";
 import "../styles/NavRoutes.css";
-import MapPage from "./MapPage";
+import Map from "./MapPage/Map";
 import RoadTripsPage from "./RoadTripsPage";
 import StatesPage from "./StatesPage";
 
@@ -21,7 +21,7 @@ function NavRoutes(){
             <Routes>
                 <Route index element={<WelcomePage />} />
                 <Route path="/userPage" element={<UserPage />} />
-                <Route path="/mapPage" element={<MapPage />} />
+                <Route path="/map" element={<Map />} />
                 <Route path="/roadTripsPage" element={<RoadTripsPage />} />
                 <Route path="/statesPage" element={<StatesPage />} />
             </Routes>
