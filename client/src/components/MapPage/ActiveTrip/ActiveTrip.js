@@ -8,9 +8,7 @@ import PitStopContainer from "./PitStops/PitStopContainer";
 
 function ActiveTrip(){
     const { activeTrip, pitStopForm, setPitStopForm, startingPoint, setStartingPoint } = useContext(MapPageContext)
-
-    console.log(activeTrip)
-    
+        
     function renderPitStopForm(){
         setPitStopForm(true)
         setStartingPoint({

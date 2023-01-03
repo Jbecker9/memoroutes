@@ -1,9 +1,12 @@
 import React, { useContext } from "react";
+import { useDispatch } from "react-redux";
 import { MapPageContext } from "../../../../../context/mapPage";
+import { updateUserData } from "../../../../../reducers/userSlice";
 import "../../../../../styles/MapActiveTripPitStop.css"
 
 function PitStopCard({ pitStop }){
-    const { findActiveTrip, setUser, setActiveTrip, setStartingPoint, startingPoint, setRenderUpdatePitStopForm } = useContext(MapPageContext)
+    const { findActiveTrip, setActiveTrip, setStartingPoint, setRenderUpdatePitStopForm } = useContext(MapPageContext)
+    const dispatch = useDispatch();
 
     function updateStartingPoint(){
         setStartingPoint({
@@ -12,17 +15,9 @@ function PitStopCard({ pitStop }){
                 lat: parseInt(pitStop.lat),
                 lng: parseInt(pitStop.lng),
             },
-            zoom: 5,
-            state: pitStop.stop_state,
-            city: pitStop.stop_city
-        })
-    }
-    
-    function showPitStop(){
-        updateStartingPoint()
-        setStartingPoint({
-            ...startingPoint,
-            zoom: 13
+            zoom: 13,
+            state: pitStop.state_name,
+            city: pitStop.city_name
         })
     }
 
@@ -32,7 +27,7 @@ function PitStopCard({ pitStop }){
             method: "DELETE"
         }).then((response)=>response.json())
             .then((userData) => {
-                setUser(userData);
+                dispatch(updateUserData(userData));
                 setActiveTrip(findActiveTrip(userData));
             })
     }
@@ -48,7 +43,7 @@ function PitStopCard({ pitStop }){
                 <h3 className="MapActiveTripPitStop-textSpacing">{ pitStop.location_name }</h3>
                 <h5 className="MapActiveTripPitStop-textSpacing">{ pitStop.city_name },</h5>
                 <h5 className="MapActiveTripPitStop-textSpacing">{ pitStop.state_name }</h5>
-                <button onClick={showPitStop}> Go to Pit Stop! </button>
+                <button onClick={updateStartingPoint}> Go to Pit Stop! </button>
                 <button id={`pitStopButton_${pitStop.id}`} onClick={handlePitStopFormClick}> Update Pit Stop! </button>
                 <button onClick={handlePitStopDelete}> Delete Pit Stop </button>
             </div>

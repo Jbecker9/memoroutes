@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { useDispatch } from "react-redux";
 import { MapPageContext } from "../../../../context/mapPage";
+import { updateUserData } from "../../../../reducers/userSlice";
 
 function PitStopForm(){
     const { findActiveTrip, activeTrip, setActiveTrip, setUser, setPitStopForm, startingPoint, setStartingPoint } = useContext(MapPageContext)
@@ -32,7 +33,7 @@ function PitStopForm(){
                     body: JSON.stringify(newPitStopObject)
                 }).then((response)=>response.json())
                     .then((userData) => {
-                        setUser(userData);
+                        dispatch(updateUserData(userData));
                         setActiveTrip(findActiveTrip(userData))
                         setPitStopForm(false);
                         setStartingPoint({

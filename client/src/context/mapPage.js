@@ -24,7 +24,6 @@ function MapPageProvider({ children }) {
     })
 
     function showActiveRoadTrip(tripID){
-      console.log(tripID)
       fetch(`road_trips/${tripID}`)
         .then((response) => response.json())
         .then((activeTripData) => {
@@ -42,7 +41,6 @@ function MapPageProvider({ children }) {
           { lat: parseFloat(startingPoint.coordinates.lat), lng: parseFloat(startingPoint.coordinates.lng) }
         ])
       } else {
-        console.log("no")
         setPath([
           { lat: parseFloat(route.departure.lat), lng: parseFloat(route.departure.lng) },
           { lat: parseFloat(route.destination.lat), lng: parseFloat(route.destination.lng) }
