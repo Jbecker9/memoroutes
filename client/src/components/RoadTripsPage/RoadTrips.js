@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { fetchRoadTripsByLength } from "../../reducers/roadTripSlice";
+import { fetchRoadTripsByLength, removeAllTrips } from "../../reducers/roadTripSlice";
 import RoadTripsContainer from "./RoadTripsContainer";
 import RoadTripSearch from "./RoadTripSearch";
 
@@ -14,7 +14,9 @@ function RoadTrips(){
         let format = event.target.value
         if (format === "Default"){
             setSearch(false)
+            dispatch(removeAllTrips())
         } else if (format === "Search"){
+            dispatch(removeAllTrips())
             setSearch(true)
         } else {
             setSearch(false)

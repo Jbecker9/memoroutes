@@ -30,7 +30,10 @@ const roadTripSlice = createSlice({
             const newState = state.entities.filter( (trip) => trip.id !== action.payload.id )
             newState.splice(trip_index, 0, action.payload)
             state.entities = newState
-        }
+        },
+        removeAllTrips(state){
+            state.entities = []
+        },
     },
     extraReducers: {
         [fetchRoadTripsByLength.pending](state){
@@ -52,6 +55,6 @@ const roadTripSlice = createSlice({
     },
 });
 
-export const { updateLikedTrip } = roadTripSlice.actions;
+export const { updateLikedTrip, removeAllTrips } = roadTripSlice.actions;
 
 export default roadTripSlice.reducer
