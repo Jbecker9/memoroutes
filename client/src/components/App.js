@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUser, logOutUser } from "../reducers/userSlice";
+import { fetchUser } from "../reducers/userSlice";
 import "../styles/App.css"
 import Login from "./Login";
 import NavRoutes from "./NavRoutes";
@@ -19,7 +19,6 @@ function App() {
   } else {
     return <NavRoutes />
   }
-    
 }
 
 export default App;
