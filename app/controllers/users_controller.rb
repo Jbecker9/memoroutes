@@ -8,7 +8,6 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
     end
 
     def create
-        byebug
         user = User.create!(user_params)
         render json: user
     end
@@ -21,7 +20,7 @@ private
 
 
     def user_params
-        params.require(:user).permit(:username, :password, :password_confirmation)
+        params.permit(:username, :password, :password_confirmation)
     end
 
     def render_unauthorized_response

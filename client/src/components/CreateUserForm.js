@@ -1,11 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
-import { createUser } from "../reducers/userSlice";
 import "../styles/CreateUserForm.css"
 
 function CreateUserForm({ closeForm, setCreationSuccessMessage }){
-    const dispatch = useDispatch();
     const [newUserFormData, setNewUserFormData] = useState({
         username: "",
         password: "",
@@ -27,7 +24,8 @@ function CreateUserForm({ closeForm, setCreationSuccessMessage }){
                 if (userData.errors){
                     setCreationError(userData)
                 } else {
-                    console.log(userData)
+                    setCreationSuccessMessage(true)
+                    closeForm()
                 }
             })
     }
@@ -35,14 +33,11 @@ function CreateUserForm({ closeForm, setCreationSuccessMessage }){
     function handleChange(event){
         const name = event.target.name
         const value = event.target.value
-
         setNewUserFormData({
             ...newUserFormData,
             [name]: value
         });
     };
-
-    console.log(creationError)
 
     return(
         <div className="CreateUserForm-div">

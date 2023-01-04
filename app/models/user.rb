@@ -9,4 +9,5 @@ class User < ApplicationRecord
     has_many :destinations, through: :road_trips
 
     has_many :cities, through: :pit_stops
+
 end

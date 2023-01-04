@@ -6,18 +6,6 @@ export const fetchUser = createAsyncThunk("user/fetchUser", () => {
             .then((userData) => userData)
 })
 
-export const createUser = createAsyncThunk("user/createUser", (newUserObject) => {
-    return fetch('/signup', {
-        method: "POST",
-        headers: {
-            'Content-Type': "application/json"
-        },
-        body: JSON.stringify(newUserObject)
-    })
-        .then((response) => response.json())
-        .then( newUserData => newUserData )
-})
-
 export const logInUser = createAsyncThunk( "user/logInUser", (userObject) => {
     return  fetch("/login", {
         method: "POST",

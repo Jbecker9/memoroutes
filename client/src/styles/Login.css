@@ -61,3 +61,11 @@
 .Login-submitButton:hover{
     background-color: #2ecc71;
 }
+
+.Login-userCreationMessage{
+    color: #2ecc71;
+}
+
+.Login-loginError{
+    color: red;
+}

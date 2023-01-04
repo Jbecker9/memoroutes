@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { logInUser } from "../reducers/userSlice";
+import { updateUserData } from "../reducers/userSlice";
 
 function LoginForm({ closeForm, creationSuccessMessage, setCreationSuccessMessage }){
     const [loginFormData, setLoginFormData] = useState({
         username: "",
         password: ""
     });
+    const [loginError, setLoginError] = useState(null)
     const dispatch = useDispatch();
 
     function handleChange(event){
@@ -21,15 +22,28 @@ function LoginForm({ closeForm, creationSuccessMessage, setCreationSuccessMessag
 
     function handleSubmit(event){
         event.preventDefault();
-        dispatch(logInUser(loginFormData));
-        setCreationSuccessMessage(false)
+        fetch("/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(loginFormData)
+        }).then((response)=>response.json())
+            .then(userData => {
+                if (userData.error){
+                    setLoginError(userData)
+                } else {
+                    setCreationSuccessMessage(false)
+                    dispatch(updateUserData(userData))
+                }
+            })
     };
     
 
     return(
         <div className="Login-Formdiv">
             <h1> Log In </h1>
-            { creationSuccessMessage ? <h2> User Created ! </h2> : null }
+            { creationSuccessMessage ? <h2 className="Login-userCreationMessage"> User Created! </h2> : null }
             <form onSubmit={handleSubmit} >
                 <input 
                     onChange={handleChange}
@@ -46,6 +60,7 @@ function LoginForm({ closeForm, creationSuccessMessage, setCreationSuccessMessag
                     type='password'
                     className="Login-formInput"
                 />
+                { loginError ? <h3 className="Login-loginError"> {loginError.error} </h3> : null }
                 <button className="Login-submitButton"> Login </button>
             </form>
             <button className="Login-signUpButton" onClick={()=>closeForm()}> Create a New User </button>
