@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { MapPageContext } from "../../../context/mapPage";
 import PitStopCard from "./PitStopCard";
-import UserPagePitStop from "./PitStopCard";
 
 function PitStopsContainer({ trip, setPitStopClick, pitStops }){
 const { setPath, setActiveTrip, setPitStopForm, setStartingPoint, startingPoint } = useContext(MapPageContext)

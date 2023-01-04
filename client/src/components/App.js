@@ -12,7 +12,6 @@ function App() {
 
   useEffect(()=>{
     dispatch(fetchUser())
-    // window.addEventListener('unload', dispatch())
   }, [dispatch])
 
   if (!user || user.entities?.error){
