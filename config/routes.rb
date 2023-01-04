@@ -16,5 +16,6 @@ Rails.application.routes.draw do
   
   get '/road_trips/filter_by_length/:format', to: 'road_trips#filter_by_length'
   get '/road_trips/search/:trip_name', to: 'road_trips#search'
+  patch '/road_trips/:id/update_likes', to: 'road_trips#update_likes'
   
 end

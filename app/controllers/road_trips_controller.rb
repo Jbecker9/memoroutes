@@ -10,6 +10,8 @@ class RoadTripsController < ApplicationController
                 road_trips = RoadTrip.all.sort{ |a,b| b.road_trip_distance_miles.to_i <=> a.road_trip_distance_miles.to_i }
             when "ASC"
                 road_trips = RoadTrip.all.sort{ |a,b| a.road_trip_distance_miles.to_i <=> b.road_trip_distance_miles.to_i }
+            when "Likes"
+                road_trips = RoadTrip.all.sort{ |a,b| b.user_likes.to_i <=> a.user_likes.to_i }
             else
         end
         render json: road_trips
@@ -41,6 +43,13 @@ class RoadTripsController < ApplicationController
         # byebug
         road_trip.destroy
         render json: user
+    end
+
+    def update_likes
+        user = find_user
+        road_trip = RoadTrip.find_by(id: params[:id])
+        road_trip.increment!(:user_likes)
+        render json: road_trip
     end
 
 private

@@ -1,7 +1,7 @@
 import React from "react";
 import RoadTripPitStopCard from "./RoadTripPitStopCard";
 
-function RoadTripPitStops({ pitStops, setPitStopsTrip }){
+function PitStopContainer({ pitStops, setPitStopsTrip }){
     console.log(pitStops)
 
     if (pitStops.length >= 1){
@@ -21,4 +21,4 @@ function RoadTripPitStops({ pitStops, setPitStopsTrip }){
     }
 }
 
-export default RoadTripPitStops
+export default PitStopContainer

@@ -54,8 +54,8 @@ function NewTripForm(){
               lng: -98.57938314610301
             },
           zoom: 5,
-          state: "Lebanon",
-          city: "Kansas"
+          city: "Lebanon",
+          state: "Kansas"
       })
       })}
 

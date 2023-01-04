@@ -25,13 +25,12 @@ const roadTripSlice = createSlice({
     name: "roadTrips",
     initialState,
     reducers: {
-        addRoadTrip(state, action){
-            state.entities.push(action.payload)
-        },
-        updateTrip(state, action){
-            // const roadTripIndex = state.entities.findIndex((trip) => trip.id === action.payload.id)
-            
-        },
+        updateLikedTrip(state, action){
+            const trip_index = state.entities.findIndex((trip) => trip.id === action.payload.id)
+            const newState = state.entities.filter( (trip) => trip.id !== action.payload.id )
+            newState.splice(trip_index, 0, action.payload)
+            state.entities = newState
+        }
     },
     extraReducers: {
         [fetchRoadTripsByLength.pending](state){
@@ -53,6 +52,6 @@ const roadTripSlice = createSlice({
     },
 });
 
-// export const {} = roadTripSlice.actions;
+export const { updateLikedTrip } = roadTripSlice.actions;
 
 export default roadTripSlice.reducer

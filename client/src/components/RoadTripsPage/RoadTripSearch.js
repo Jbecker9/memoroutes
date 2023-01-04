@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { fetchRoadTripsSearch } from "../reducers/roadTripSlice";
+import { fetchRoadTripsSearch } from "../../reducers/roadTripSlice";
 
 function RoadTripSearch(){
     const [searchValue, setSearchValue] = useState('')

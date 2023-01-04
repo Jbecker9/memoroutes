@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import RoadTripCard from "./RoadTripCard";
+import TripCard from "./Trip/TripCard";
 
 function RoadTripsContainer({ roadTrips }){
     const [pitStopsTrip, setPitStopsTrip] = useState(null)
     
     return(
         <div>
-            { roadTrips.map((trip) => <RoadTripCard pitStopsTrip={pitStopsTrip} setPitStopsTrip={setPitStopsTrip} trip={trip} key={trip.id} /> ) }
+            { roadTrips.map((trip) => <TripCard pitStopsTrip={pitStopsTrip} setPitStopsTrip={setPitStopsTrip} trip={trip} key={trip.id} /> ) }
         </div>
 )}
 

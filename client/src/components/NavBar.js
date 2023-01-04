@@ -42,7 +42,7 @@ function NavBar(){
                 Map
             </Link>
             <Link
-            to="/roadTripsPage"
+            to="/roadTrips"
             style={linkStyles}
             >
                 Discover Road Trips
