@@ -8,6 +8,7 @@ rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
     end
 
     def create
+        byebug
         user = User.create!(user_params)
         render json: user
     end
@@ -28,7 +29,7 @@ private
     end
 
     def render_unprocessable_entity(invalid)
-        render json: { errors: invalid.record.errors }, status: :unprocessable_entity
+        render json: { errors: invalid.record.errors.full_messages }, status: :unprocessable_entity
     end
 
 end

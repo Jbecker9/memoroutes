@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { logInUser } from "../reducers/userSlice";
 
-function LoginForm({ closeForm }){
+function LoginForm({ closeForm, creationSuccessMessage, setCreationSuccessMessage }){
     const [loginFormData, setLoginFormData] = useState({
         username: "",
         password: ""
@@ -22,18 +22,21 @@ function LoginForm({ closeForm }){
     function handleSubmit(event){
         event.preventDefault();
         dispatch(logInUser(loginFormData));
+        setCreationSuccessMessage(false)
     };
     
 
     return(
-        <div className="LoginForm-div">
+        <div className="Login-Formdiv">
+            <h1> Log In </h1>
+            { creationSuccessMessage ? <h2> User Created ! </h2> : null }
             <form onSubmit={handleSubmit} >
                 <input 
                     onChange={handleChange}
                     value={loginFormData.username}
                     name="username"
                     placeholder="Username..."
-                    className="LoginForm-input"
+                    className="Login-formInput"
                 />
                 <input 
                     onChange={handleChange}
@@ -41,11 +44,11 @@ function LoginForm({ closeForm }){
                     name="password"
                     placeholder="Password..."
                     type='password'
-                    className="LoginForm-input"
+                    className="Login-formInput"
                 />
-                <button> Login </button>
+                <button className="Login-submitButton"> Login </button>
             </form>
-            <button onClick={()=>closeForm()}> Create a New User </button>
+            <button className="Login-signUpButton" onClick={()=>closeForm()}> Create a New User </button>
         </div>
     );
 };

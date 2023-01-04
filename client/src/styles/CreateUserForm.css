@@ -1,17 +1,5 @@
-.Login-loginContainer{
-    width: 300px;
-    padding: 40px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    border-style: outset;
-    border-radius: 5px;
-    text-align: center;
-}
 
-.Login-formInput{
+.CreateUserForm-input {    
     border: 0;
     background: none;
     display: block;
@@ -26,7 +14,7 @@
     transition: 0.25s;
 }
 
-.Login-submitButton {
+.CreateUserForm-submitButton {
     display: block;
     margin: 20px auto;
     text-align: center;
@@ -40,13 +28,13 @@
     cursor: pointer;
 }
 
-.Login-signUpButton {
+.CreateUserForm-returnToLoginButton {
     display: block;
     margin: 20px auto;
     text-align: center;
-    border: 2px outset #2ecc71;
+    border: 2px outset rgb(214, 0, 0);
     padding: 5px 40px;
-    width: 200px;
+    width: 25;
     outline: none;
     color: #203f54;
     border-radius: 5px;
@@ -54,10 +42,14 @@
     cursor: pointer;
 }
 
-.Login-signUpButton:hover {
+.CreateUserForm-submitButton:hover{
     background-color: #2ecc71;
 }
 
-.Login-submitButton:hover{
-    background-color: #2ecc71;
+.CreateUserForm-returnToLoginButton:hover {
+    background-color: rgb(214, 0, 0);
+}
+
+.CreateUserForm-errors {
+    color: red
 }

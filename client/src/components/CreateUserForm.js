@@ -2,19 +2,34 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createUser } from "../reducers/userSlice";
+import "../styles/CreateUserForm.css"
 
-function CreateUserForm({ closeForm }){
+function CreateUserForm({ closeForm, setCreationSuccessMessage }){
     const dispatch = useDispatch();
     const [newUserFormData, setNewUserFormData] = useState({
         username: "",
         password: "",
         password_confirmation: ""
     })
+    const [creationError, setCreationError] = useState(null)
 
     function handleSubmit(event){
         event.preventDefault();
-        dispatch(createUser(newUserFormData));
-        closeForm();
+        console.log(newUserFormData)
+        fetch('/signup', {
+            method: "POST",
+            headers: {
+                'Content-Type': "application/json"
+            },
+            body: JSON.stringify(newUserFormData)
+        }).then((response) => response.json())
+            .then((userData) => { 
+                if (userData.errors){
+                    setCreationError(userData)
+                } else {
+                    console.log(userData)
+                }
+            })
     }
 
     function handleChange(event){
@@ -27,10 +42,12 @@ function CreateUserForm({ closeForm }){
         });
     };
 
+    console.log(creationError)
 
     return(
         <div className="CreateUserForm-div">
-            <button className="CreateUserForm-closeButton" onClick={()=>closeForm()} > X </button>
+            <h1> Sign Up </h1>
+            { creationError ? creationError.errors.map((error) => <h3 key={error} className="CreateUserForm-errors" >{ error }!</h3>) : null }
             <form onSubmit={handleSubmit} >
                 <input 
                     onChange={handleChange}
@@ -55,8 +72,9 @@ function CreateUserForm({ closeForm }){
                     type='password'
                     className="CreateUserForm-input"
                 />
-                <button> Create User </button>
+                <button className="CreateUserForm-submitButton"> Create User </button>
             </form>
+            <button className="CreateUserForm-returnToLoginButton" onClick={()=>closeForm()} > Return to Log In </button>
         </div>
     )
 }
