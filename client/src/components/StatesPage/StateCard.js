@@ -1,12 +1,12 @@
 import React from "react";
-import StateCitiesContainer from "./StateCitiesContainer";
+import CitiesContainer from "./Cities/CitiesContainer";
 
 function StateCard({ state, setActiveState, activeState }){
 
     return(
         <div onClick={()=>setActiveState(state.id)}>
-            <h2>{state.name}</h2>
-            { activeState === state.id ? <StateCitiesContainer cities={state.cities} /> : null }
+            <h2>{state.state_name}</h2>
+            { activeState === state.id ? <CitiesContainer cities={state.cities} /> : null }
         </div>
     )
 }

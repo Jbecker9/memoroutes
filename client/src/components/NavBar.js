@@ -48,7 +48,7 @@ function NavBar(){
                 Discover Road Trips
             </Link>
             <Link
-            to="/statesPage"
+            to="/states"
             style={linkStyles}
             >
                 Search by State

@@ -6,7 +6,7 @@ import NavBar from "./NavBar";
 import "../styles/NavRoutes.css";
 import Map from "./MapPage/Map";
 import RoadTrips from "./RoadTripsPage/RoadTrips";
-import StatesPage from "./StatesPage";
+import States from "./StatesPage/States";
 
 function NavRoutes(){
     const [showMenu, setShowMenu] = useState(null)
@@ -23,7 +23,7 @@ function NavRoutes(){
                 <Route path="/userPage" element={<UserPage />} />
                 <Route path="/map" element={<Map />} />
                 <Route path="/roadTrips" element={<RoadTrips />} />
-                <Route path="/statesPage" element={<StatesPage />} />
+                <Route path="/states" element={<States />} />
             </Routes>
         </div>
     )
