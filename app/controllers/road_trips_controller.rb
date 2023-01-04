@@ -18,7 +18,7 @@ class RoadTripsController < ApplicationController
     end
 
     def search
-        road_trips = RoadTrip.select { |trip| trip.name.include?(params[:trip_name]) }
+        road_trips = RoadTrip.select { |trip| trip.trip_name.include?(params[:trip_name]) }
         render json: road_trips
     end
 
