@@ -3,7 +3,7 @@ class DestinationsController < ApplicationController
     
     rescue_from ActiveRecord::RecordNotFound, with: :render_unauthorized_response
     rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity
-    before_action :require_user, only: [:create]
+    before_action :validates_user, only: [:create]
 
     def create
         user = find_user
@@ -22,7 +22,7 @@ private
         User.find_by!(id: session[:user_id])
     end
 
-    def require_user
+    def validates_user
         user = User.find_by!(id: session[:user_id])
     end
 

@@ -1,10 +1,13 @@
 import React, { useContext } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom"
-import { MapPageContext } from "../context/mapPage";
+import { MapPageContext } from "../../../context/mapPage";
+import { updateUserData } from "../../../reducers/userSlice";
 
-function UserPagePitStop({ trip, pitStop }){
-    const { setActiveTrip, setRenderUpdatePitStopForm, setStartingPoint, setUser } = useContext(MapPageContext)
-    const navigate = useNavigate()
+function PitStopCard({ trip, pitStop }){
+    const { setPath, setActiveTrip, setRenderUpdatePitStopForm, setStartingPoint, setUser } = useContext(MapPageContext)
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     function handleStopUpdateRedirect(){
         setActiveTrip(trip)
@@ -15,11 +18,15 @@ function UserPagePitStop({ trip, pitStop }){
                 lat: parseInt(pitStop.lat),
                 lng: parseInt(pitStop.lng)
             },
-            city: pitStop.stop_city,
-            state: pitStop.stop_state,
+            city: pitStop.city_name,
+            state: pitStop.state_name,
             zoom: 7
         })
-        navigate("/mapPage")
+        setPath([
+            {lat: parseInt(trip?.departure?.lat), lng: parseInt(trip?.departure?.lng)},
+            {lat: parseInt(trip?.destination?.lat), lng: parseInt(trip?.destination?.lng)}
+          ])
+        navigate("/map")
     }
 
     function handlePitStopDelete(event){
@@ -28,18 +35,18 @@ function UserPagePitStop({ trip, pitStop }){
             method: "DELETE"
         }).then((response)=>response.json())
             .then((userData) => {
-                setUser(userData);
+                dispatch(updateUserData(userData));
             })
     }
 
     return(
         <div>
             <h2>{ pitStop.location_name }</h2>
-            <h3> { pitStop.stop_city }, { pitStop.stop_state } </h3>
+            <h3> { pitStop.city_name }, { pitStop.state_name } </h3>
             <button onClick={handleStopUpdateRedirect}> Update Pit-Stop! </button>
             <button onClick={handlePitStopDelete}> Delete Pit-Stop </button>
         </div>
     )
 }
 
-export default UserPagePitStop
+export default PitStopCard

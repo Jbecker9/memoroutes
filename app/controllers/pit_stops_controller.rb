@@ -33,11 +33,7 @@ private
     end
 
     def validates_user
-        user = User.find_by(id: session[:user_id])
-        unless user
-            render_unauthorized_response
-        else
-        end
+        user = User.find_by!(id: session[:user_id])
     end
 
     def find_road_trip(user)

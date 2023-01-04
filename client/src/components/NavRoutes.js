@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import WelcomePage from "./WelcomePage";
 import { Route, Routes } from "react-router-dom"
-import UserPage from "./UserPage";
+import UserPage from "./UserPage/UserPage";
 import NavBar from "./NavBar";
 import "../styles/NavRoutes.css";
 import Map from "./MapPage/Map";
