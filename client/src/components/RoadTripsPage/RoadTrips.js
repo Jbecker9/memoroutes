@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { fetchRoadTripsByLength, removeAllTrips } from "../../reducers/roadTripSlice";
 import RoadTripsContainer from "./RoadTripsContainer";
 import RoadTripSearch from "./RoadTripSearch";
+import "../../styles/RoadTripsPage.css"
 
 function RoadTrips(){
     const [search, setSearch] = useState(false)
@@ -26,19 +27,19 @@ function RoadTrips(){
 
     return(
         <div>
-            Road Trips Page
-            <label>
-                Filter by:
-                <select onChange={renderFilterByOption}>
-                    <option value={"Default"} >Filter by...</option>
-                    <option value={"DESC"}> Length: High to Low </option>
-                    <option value={"ASC"}> Length: Low to High </option>
-                    <option value={"Likes"}> Likes: High to Low </option>
-                    <option value={"Search"} >Search</option>
-                </select>
-            </label>
-            { search ? <RoadTripSearch /> : null }
-            { roadTrips.entities ? <RoadTripsContainer roadTrips={roadTrips.entities} /> : null }
+            <div className="RoadTripsPage-div">
+                <label>
+                    <select onChange={renderFilterByOption} className="RoadTripsPage-select">
+                        <option value={"Default"} >Filter by...</option>
+                        <option value={"DESC"}> Length: High to Low </option>
+                        <option value={"ASC"}> Length: Low to High </option>
+                        <option value={"Likes"}> Likes: High to Low </option>
+                        <option value={"Search"} >Search</option>
+                    </select>
+                </label>
+                { search ? <RoadTripSearch /> : null }
+            </div>
+                { roadTrips.entities ? <RoadTripsContainer roadTrips={roadTrips.entities} /> : null }
         </div>
     )
 }

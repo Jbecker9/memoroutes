@@ -10,7 +10,6 @@ function NewTripForm(){
     const user = useSelector((state) => state.user.entities)
     const [tripName, setTripName] = useState(startingPoint.name)
     const [locationName, setLocationName] = useState(`${user.username}'s departure #${user.road_trips.length + 1}`)
-    console.log(user)
 
     function handleTripNameChange(event){
         setTripName(event.target.value)

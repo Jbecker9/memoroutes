@@ -3,7 +3,6 @@ import TripCard from "./Trip/TripCard";
 
 function RoadTripsContainer({ roadTrips }){
     const [pitStopsTrip, setPitStopsTrip] = useState(null)
-    console.log(roadTrips)
     return(
         <div>
             { roadTrips.map((trip) => <TripCard pitStopsTrip={pitStopsTrip} setPitStopsTrip={setPitStopsTrip} trip={trip} key={trip.id} /> ) }
