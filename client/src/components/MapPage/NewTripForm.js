@@ -26,7 +26,7 @@ function NewTripForm(){
         const newTripObject = {
           trip_name: tripName,
           departure_attributes: {
-            location_name: `${user.username}'s departure #${user.road_trips.length + 1}`,
+            location_name: locationName,
             city_name: startingPoint.city,
             state_name: startingPoint.state,
             lat: startingPoint.coordinates.lat,
@@ -68,6 +68,12 @@ function NewTripForm(){
                 placeholder="Trip Name..."
                 onChange={handleTripNameChange}
                 value={startingPoint.name}
+                />
+                <input 
+                name="location_name"
+                placeholder="Location Name..."
+                onChange={handleLocationNameChange}
+                value={locationName}
                 />
                 <button onClick={handleNewTripSubmit}> Start Planning! </button>
             </form>
