@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { MapPageContext } from "../../context/mapPage";
-import { updateUserData, userCreateRoadTrip } from "../../reducers/userSlice";
+import { updateUserData } from "../../reducers/userSlice";
 import "../../styles/MapNewTripForm.css"
 
 function NewTripForm(){
@@ -33,7 +33,6 @@ function NewTripForm(){
             lng: startingPoint.coordinates.lng
           }
         }
-        // dispatch(userCreateRoadTrip(newTripObject))
         fetch('/road_trips', {
           method: "POST",
           headers: {

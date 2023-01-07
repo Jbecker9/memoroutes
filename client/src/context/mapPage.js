@@ -33,9 +33,7 @@ function MapPageProvider({ children }) {
     }
 
     function fillPathContents(route){
-      // console.log(route.destination)
       if (!route.destination){
-        console.log("non existant")
         setPath([
           { lat: parseFloat(route.departure.lat), lng: parseFloat(route.departure.lng) },
           { lat: parseFloat(startingPoint.coordinates.lat), lng: parseFloat(startingPoint.coordinates.lng) }

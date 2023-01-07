@@ -46,7 +46,7 @@ function UserRoadTrips({ trip }){
             <h4>{ trip.user_likes ? trip.user_likes : 0 } Likes</h4>
                 <h4>{ trip.road_trip_distance_miles }</h4>
                 <button onClick={handleDeleteTrip} className="UserPageTrip-deleteTripButton"> Delete Trip </button>
-                <button onClick={renderActiveTrip} > Set your Avtive Trip and start your Journey! </button>
+                <button onClick={renderActiveTrip} > Set your Active Trip and start your Journey! </button>
             <div className="UserPageTrip-tripCardTripContents">
                 <div className="UserPageTrip-tripCardDeparture">
                     <h4>{ trip.departure.city_name },</h4>
