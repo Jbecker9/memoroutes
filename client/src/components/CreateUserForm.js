@@ -1,14 +1,20 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useState } from "react";
 import "../styles/CreateUserForm.css"
+import { useDispatch } from "react-redux";
+import { updateUserData } from "../reducers/userSlice";
+import { MapPageContext } from "../context/mapPage";
 
-function CreateUserForm({ closeForm, setCreationSuccessMessage }){
+function CreateUserForm({ closeForm }){
     const [newUserFormData, setNewUserFormData] = useState({
         username: "",
         password: "",
         password_confirmation: ""
     })
+    const { setCreationSuccessMessage } = useContext(MapPageContext)
+    
     const [creationError, setCreationError] = useState(null)
+    const dispatch = useDispatch();
 
     function handleSubmit(event){
         event.preventDefault();
@@ -24,6 +30,7 @@ function CreateUserForm({ closeForm, setCreationSuccessMessage }){
                 if (userData.errors){
                     setCreationError(userData)
                 } else {
+                    dispatch(updateUserData(userData))
                     setCreationSuccessMessage(true)
                     closeForm()
                 }

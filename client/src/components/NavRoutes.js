@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import WelcomePage from "./WelcomePage";
 import { Route, Routes } from "react-router-dom"
 import UserPage from "./UserPage/UserPage";
@@ -7,9 +7,12 @@ import "../styles/NavRoutes.css";
 import Map from "./MapPage/Map";
 import RoadTrips from "./RoadTripsPage/RoadTrips";
 import States from "./StatesPage/States";
+import { MapPageContext } from "../context/mapPage";
+import CreationSuccessPopUp from "./CreationSuccessPopUp";
 
 function NavRoutes(){
     const [showMenu, setShowMenu] = useState(null)
+    const { creationSuccessMessage } = useContext(MapPageContext)
 
     return(
         <div className="NavRoutes-div">
@@ -17,6 +20,9 @@ function NavRoutes(){
                 <div className="NavRoutesMenuButton" onClick={()=>setShowMenu(!showMenu)} > { showMenu ? "Close Menu" : "Menu" } </div>
 
                 { showMenu ? <NavBar /> : null }
+            </div>
+            <div>
+                { creationSuccessMessage ? <CreationSuccessPopUp /> : null }
             </div>
             <Routes>
                 <Route index element={<WelcomePage />} />

@@ -12,6 +12,7 @@ function MapPageProvider({ children }) {
       {lat: parseInt(activeTrip?.destination?.lat), lng: parseInt(activeTrip?.destination?.lng)}
     ])
     const [pathStops, setPathStops] = useState(null)
+    const [creationSuccessMessage, setCreationSuccessMessage] = useState(true)
     const [startingPoint, setStartingPoint] = useState({
       name: `Starting Point`,
       coordinates: {
@@ -50,7 +51,7 @@ function MapPageProvider({ children }) {
       return userObj.road_trips.find((trip) => trip.id === activeTrip.id )
   }
 
-    return <MapPageContext.Provider value={{ findActiveTrip, showActiveRoadTrip, setActiveTrip, activeTrip, pitStopForm, setPitStopForm, startingPoint, setStartingPoint, renderNewTripForm, setRenderNewTripForm, renderUpdatePitStopForm, setRenderUpdatePitStopForm, path, setPath, pathStops, setPathStops, fillPathContents }}>{ children }</MapPageContext.Provider>
+    return <MapPageContext.Provider value={{ creationSuccessMessage, setCreationSuccessMessage, findActiveTrip, showActiveRoadTrip, setActiveTrip, activeTrip, pitStopForm, setPitStopForm, startingPoint, setStartingPoint, renderNewTripForm, setRenderNewTripForm, renderUpdatePitStopForm, setRenderUpdatePitStopForm, path, setPath, pathStops, setPathStops, fillPathContents }}>{ children }</MapPageContext.Provider>
 };
 
 export { MapPageContext, MapPageProvider };

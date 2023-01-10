@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { updateUserData } from "../reducers/userSlice";
 
-function LoginForm({ closeForm, creationSuccessMessage, setCreationSuccessMessage }){
+function LoginForm({ closeForm }){
     const [loginFormData, setLoginFormData] = useState({
         username: "",
         password: ""
@@ -33,7 +33,6 @@ function LoginForm({ closeForm, creationSuccessMessage, setCreationSuccessMessag
                 if (userData.error){
                     setLoginError(userData)
                 } else {
-                    setCreationSuccessMessage(false)
                     dispatch(updateUserData(userData))
                 }
             })
@@ -43,7 +42,6 @@ function LoginForm({ closeForm, creationSuccessMessage, setCreationSuccessMessag
     return(
         <div className="Login-Formdiv">
             <h1> Log In </h1>
-            { creationSuccessMessage ? <h2 className="Login-userCreationMessage"> User Created! </h2> : null }
             <form onSubmit={handleSubmit} >
                 <input 
                     onChange={handleChange}

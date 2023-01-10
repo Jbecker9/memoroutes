@@ -1,0 +1,11 @@
+.CreationSuccessPopUp-div{
+    width: 400px;
+    margin: 0 auto;
+    /* background: white; */
+}
+
+.CreationSuccessPopUp-popUpDiv{
+    width: 400px;
+    position: absolute;
+    background: white;
+}
