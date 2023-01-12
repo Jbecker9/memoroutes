@@ -1,4 +1,4 @@
-.RoadTripsPage-div {
+.RoadTripsPage-optionsDiv {
     text-align: center;
     align-items: center;
 }
@@ -16,4 +16,18 @@
     color: #203f54;
     border-radius: 2px;
     transition: 0.25s;
+}
+
+.RoadTripsPage-container{
+    /* text-align: center; */
+    width: 75%;
+    margin: auto;
+}
+
+.RoadTripsPage-pitStopCloseButton{
+    background-color: white;
+    border-radius: 5px;
+    border-color: red;
+    cursor: pointer;
+    margin: 2px;
 }

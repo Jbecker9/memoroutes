@@ -1,5 +1,6 @@
 import React from "react";
 import RoadTripPitStopCard from "./RoadTripPitStopCard";
+import "../../../styles/TripCard.css"
 
 function PitStopContainer({ pitStops, setPitStopsTrip }){
 
@@ -7,14 +8,14 @@ function PitStopContainer({ pitStops, setPitStopsTrip }){
         return(
         <div>
             { pitStops.map((stop) => <RoadTripPitStopCard key={stop.id} stop={stop} />) }
-            <button onClick={()=>setPitStopsTrip(null)} > Close Pit Stops </button>
+            <div className="TripCard-closePitStopsButton" onClick={()=>setPitStopsTrip(null)} > Close Pit Stops </div>
         </div>
         )
     } else {
         return(
         <div>
             <p> No Pit Stops! </p>
-            <button onClick={()=>setPitStopsTrip(null)} > Close Pit Stops </button>
+            <div className="TripCard-closePitStopsButton" onClick={()=>setPitStopsTrip(null)} > Close Pit Stops </div>
         </div>
         )
     }

@@ -12,7 +12,7 @@ function MapPageProvider({ children }) {
       {lat: parseInt(activeTrip?.destination?.lat), lng: parseInt(activeTrip?.destination?.lng)}
     ])
     const [pathStops, setPathStops] = useState(null)
-    const [creationSuccessMessage, setCreationSuccessMessage] = useState(true)
+    const [creationSuccessMessage, setCreationSuccessMessage] = useState(null)
     const [startingPoint, setStartingPoint] = useState({
       name: `Starting Point`,
       coordinates: {

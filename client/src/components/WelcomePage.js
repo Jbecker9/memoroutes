@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useLocation } from 'react-router-dom'
 import "../styles/Welcome.css"
 
 function WelcomePage(){
@@ -7,13 +8,14 @@ function WelcomePage(){
     <div className="Welcome-div">
         <h1 className="headerText"> Welcome to Memoroutes! </h1>
         <h3 className="headerText"> Memories are a Journey, not a Destination! </h3>
-        <p> Memoroutes is a website designed to expand the traditional navigation service definition of point A to point B</p>
-        <p> We give the user an option to record all Pit Stops in-between point A and point B of their road trips! </p>
+         <p> Memoroutes is a website designed to expand the traditional navigation service definition of point A to point B</p>
+         <p> We give the user an option to record all Pit Stops in-between point A and point B of their road trips! </p>
         <h3 className="headerText"> Map </h3>
          <p> This is where you will be able to see your road trip navigation! </p>
          <p> To select an existing road trip from your own trip collection, select a desired trip from the dropdown table! </p>
          <p> If you would like to create a new road trip, simply click the create a new road trip button!</p>
          <p> Once a road trip is selected or created, a table of information will appear giving you the ability to add a destination and add, update, or delete pit stops!</p>
+         <p> ** Distance is calculated from the departure and distance coordinates and is NOT from distance on the roads **</p>
         <h3 className="headerText"> Discover Road Trips </h3>
          <p> This is where you will be able to see all of the road trips! </p>
          <p> Information on the road trips are able to be filtered and displayed, such as: the username, the road trip name, the trip distance, and users are able to see the pit stops accompanied with the road trips! </p>

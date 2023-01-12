@@ -4,7 +4,7 @@ function CityPitStops({ pitStop }){
 
     return(
         <div>
-            <h5>{ pitStop.location_name }</h5>
+            { pitStop ? <h5>{ pitStop.location_name }</h5> : <h5>No Pit Stops!</h5> }
         </div>
     )
 }

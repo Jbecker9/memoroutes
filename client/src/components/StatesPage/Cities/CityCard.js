@@ -1,6 +1,7 @@
 import React from "react";
 import CityDestination from "./CityDestination";
 import CityPitStops from "./CityPitStops";
+import "../../../styles/CityCard.css"
 
 function CityCard({ city, cityDes, cityStop, setCityDes, setCityStop }){
     
@@ -15,16 +16,13 @@ function CityCard({ city, cityDes, cityStop, setCityDes, setCityStop }){
     }
 
     return(
-        <div>
+        <div className="CityCard-div">
             <h3>{city.city_name}</h3>
-            <div>
-                <h4>Pit Stops: { city.pit_stops.length } </h4>
-                { city.id === cityStop?.id ? cityStop.pit_stops.map((stop) => <CityPitStops key={stop.id} pitStop={stop} /> ) : <button onClick={showPitStops} >Show Pit Stop</button> }
+            <div className="CityCard-buttonDiv">
+                { city.id === cityStop?.id ? cityStop.pit_stops.map((stop) => <CityPitStops key={stop.id} pitStop={stop} cityStop={city} /> ) : <div onClick={showPitStops} >Show { city.pit_stops.length } Pit Stops</div> }
             </div>
-            <div>
-               
-                <h4>Destinations: { city.destinations.length }</h4>
-                { city.id === cityDes?.id ? cityDes.destinations.map((destination) => <CityDestination key={destination.id} destination={destination} /> ) :  <button onClick={showDestinations} >Show Destinations</button> }
+            <div className="CityCard-buttonDiv">
+                { city.id === cityDes?.id ? cityDes.destinations.map((destination) => <CityDestination key={destination.id} destination={destination} cityDes={city} /> ) :  <div onClick={showDestinations} >Show { city.destinations.length } Destinations</div> }
             </div>
         </div>
     )

@@ -26,8 +26,8 @@ function RoadTrips(){
     }
 
     return(
-        <div>
-            <div className="RoadTripsPage-div">
+        <div className="RoadTripsPage-div">
+            <div className="RoadTripsPage-optionsDiv">
                 <label>
                     <select onChange={renderFilterByOption} className="RoadTripsPage-select">
                         <option value={"Default"} >Filter by...</option>

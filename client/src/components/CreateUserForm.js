@@ -18,7 +18,6 @@ function CreateUserForm({ closeForm }){
 
     function handleSubmit(event){
         event.preventDefault();
-        console.log(newUserFormData)
         fetch('/signup', {
             method: "POST",
             headers: {

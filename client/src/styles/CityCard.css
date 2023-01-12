@@ -1,0 +1,28 @@
+.CityCard-div{
+    float: left;
+    border: 2px solid black;
+    border-radius: 5px;
+    width: 200px;
+    margin: 5px;
+    padding: 5px;
+    box-shadow: 2px 3px 5px #999;
+    text-align: center;
+}
+
+.CityCard-citiesContainer{
+    display: table;
+    /* justify-content: center; */
+    margin: auto;
+    left: 30%;
+}
+
+.CityCard-buttonDiv{
+    /* width: 25%; */
+    background-color: white;
+    border-radius: 5px;
+    border: 2px outset #BBE2C6;
+    border-color: #BBE2C6;
+    cursor: pointer;
+    margin: 2px auto;
+}
+

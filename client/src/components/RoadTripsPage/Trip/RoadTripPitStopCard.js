@@ -5,7 +5,7 @@ function RoadTripPitStopCard({ stop }){
     return(
         <div>
             <h4>{ stop.location_name }</h4>
-            <h5> { stop.stop_city }, { stop.stop_state } </h5>
+            <h5> { stop.city_name }, { stop.state_name } </h5>
         </div>
     )
 }
