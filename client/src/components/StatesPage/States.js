@@ -11,9 +11,7 @@ function States(){
     useEffect(() => {
         dispatch(fetchStates())
     },[dispatch])
-
-    console.log(states)
-
+    
     return(
         <div>
             States

@@ -1,13 +1,10 @@
 import React from "react";
 
-function CityDestination({ destination, city }){
-
-    console.log(city)
-
+function CityDestination({ destinations }){
 
     return(
         <div>
-            <h5>{ city.destination ? destination.location_name : "No Destination's!" }</h5>
+            { destinations.length > 0 ? destinations.map((destination) => <h5 key={destination.id}>{destination.location_name}</h5> ) : <h5>No Destinations!</h5> }
         </div>
     )
 }

@@ -19,10 +19,10 @@ function CityCard({ city, cityDes, cityStop, setCityDes, setCityStop }){
         <div className="CityCard-div">
             <h3>{city.city_name}</h3>
             <div className="CityCard-buttonDiv">
-                { city.id === cityStop?.id ? cityStop.pit_stops.map((stop) => <CityPitStops key={stop.id} pitStop={stop} cityStop={city} /> ) : <div onClick={showPitStops} >Show { city.pit_stops.length } Pit Stops</div> }
+                { city.id === cityStop?.id ? <CityPitStops pitStops={cityStop.pit_stops} /> : <div onClick={showPitStops} >Show { city.pit_stops.length } Pit Stops</div> }
             </div>
             <div className="CityCard-buttonDiv">
-                { city.id === cityDes?.id ? cityDes.destinations.map((destination) => <CityDestination key={destination.id} destination={destination} cityDes={city} /> ) :  <div onClick={showDestinations} >Show { city.destinations.length } Destinations</div> }
+                { city.id === cityDes?.id ? <CityDestination destinations={cityDes.destinations}/> :  <div onClick={showDestinations} >Show { city.destinations.length } Destinations</div> }
             </div>
         </div>
     )
