@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { logOutUser } from "../reducers/userSlice";
 import "../styles/NavBar.css"
 
-function NavBar(){
+function NavBar({ setShowMenu }){
     const dispatch = useDispatch();
 
     function logout(){
@@ -32,30 +32,36 @@ function NavBar(){
             <Link 
             to="/"
             style={linkStyles}
+            onClick={()=>setShowMenu(false)}
             >
                 Welcome Page
             </Link>
             <Link
             to="/map"
             style={linkStyles}
+            onClick={()=>setShowMenu(false)}
             >
                 Map
             </Link>
             <Link
             to="/roadTrips"
             style={linkStyles}
+            onClick={()=>setShowMenu(false)}
+
             >
                 Discover Road Trips
             </Link>
             <Link
             to="/states"
             style={linkStyles}
+            onClick={()=>setShowMenu(false)}
             >
                 Search by State
             </Link>
             <Link
             to="/userPage"
             style={linkStyles}
+            onClick={()=>setShowMenu(false)}
             >
                 Profile 
             </Link>

@@ -10,7 +10,6 @@ function UserPage(){
     const user = useSelector((state) => state.user.entities)
     const navigate = useNavigate()
     const [showTrips, setShowTrips] = useState(null)
-    console.log(user)
 
     function createTripRedirect(){
         setPitStopForm(false)

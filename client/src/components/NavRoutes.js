@@ -19,7 +19,7 @@ function NavRoutes(){
             <div className="NavRoutes-navBarContainer">
                 <div className="NavRoutesMenuButton" onClick={()=>setShowMenu(!showMenu)} > { showMenu ? "Close Menu" : "Menu" } </div>
 
-                { showMenu ? <NavBar /> : null }
+                { showMenu ? <NavBar setShowMenu={setShowMenu} /> : null }
             </div>
             <div>
                 { creationSuccessMessage ? <CreationSuccessPopUp /> : null }
