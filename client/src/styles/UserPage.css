@@ -1,0 +1,25 @@
+.UserPage-h1{
+    text-align: center;
+    text-decoration: underline;
+}
+
+.UserPage-button{
+    width: 50%;
+    background-color: white;
+    border-radius: 5px;
+    border: 2px outset #BBE2C6;
+    border-color: #BBE2C6;
+    cursor: pointer;
+    margin: 5px auto;
+    text-align: center;
+    padding: 5px;
+}
+
+.UserPage-button:hover{
+    background-color: #BBE2C6;
+}
+
+.UserPage-tripsDiv{
+    text-align: center;
+    padding: 5px;
+}

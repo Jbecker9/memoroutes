@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom"
 import { MapPageContext } from "../../../context/mapPage";
 import { updateUserData } from "../../../reducers/userSlice";
+import "../../../styles/UserPitStop.css"
 
 function PitStopCard({ trip, pitStop }){
     const { setPath, setActiveTrip, setRenderUpdatePitStopForm, setStartingPoint, setUser } = useContext(MapPageContext)
@@ -40,11 +41,11 @@ function PitStopCard({ trip, pitStop }){
     }
 
     return(
-        <div>
+        <div className="UserPitStop-div">
             <h2>{ pitStop.location_name }</h2>
             <h3> { pitStop.city_name }, { pitStop.state_name } </h3>
-            <button onClick={handleStopUpdateRedirect}> Update Pit-Stop! </button>
-            <button onClick={handlePitStopDelete}> Delete Pit-Stop </button>
+            <button className="UserPitStop-button" onClick={handleStopUpdateRedirect}> Update Pit-Stop! </button>
+            <button className="UserPitStop-deleteButton" onClick={handlePitStopDelete}> Delete Pit-Stop </button>
         </div>
     )
 }

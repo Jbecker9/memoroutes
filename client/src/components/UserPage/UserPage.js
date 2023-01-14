@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { MapPageContext } from "../../context/mapPage";
 import UserRoadTrips from "./UserRoadTrips/UserRoadTrips";
+import "../../styles/UserPage.css"
 
 function UserPage(){
     const { setRenderNewTripForm, setPitStopForm, setStartingPoint, setActiveTrip, startingPoint } = useContext(MapPageContext)
@@ -24,12 +25,10 @@ function UserPage(){
 
     return(
         <div>
-            User Page
-            <h1>{ user.username }</h1>
-            <button onClick={createTripRedirect}> Create Trip! </button>
-            
-            <div>
-                { showTrips ? user.road_trips.map((trip) => <UserRoadTrips key={trip.id} trip={trip} /> ) : <button onClick={()=>setShowTrips(true)}> Show Road Trips! </button>}
+            <h1 className="UserPage-h1">{ user.username }</h1>
+            <div className="UserPage-button" onClick={createTripRedirect}> Create a New Trip! </div>
+            <div className="UserPage-tripsDiv">
+                { showTrips ? user.road_trips.map((trip) => <UserRoadTrips key={trip.id} trip={trip} /> ) : <div className="UserPage-button" onClick={()=>setShowTrips(true)}> Show Road Trips! </div>}
             </div>
         </div>
     )

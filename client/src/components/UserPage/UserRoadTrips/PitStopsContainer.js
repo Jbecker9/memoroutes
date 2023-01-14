@@ -23,9 +23,9 @@ const navigate = useNavigate();
 
     return(
         <div>
-            <button onClick={updateRedirect}> Add a New Pit-Stop! </button>
+            <button className="UserPitStop-button" onClick={updateRedirect}> Add a New Pit-Stop! </button>
             { pitStops.map((pitStop) => <PitStopCard trip={trip} pitStop={pitStop} key={pitStop.id} /> ) }
-            <button onClick={()=>setPitStopClick(false)}> Close Pit Stops </button>
+            <button className="UserPitStop-deleteButton" onClick={()=>setPitStopClick(false)}> Close Pit Stops </button>
         </div>
     )
 }

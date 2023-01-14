@@ -1,0 +1,33 @@
+.UserPitStop-div{
+    border: 5px outset rgb(235, 235, 235);
+    border-radius: 5px;
+    margin: 15px auto;
+    width: 70%;
+    /* overflow: hidden; */
+}
+
+.UserPitStop-button{
+    background-color: white;
+    border-radius: 5px;
+    border: 2px outset #BBE2C6;
+    border-color: #BBE2C6;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.UserPitStop-button:hover{
+    background-color: #BBE2C6;
+}
+
+.UserPitStop-deleteButton{
+    background-color: white;
+    border-radius: 5px;
+    border-color: red;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.UserPitStop-deleteButton:hover{
+    background-color: red;
+    color: white;
+}

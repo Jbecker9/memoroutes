@@ -1,6 +1,17 @@
+.UserPageTrip-tripCardDiv{
+    /* float: left; */
+    display: inline-block;
+    width: 45%;
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px;
+    box-shadow: 1px 2px 2px rgb(130, 130, 130);
+}
 
 .UserPageTrip-tripCardTripContents{
-    border-style: solid;
+    border: 5px outset rgb(235, 235, 235);
+    border-radius: 5px;
     margin: auto;
     width: 98%;
     overflow: hidden;
@@ -12,18 +23,31 @@
 }
 
 .UserPageTrip-tripCardDeparture{
-    float: left;
-    margin-left: 10px;
+    width: 90%;
+    display: inline-block;
+    margin: 5px;
+    border: 5px outset rgb(235, 235, 235);
 }
 
 .UserPageTrip-tripCardDestination{
-    float: right;
-    margin-right: 10px;
+    width: 30%;
+    display: inline-block;
+    margin: 5px;
+    border: 5px outset rgb(235, 235, 235);
 }
 
 .UserPageTrip-deleteTripButton{
     float: right;
-    margin-right: 6px;
+    margin: 5px;
+    background-color: white;
+    border-radius: 5px;
+    border-color: red;
+    cursor: pointer;
+}
+
+.UserPageTrip-deleteTripButton:hover{
+    background-color: red;
+    color: white;
 }
 
 .UserPageTrip-pitStopsDiv{
@@ -31,6 +55,41 @@
 }
 
 .UserPageTrip-showPitStopsButton{
-    margin: auto;
+    margin: 5px;
     width: 50%;
+    background-color: white;
+    border-radius: 5px;
+    border: 2px outset #BBE2C6;
+    border-color: #BBE2C6;
+    cursor: pointer;
+}
+
+.UserPageTrip-showPitStopsButton:hover{
+    background-color: #BBE2C6;
+}
+
+.UserPageTrip-distanceH4{
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.UserPageTrip-activeTripButton{
+    float: left;
+    margin: 5px;
+    width: 25%;
+    background-color: white;
+    border-radius: 5px;
+    border: 2px outset #BBE2C6;
+    border-color: #BBE2C6;
+    cursor: pointer;
+}
+
+.UserPageTrip-activeTripButton:hover{
+    background-color: #BBE2C6;
+}
+
+.UserPageTrip-departureDestination{
+    width: 30%;
+    display: inline-block;
+    margin: 5px;
 }
