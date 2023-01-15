@@ -6,7 +6,7 @@ import { updateUserData } from "../../../reducers/userSlice";
 import "../../../styles/UserPitStop.css"
 
 function PitStopCard({ trip, pitStop }){
-    const { fillPathPitStops, setRenderUpdatePitStopForm, setStartingPoint } = useContext(MapPageContext)
+    const { fillPathPitStops, setActiveTrip, setRenderUpdatePitStopForm, setStartingPoint } = useContext(MapPageContext)
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
@@ -22,6 +22,7 @@ function PitStopCard({ trip, pitStop }){
             zoom: 6
         })
         navigate("/map")
+        setActiveTrip(trip)
         fillPathPitStops(trip)
         setRenderUpdatePitStopForm(pitStop)
     }
