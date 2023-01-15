@@ -5,7 +5,6 @@ import { MapPageContext } from "../../context/mapPage";
 import ActiveTrip from "./ActiveTrip/ActiveTrip";
 import { useSelector } from "react-redux";
 import FindOrCreateTrip from "./FindOrCreateTrip";
-import { APIKEY } from "../Key";
 
 function Map(){
     const { activeTrip, setActiveTrip, showActiveRoadTrip, startingPoint, setStartingPoint, setPath, renderNewTripForm, setRenderNewTripForm, path } = useContext(MapPageContext)
@@ -75,7 +74,7 @@ function Map(){
                                 { activeTrip ? <ActiveTrip /> : <FindOrCreateTrip renderActiveTrip={renderActiveTrip} setExistingTripId={setExistingTripId} handleNewTripFormRender={handleNewTripFormRender} /> }
             </div>
             {/* <div className="MapPage-mapDiv"> */}
-                    <LoadScript libraries={Polyline} googleMapsApiKey={APIKEY}>
+                    <LoadScript libraries={Polyline} googleMapsApiKey="AIzaSyDBoExD9NToRJN8IGok7pUCySpw10SRVAE">
                         <GoogleMap
                         id="direction"
                         mapContainerClassName="MapPage-map"
