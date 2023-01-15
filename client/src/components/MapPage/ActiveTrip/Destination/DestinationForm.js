@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { useDispatch } from "react-redux";
 import { MapPageContext } from "../../../../context/mapPage";
 import { updateUserData } from "../../../../reducers/userSlice";
