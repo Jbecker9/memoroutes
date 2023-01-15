@@ -4,21 +4,18 @@ import { MapPageContext } from "../../../../context/mapPage";
 import { updateUserData } from "../../../../reducers/userSlice";
 
 function DestinationForm({ setDestinationForm }){
-    const { startingPoint, setStartingPoint, activeTrip, setActiveTrip, fillPathPitStops, findActiveTrip } = useContext(MapPageContext)
+    const { startingPoint, activeTrip, fillPathPitStops, findActiveTrip } = useContext(MapPageContext)
+    const [departureName, setDepartureName] = useState(startingPoint.name)
     const dispatch = useDispatch();
-    console.log(startingPoint)
 
     function handleDestinationNameChange(event){
-        setStartingPoint({
-            name: event.target.value,
-            ...startingPoint
-        })
+        setDepartureName(event.target.value,)
     }
 
     function handleDestinationFormSubmit(event){
         event.preventDefault()
         const newDestinationObj = {
-            location_name: startingPoint.name,
+            location_name: departureName,
             city_name: startingPoint.city,
             state_name: startingPoint.state,
             lat: startingPoint.coordinates.lat,
@@ -41,7 +38,7 @@ function DestinationForm({ setDestinationForm }){
     return(
         <div>
             <form onSubmit={handleDestinationFormSubmit}>
-                <input onChange={handleDestinationNameChange} placeholder="Destination Name..."/>
+                <input onChange={handleDestinationNameChange} placeholder="Destination Name..." value={departureName}/>
                 <button> Add {startingPoint.city}, {startingPoint.state} as a Destination! </button>
             </form>
         </div>
