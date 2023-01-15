@@ -11,8 +11,6 @@ function PitStopCard({ trip, pitStop }){
     const navigate = useNavigate();
 
     function handleStopUpdateRedirect(){
-        fillPathPitStops(trip)
-        setRenderUpdatePitStopForm(pitStop)
         setStartingPoint({
             name: pitStop.location_name,
             coordinates: {
@@ -21,9 +19,11 @@ function PitStopCard({ trip, pitStop }){
             },
             city: pitStop.city_name,
             state: pitStop.state_name,
-            zoom: 7
+            zoom: 6
         })
         navigate("/map")
+        fillPathPitStops(trip)
+        setRenderUpdatePitStopForm(pitStop)
     }
 
     function handlePitStopDelete(event){

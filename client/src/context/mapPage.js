@@ -34,7 +34,6 @@ function MapPageProvider({ children }) {
     }
 
     function fillPathPitStops(route){
-      console.log(route)
       let pitStopPath = [{ lat: parseFloat(route.departure.lat), lng: parseFloat(route.departure.lng) }]
       route.pit_stops?.forEach((pitStop) => {
         pitStopPath = [
