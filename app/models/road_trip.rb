@@ -9,4 +9,6 @@ class RoadTrip < ApplicationRecord
 
     validates :trip_name, presence: true, length: { minimum: 4 }
 
+    default_scope { order(id: :asc) }
+
 end

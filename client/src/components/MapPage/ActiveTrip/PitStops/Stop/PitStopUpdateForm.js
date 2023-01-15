@@ -5,7 +5,7 @@ import { updateUserData } from "../../../../../reducers/userSlice";
 import "../../../../../styles/MapActiveTripPitStopUpdateForm.css"
 
 function PitStopUpdateForm(){
-    const { findActiveTrip, startingPoint, setStartingPoint, setUser, setActiveTrip, setRenderUpdatePitStopForm, renderUpdatePitStopForm } = useContext(MapPageContext)
+    const { findActiveTrip, fillPathPitStops, startingPoint, setStartingPoint, setUser, setActiveTrip, setRenderUpdatePitStopForm, renderUpdatePitStopForm } = useContext(MapPageContext)
     const dispatch = useDispatch();
 
     function handleNameChange(event){
@@ -35,7 +35,7 @@ function PitStopUpdateForm(){
         }).then((response)=>response.json())
             .then((userData) => {
                 dispatch(updateUserData(userData))
-                setActiveTrip(findActiveTrip(userData))
+                fillPathPitStops(findActiveTrip(userData))
                 setRenderUpdatePitStopForm(false)
             })
     }
@@ -43,11 +43,15 @@ function PitStopUpdateForm(){
     return(
         <div className="MapActiveTripPitStopUpdateForm-div">
             <form onSubmit={handleFormSubmit} >
+                <h2> Update {startingPoint.name} </h2>
+                <p>Click and hold at the desired location on the map below</p>
+                <label>Input Location Name:
                 <input name="name" value={startingPoint.name} onChange={handleNameChange} />
+                </label>
                 <h3> { startingPoint.city }, { startingPoint.state } </h3>
-                <button> Update Pit-Stop! </button>
+                <button className="PitStopForm-submitButton"> Submit Pit-Stop! </button>
             </form>
-                <button onClick={()=>setRenderUpdatePitStopForm(false)}> Close Form </button>
+                <button className="MapActiveTripPitStopUpdateForm-closeButton" onClick={()=>setRenderUpdatePitStopForm(false)}> Close Form </button>
         </div>
     )
 }

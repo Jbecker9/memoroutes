@@ -1,12 +1,4 @@
-.MapActiveTripPitStopUpdateForm-div{
-    border: 5px outset rgb(235, 235, 235);
-    border-radius: 5px;
-    margin: auto;
-    width: 98%;
-    overflow: hidden;
-}
-
-.MapActiveTripPitStopUpdateForm-button{
+.PitStopForm-submitButton{
     width: 50%;
     background-color: white;
     border-radius: 5px;
@@ -16,11 +8,11 @@
     margin: 2px auto;
 }
 
-.MapActiveTripPitStopUpdateForm-button:hover{
+.PitStopForm-submitButton:hover{
     background-color: #BBE2C6;
 }
 
-.MapActiveTripPitStopUpdateForm-closeButton{
+.PitStopForm-closeButton{
     width: 50%;
     margin: 5px;
     background-color: white;
@@ -29,7 +21,15 @@
     cursor: pointer;
 }
 
-.MapActiveTripPitStopUpdateForm-closeButton:hover{
+.PitStopForm-closeButton:hover{
     background-color: red;
     color: white;
+}
+
+.PitStopForm-div{
+    border: 5px outset rgb(235, 235, 235);
+    border-radius: 5px;
+    margin: auto;
+    width: 98%;
+    overflow: hidden;
 }

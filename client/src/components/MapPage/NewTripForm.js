@@ -19,8 +19,6 @@ function NewTripForm(){
         setLocationName(event.target.value)
     }
 
-    console.log(startingPoint)
-
     function handleNewTripSubmit(event){
         event.preventDefault()
         const newTripObject = {
@@ -59,27 +57,32 @@ function NewTripForm(){
 
     return(
         <div className="MapNewTripForm-div">
-             <button onClick={()=>setRenderNewTripForm(false)} > Close Form </button>
+            <button className="MapNewTripForm-closeFormButton" onClick={()=>setRenderNewTripForm(false)} > Close Form </button>
             <form onSubmit={handleNewTripSubmit}>
-                <p> Road Trip Name: </p>
-                <input 
-                name="trip_name"
-                placeholder="Trip Name..."
-                onChange={handleTripNameChange}
-                value={startingPoint.name}
-                />
-                <input 
-                name="location_name"
-                placeholder="Location Name..."
-                onChange={handleLocationNameChange}
-                value={locationName}
-                />
-                <button onClick={handleNewTripSubmit}> Start Planning! </button>
-            </form>
-            <div>
-              <p> To set the starting point for the route, find and click the location on the map </p>
+                <div>
+                  <label>Road Trip Name: </label>
+                  <input 
+                  name="trip_name"
+                  placeholder="Trip Name..."
+                  onChange={handleTripNameChange}
+                  value={startingPoint.name}
+                  />
+                </div>
+                <div>
+                  <label>Departure Name: </label>
+                  <input 
+                  name="location_name"
+                  placeholder="Location Name..."
+                  onChange={handleLocationNameChange}
+                  value={locationName}
+                  />
+                </div>
+              <p> To set the starting point for the Road Trip, Click and hold the desired location on the map below </p>
               <h3> {startingPoint.city}, </h3>
               <h3> {startingPoint.state} </h3>
+                <button className="MapNewTripForm-button" onClick={handleNewTripSubmit}> Start Planning! </button>
+            </form>
+            <div>
             </div>
         </div>
     )

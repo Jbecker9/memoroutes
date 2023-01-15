@@ -1,19 +1,55 @@
 
 .MapPage-selectRouteDiv{
-    margin: auto;
-    position: relative;
+    text-align: center;
+}
+
+.MapPage-select{
+    border: 0;
+    background: white;
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+    border: 2px solid #3498db;
+    padding: 14px 20px;
+    width: 50%;
+    outline: none;
+    color: #203f54;
+    border-radius: 2px;
+    transition: 0.25s;
+}
+
+.MapPage-setActiveTripButton{
+    /* margin: 5px; */
+    width: 50%;
+    background-color: white;
+    border-radius: 5px;
+    border: 2px outset #BBE2C6;
+    border-color: #BBE2C6;
+    cursor: pointer;
+}
+
+.MapPage-setActiveTripButton:hover{
+    background-color: #BBE2C6;
 }
 
 .MapPage-map{
-    height: 90vh;
-    width: auto;
+    height: 150vh;
     left: 50%;
-    transform: translate(-50%, 5%);
+    transform: translate(-50%);
 }
 
 .MapPage-newRouteButton{
-    position: absolute;
-    width: 25%;
+    margin: 5px;
+    width: 50%;
+    background-color: white;
+    border-radius: 5px;
+    border: 2px outset #BBE2C6;
+    border-color: #BBE2C6;
+    cursor: pointer;
+}
+
+.MapPage-newRouteButton:hover{
+    background-color: #BBE2C6;
 }
 
 .MapPage-formDiv{

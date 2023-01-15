@@ -1,36 +1,62 @@
 .MapActiveTrip-titleDiv{
-    width: 100%;
-    display: flex;
     text-align: center;
-    text-decoration: underline;
+    width: 40%;
+    display: inline-block;
+    /* margin: 0; */
 }
 
 .MapActiveTrip-div{
-    position: absolute;
-    width: 200px;
-    background-color: #8ab4f8;
-    height: 100%;
-    overflow: auto;
+    width: 100%;
+    /* background-color: #8ab4f8; */
 }
 
 .MapActiveTrip-departureDiv{
-    margin: auto;
-    width: 100%;
-    display: flex;
+    width: 30%;
+    /* margin: 5px; */
+    display: inline-block;
     text-align: center;
 }
 
 .MapActiveTrip-destinationDiv{
-    margin: 5px;
+    width: 30%;
+    /* margin: 5px; */
+    display: inline-block;
+    text-align: center;
+}
+
+.MapActiveTrip-pitStopFormButtonDiv{
     width: 100%;
-    display: flex;
     text-align: center;
 }
 
 .MapActiveTrip-pitStopFormButton{
-    padding: 5px;
-    width: 100%;
-    display: flex;
-    /* background-color: #BBE2C6; */
-    justify-content: center;
+    margin: 5px;
+    width: 50%;
+    background-color: white;
+    border-radius: 5px;
+    border: 2px outset #BBE2C6;
+    border-color: #BBE2C6;
+    cursor: pointer;
+}
+
+.MapActiveTrip-pitStopFormButton:hover{
+    background-color: #BBE2C6;
+}
+
+.MapActiveTrip-closeTripButtonDiv{
+    text-align: center;
+}
+
+.MapActiveTrip-closeTripButton{
+    width: 50%;
+    margin: 5px;
+    background-color: white;
+    border-radius: 5px;
+    border-color: red;
+    cursor: pointer;
+}
+
+.MapActiveTrip-closeTripButton:hover{
+    background-color: red;
+    color: white;
 }

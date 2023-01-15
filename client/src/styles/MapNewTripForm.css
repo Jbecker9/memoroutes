@@ -1,5 +1,35 @@
 .MapNewTripForm-div{
-    width:100%;
-    display: flex;
-    justify-content: center;
+    border: 5px outset rgb(235, 235, 235);
+    border-radius: 5px;
+    margin: auto;
+    width: 95%;
+    overflow: hidden;
+}
+
+.MapNewTripForm-closeFormButton{
+    width: 50%;
+    margin: 5px;
+    background-color: white;
+    border-radius: 5px;
+    border-color: red;
+    cursor: pointer;
+}
+
+.MapNewTripForm-closeFormButton:hover{
+    background-color: red;
+    color: white;
+}
+
+.MapNewTripForm-button{
+    width: 50%;
+    background-color: white;
+    border-radius: 5px;
+    border: 2px outset #BBE2C6;
+    border-color: #BBE2C6;
+    cursor: pointer;
+    margin: 2px auto;
+}
+
+.MapNewTripForm-button:hover{
+    background-color: #BBE2C6;
 }

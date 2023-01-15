@@ -5,6 +5,7 @@ import NewTripForm from "./NewTripForm";
 import { MapPageContext } from "../../context/mapPage";
 import ActiveTrip from "./ActiveTrip/ActiveTrip";
 import { useSelector } from "react-redux";
+import FindOrCreateTrip from "./FindOrCreateTrip";
 
 function Map(){
     const { activeTrip, setActiveTrip, showActiveRoadTrip, startingPoint, setStartingPoint, setPath, renderNewTripForm, setRenderNewTripForm, path } = useContext(MapPageContext)
@@ -70,16 +71,10 @@ function Map(){
 
     return(
         <div className="MapPage-div">
-            Map Page
-            <div className="MapPage-selectRouteDiv">
-                <form onSubmit={renderActiveTrip}>
-                    <select onChange={(event)=>setExistingTripId(event.target.value)}>
-                        { user.road_trips?.map((trip) => <option value={trip.id} key={trip.id}>{trip.trip_name}</option>) }
-                    </select>
-                    <button>Set Active Trip!</button>
-                </form>
+            <div className="MapPage-ActiveTripSideBarDiv">
+                                { activeTrip ? <ActiveTrip /> : <FindOrCreateTrip renderActiveTrip={renderActiveTrip} setExistingTripId={setExistingTripId} handleNewTripFormRender={handleNewTripFormRender} /> }
             </div>
-            <div className="MapPage-mapDiv">
+            {/* <div className="MapPage-mapDiv"> */}
                     <LoadScript libraries={Polyline} googleMapsApiKey="AIzaSyDBoExD9NToRJN8IGok7pUCySpw10SRVAE">
                         <GoogleMap
                         id="direction"
@@ -98,15 +93,9 @@ function Map(){
                             : null 
                             }
                             { activeTrip?.destination ? <Polyline path={path} options={styling} /> : null }
-                            <div className="MapPage-formDiv">
-                                { renderNewTripForm ? <NewTripForm /> : <button className="MapPage-newRouteButton" onClick={handleNewTripFormRender}> Create A New Trip! </button> }
-                            </div>
-                            <div className="MapPage-ActiveTripSideBarDiv">
-                                { activeTrip ? <ActiveTrip /> : null }
-                            </div>
                         </GoogleMap>
                     </LoadScript>
-            </div>
+            {/* </div> */}
         </div>
     )
 }

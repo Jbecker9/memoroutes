@@ -5,15 +5,15 @@ import { updateUserData } from "../../../../../reducers/userSlice";
 import "../../../../../styles/MapActiveTripPitStop.css"
 
 function PitStopCard({ pitStop }){
-    const { findActiveTrip, setActiveTrip, setStartingPoint, setRenderUpdatePitStopForm } = useContext(MapPageContext)
+    const { findActiveTrip, fillPathPitStops, setStartingPoint, setRenderUpdatePitStopForm } = useContext(MapPageContext)
     const dispatch = useDispatch();
 
     function updateStartingPoint(){
         setStartingPoint({
             name: pitStop.location_name,
             coordinates: {
-                lat: parseInt(pitStop.lat),
-                lng: parseInt(pitStop.lng),
+                lat: parseFloat(pitStop.lat),
+                lng: parseFloat(pitStop.lng),
             },
             zoom: 13,
             state: pitStop.state_name,
@@ -28,7 +28,7 @@ function PitStopCard({ pitStop }){
         }).then((response)=>response.json())
             .then((userData) => {
                 dispatch(updateUserData(userData));
-                setActiveTrip(findActiveTrip(userData));
+                fillPathPitStops(findActiveTrip(userData));
             })
     }
 
@@ -43,9 +43,9 @@ function PitStopCard({ pitStop }){
                 <h3 className="MapActiveTripPitStop-textSpacing">{ pitStop.location_name }</h3>
                 <h5 className="MapActiveTripPitStop-textSpacing">{ pitStop.city_name },</h5>
                 <h5 className="MapActiveTripPitStop-textSpacing">{ pitStop.state_name }</h5>
-                <button onClick={updateStartingPoint}> Go to Pit Stop! </button>
-                <button id={`pitStopButton_${pitStop.id}`} onClick={handlePitStopFormClick}> Update Pit Stop! </button>
-                <button onClick={handlePitStopDelete}> Delete Pit Stop </button>
+                <button className="MapActiveTripPitStop-button" onClick={updateStartingPoint}> Go to Pit Stop! </button>
+                <button className="MapActiveTripPitStop-button" id={`pitStopButton_${pitStop.id}`} onClick={handlePitStopFormClick}> Update Pit Stop! </button>
+                <button className="MapActiveTripPitStop-deleteButton" onClick={handlePitStopDelete}> Delete Pit Stop </button>
             </div>
         </div>
     )

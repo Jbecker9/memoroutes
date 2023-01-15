@@ -7,6 +7,8 @@ class PitStop < ApplicationRecord
 
     before_validation :add_city_and_state
 
+    default_scope { order(id: :asc) }
+
 private
 
     def add_city_and_state
