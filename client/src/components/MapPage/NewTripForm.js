@@ -65,7 +65,7 @@ function NewTripForm(){
                   name="trip_name"
                   placeholder="Trip Name..."
                   onChange={handleTripNameChange}
-                  value={startingPoint.name}
+                  value={tripName}
                   />
                 </div>
                 <div>
