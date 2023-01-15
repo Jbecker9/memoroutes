@@ -6,12 +6,12 @@ import { updateUserData } from "../../../reducers/userSlice";
 import "../../../styles/UserPitStop.css"
 
 function PitStopCard({ trip, pitStop }){
-    const { setPath, setActiveTrip, setRenderUpdatePitStopForm, setStartingPoint, setUser } = useContext(MapPageContext)
+    const { fillPathPitStops, setRenderUpdatePitStopForm, setStartingPoint } = useContext(MapPageContext)
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
     function handleStopUpdateRedirect(){
-        setActiveTrip(trip)
+        fillPathPitStops(trip)
         setRenderUpdatePitStopForm(pitStop)
         setStartingPoint({
             name: pitStop.location_name,
@@ -23,10 +23,6 @@ function PitStopCard({ trip, pitStop }){
             state: pitStop.state_name,
             zoom: 7
         })
-        setPath([
-            {lat: parseInt(trip?.departure?.lat), lng: parseInt(trip?.departure?.lng)},
-            {lat: parseInt(trip?.destination?.lat), lng: parseInt(trip?.destination?.lng)}
-          ])
         navigate("/map")
     }
 

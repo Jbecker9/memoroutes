@@ -5,7 +5,7 @@ import { updateUserData } from "../../../../reducers/userSlice";
 import "../../../../styles/PitStopForm.css"
 
 function PitStopForm(){
-    const { findActiveTrip, activeTrip, setActiveTrip, setUser, setPitStopForm, startingPoint, setStartingPoint } = useContext(MapPageContext)
+    const { findActiveTrip, activeTrip, setActiveTrip, setUser, fillPathPitStops, setPitStopForm, startingPoint, setStartingPoint } = useContext(MapPageContext)
     const dispatch = useDispatch();
     
     function handleNameChange(event){
@@ -35,7 +35,7 @@ function PitStopForm(){
                 }).then((response)=>response.json())
                     .then((userData) => {
                         dispatch(updateUserData(userData));
-                        setActiveTrip(findActiveTrip(userData))
+                        fillPathPitStops(findActiveTrip(userData))
                         setPitStopForm(false);
                         setStartingPoint({
                             name: `Starting Point`,

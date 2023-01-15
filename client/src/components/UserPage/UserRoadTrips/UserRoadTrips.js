@@ -9,13 +9,13 @@ import { updateUserData } from "../../../reducers/userSlice";
 
 function UserRoadTrips({ trip }){
     const [pitStopClick, setPitStopClick] = useState(false)
-    const { setPath, setActiveTrip, setStartingPoint, fillPathContents } = useContext(MapPageContext)
+    const { setPath, setActiveTrip, setStartingPoint, fillPathPitStops } = useContext(MapPageContext)
     const dispatch = useDispatch();
     const navigate = useNavigate();
     
     function renderActiveTrip(){
         setActiveTrip(trip)
-        fillPathContents(trip)
+        fillPathPitStops(trip)
         setStartingPoint({
             name: trip.trip_name,
             coordinates: {

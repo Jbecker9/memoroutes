@@ -50,13 +50,14 @@ function MapPageProvider({ children }) {
         let newDes = { lat: parseFloat(route.destination.lat), lng: parseFloat(route.destination.lng) }
         pitStopPath.splice(pathLength, 0, newDes)
       }
-      console.log(pitStopPath)
       setPath(pitStopPath)
     }
 
 
     function findActiveTrip(userObj){
-      return userObj.road_trips.find((trip) => trip.id === activeTrip.id )
+      const foundTrip = userObj.road_trips.find((trip) => trip.id === activeTrip.id )
+      setActiveTrip(foundTrip)
+      return foundTrip
   }
 
     return <MapPageContext.Provider value={{ fillPathPitStops, creationSuccessMessage, setCreationSuccessMessage, findActiveTrip, showActiveRoadTrip, setActiveTrip, activeTrip, pitStopForm, setPitStopForm, startingPoint, setStartingPoint, renderNewTripForm, setRenderNewTripForm, renderUpdatePitStopForm, setRenderUpdatePitStopForm, path, setPath, pathStops, setPathStops }}>{ children }</MapPageContext.Provider>

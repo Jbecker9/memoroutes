@@ -4,7 +4,7 @@ import { MapPageContext } from "../../../../context/mapPage";
 import { updateUserData } from "../../../../reducers/userSlice";
 
 function DestinationForm({ setDestinationForm }){
-    const { startingPoint, setStartingPoint, activeTrip, setActiveTrip, fillPathContents } = useContext(MapPageContext)
+    const { startingPoint, setStartingPoint, activeTrip, setActiveTrip, fillPathPitStops, findActiveTrip } = useContext(MapPageContext)
     const dispatch = useDispatch();
     console.log(startingPoint)
 
@@ -34,9 +34,7 @@ function DestinationForm({ setDestinationForm }){
         }).then((response)=>response.json())
             .then((userData)=>{
                 dispatch(updateUserData(userData))
-                const newActiveTrip = userData.road_trips.find((trip) => trip.id === activeTrip.id)
-                fillPathContents(newActiveTrip)
-                setActiveTrip(newActiveTrip)
+                fillPathPitStops(findActiveTrip(userData))
             })
     }
 
