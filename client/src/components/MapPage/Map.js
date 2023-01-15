@@ -76,7 +76,7 @@ function Map(){
                                 { activeTrip ? <ActiveTrip /> : <FindOrCreateTrip renderActiveTrip={renderActiveTrip} setExistingTripId={setExistingTripId} handleNewTripFormRender={handleNewTripFormRender} /> }
             </div>
             {/* <div className="MapPage-mapDiv"> */}
-                    <LoadScript libraries={Polyline} googleMapsApiKey={APIKEY}>
+                    <LoadScript libraries={Polyline} googleMapsApiKey={AIzaSyDBoExD9NToRJN8IGok7pUCySpw10SRVAE}>
                         <GoogleMap
                         id="direction"
                         mapContainerClassName="MapPage-map"
