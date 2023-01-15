@@ -27,3 +27,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+#Ignore Google Maps API Key
+client/src/components/Key.js
