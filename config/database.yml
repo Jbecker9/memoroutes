@@ -81,6 +81,4 @@ test:
 #
 production:
   <<: *default
-  database: memoroutes_production
-  username: memoroutes
-  password: <%= ENV["MEMOROUTES_DATABASE_PASSWORD"] %>
+  url: <%= ENV['DATABASE_URL'] %>
