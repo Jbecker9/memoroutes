@@ -1,12 +1,10 @@
 import React, { useContext, useState } from "react";
 import {  GoogleMap, LoadScript, MarkerClusterer, Polyline, MarkerF } from '@react-google-maps/api'
 import "../../styles/MapPage.css"
-import NewTripForm from "./NewTripForm";
 import { MapPageContext } from "../../context/mapPage";
 import ActiveTrip from "./ActiveTrip/ActiveTrip";
 import { useSelector } from "react-redux";
 import FindOrCreateTrip from "./FindOrCreateTrip";
-import { APIKEY } from "../../Key";
 
 function Map(){
     const { activeTrip, setActiveTrip, showActiveRoadTrip, startingPoint, setStartingPoint, setPath, renderNewTripForm, setRenderNewTripForm, path } = useContext(MapPageContext)
