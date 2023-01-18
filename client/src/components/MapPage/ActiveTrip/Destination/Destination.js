@@ -2,10 +2,21 @@ import React, { useState, useContext } from "react";
 import { MapPageContext } from "../../../../context/mapPage";
 import DestinationForm from "./DestinationForm"
 import "../../../../styles/MapActiveTripDestination.css"
+import { useSelector } from "react-redux";
 
 function Destination(){
-    const { activeTrip, startingPoint } = useContext(MapPageContext)
+    const { activeTrip, startingPoint, setStartingPoint } = useContext(MapPageContext)
     const [destinationForm, setDestinationForm] = useState(null)
+    const user = useSelector((state) => state.user.entities)
+    console.log(user)
+
+    function showDestinationForm(){
+        setDestinationForm(true)
+        setStartingPoint({
+            ...startingPoint,
+            name: `${user.username}'s Destination #${user.destinations.length + 1}`
+        })
+    }
 
     if (activeTrip.destination){
         return(
@@ -18,7 +29,7 @@ function Destination(){
         return(
             <div>
                 <h4 className="MapActiveTripDestination-destinationText"> No Destination! </h4>
-                { destinationForm ? <DestinationForm setDestinationForm={setDestinationForm} startingPoint={startingPoint} /> : <button onClick={()=>setDestinationForm(true)} > Add a Destination! </button> }
+                { destinationForm ? <DestinationForm setDestinationForm={setDestinationForm} startingPoint={startingPoint} /> : <button className="MapActiveTripDestination-button" onClick={()=>showDestinationForm()} > Add a Destination! </button> }
             </div>
         )
     }

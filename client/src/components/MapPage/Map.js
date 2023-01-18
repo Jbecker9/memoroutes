@@ -9,7 +9,7 @@ import FindOrCreateTrip from "./FindOrCreateTrip";
 function Map(){
     const { activeTrip, setActiveTrip, showActiveRoadTrip, startingPoint, setStartingPoint, setPath, renderNewTripForm, setRenderNewTripForm, path } = useContext(MapPageContext)
     const user = useSelector((state) => state.user.entities)
-    const [existingTripId, setExistingTripId] = useState(user.road_trips[0]?.id)
+    const [existingTripId, setExistingTripId] = useState(setTimeout(() => { return user.road_trips[0]?.id}, 1000))
     
     function findCityOrState(geoInfo, locationType){
        return geoInfo.results[0].address_components.find((addressComponent) => addressComponent.types.includes(locationType)).long_name

@@ -1,3 +1,17 @@
 .MapActiveTripDestination-destinationText{
     text-decoration: underline;
 }
+
+.MapActiveTripDestination-button{
+    margin: 5px;
+    width: 50%;
+    background-color: white;
+    border-radius: 5px;
+    border: 2px outset #BBE2C6;
+    border-color: #BBE2C6;
+    cursor: pointer;
+}
+
+.MapActiveTripDestination-button:hover{
+    background-color: #BBE2C6;
+}
