@@ -1,14 +1,16 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { logOutUser } from "../reducers/userSlice";
 import "../styles/NavBar.css"
 
 function NavBar({ setShowMenu }){
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     function logout(){
         dispatch(logOutUser())
+        navigate("/")
     }
 
     const linkStyles = {
