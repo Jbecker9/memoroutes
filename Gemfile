@@ -59,3 +59,6 @@ gem 'bigdecimal'
 
 gem 'kaminari' 
   # pagination
+
+gem 'dotenv-rails'
+  #hide API key

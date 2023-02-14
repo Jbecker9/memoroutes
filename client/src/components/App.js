@@ -5,7 +5,6 @@ import "../styles/App.css"
 import Login from "./Login";
 import NavRoutes from "./NavRoutes";
 
-
 function App() {
   const user = useSelector((state)=> state.user);
   const dispatch = useDispatch();

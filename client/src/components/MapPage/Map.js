@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import FindOrCreateTrip from "./FindOrCreateTrip";
 
 function Map(){
-    const { activeTrip, setActiveTrip, showActiveRoadTrip, startingPoint, setStartingPoint, setPath, renderNewTripForm, setRenderNewTripForm, path } = useContext(MapPageContext)
+    const { activeTrip, setActiveTrip, showActiveRoadTrip, startingPoint, setStartingPoint, setPath, setRenderNewTripForm, path } = useContext(MapPageContext)
     const user = useSelector((state) => state.user.entities)
     const [existingTripId, setExistingTripId] = useState(setTimeout(() => { return user.road_trips[0]?.id}, 1000))
     
@@ -16,7 +16,7 @@ function Map(){
     }
 
     function handleMapClick(event){
-        fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${event.latLng.lat()},${event.latLng.lng()}&key=AIzaSyDBoExD9NToRJN8IGok7pUCySpw10SRVAE`)
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${event.latLng.lat()},${event.latLng.lng()}&key=${process.env.REACT_APP_API_KEY}`)
             .then((res)=>res.json())
             .then((locationData) => {
                 if(activeTrip.departure && !activeTrip.destination){
@@ -73,8 +73,7 @@ function Map(){
             <div className="MapPage-ActiveTripSideBarDiv">
                                 { activeTrip ? <ActiveTrip /> : <FindOrCreateTrip renderActiveTrip={renderActiveTrip} setExistingTripId={setExistingTripId} handleNewTripFormRender={handleNewTripFormRender} /> }
             </div>
-            {/* <div className="MapPage-mapDiv"> */}
-                    <LoadScript libraries={Polyline} googleMapsApiKey="AIzaSyDBoExD9NToRJN8IGok7pUCySpw10SRVAE">
+                    <LoadScript libraries={Polyline} googleMapsApiKey={process.env.REACT_APP_API_KEY}>
                         <GoogleMap
                         id="direction"
                         mapContainerClassName="MapPage-map"
@@ -94,7 +93,6 @@ function Map(){
                             { activeTrip?.destination ? <Polyline path={path} options={styling} /> : null }
                         </GoogleMap>
                     </LoadScript>
-            {/* </div> */}
         </div>
     )
 }
