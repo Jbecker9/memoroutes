@@ -6,6 +6,8 @@ import ActiveTrip from "./ActiveTrip/ActiveTrip";
 import { useSelector } from "react-redux";
 import FindOrCreateTrip from "./FindOrCreateTrip";
 
+console.log("Hello World!")
+
 function Map(){
     const { activeTrip, setActiveTrip, showActiveRoadTrip, startingPoint, setStartingPoint, setPath, setRenderNewTripForm, path } = useContext(MapPageContext)
     const user = useSelector((state) => state.user.entities)
