@@ -14,8 +14,8 @@ function Login(){
 
     return(
         <div className="Login-div">
+            <h1 className="Login-h1"> Memoroutes </h1>
             <div className="Login-loginContainer">
-            <h1> Memoroutes </h1>
                 { createUserClick ? <CreateUserForm setCreationSuccessMessage={setCreationSuccessMessage} closeForm={closeForm} /> : <LoginForm creationSuccessMessage={creationSuccessMessage} setCreationSuccessMessage={setCreationSuccessMessage} closeForm={closeForm} /> }
             </div>
         </div>

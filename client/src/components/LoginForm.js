@@ -41,7 +41,7 @@ function LoginForm({ closeForm }){
 
     return(
         <div className="Login-Formdiv">
-            <h1> Log In </h1>
+            <h1> User Login </h1>
             <form onSubmit={handleSubmit} >
                 <input 
                     onChange={handleChange}

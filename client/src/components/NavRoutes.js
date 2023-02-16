@@ -15,7 +15,7 @@ function NavRoutes(){
     const { creationSuccessMessage } = useContext(MapPageContext)
 
     return(
-        <div className="NavRoutes-div">
+        <div className="NavRoutes-div" id="navRoutesID">
             <div className="NavRoutes-navBarContainer">
                 <div className="NavRoutesMenuButton" onClick={()=>setShowMenu(!showMenu)} > { showMenu ? "Close Menu" : "Menu" } </div>
 
