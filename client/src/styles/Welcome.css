@@ -1,9 +1,16 @@
 .headerText{
     text-align: center;
+    cursor: pointer;
 }
 
 .subtext-box{
     border: solid 2px rgb(152, 152, 152);
-    padding: 3px;
-    margin: 3px
+    border-radius: 5px;
+    padding: 5px;
+    margin: 10px
+}
+
+.description-div{
+    padding: 5px;
+    margin: 10px;
 }

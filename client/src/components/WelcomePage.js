@@ -1,19 +1,20 @@
 import React from "react";
-// import { useLocation } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 import "../styles/Welcome.css"
 
 function WelcomePage(){
+    const navigate = useNavigate();
 
     return(
     <div className="Welcome-div">
-        <div>
+        <div className="description-div">
             <h1 className="headerText"> Welcome to Memoroutes! </h1>
             <h3 className="headerText"> Memories are a Journey, not a Destination! </h3>
             <p> Memoroutes is a website designed to expand the traditional navigation service definition of point A to point B</p>
             <p> We give the user an option to record all Pit Stops in-between point A and point B of their road trips! </p>
         </div>
         <div className="subtext-box">
-        <h3 className="headerText"> Map </h3>
+        <h3 className="headerText" onClick={()=>navigate('/map')} > Map </h3>
             <p> This is where you will be able to see your road trip navigation! </p>
             <p> To select an existing road trip from your own trip collection, select a desired trip from the dropdown table! </p>
             <p> If you would like to create a new road trip, simply click the create a new road trip button!</p>
@@ -21,19 +22,19 @@ function WelcomePage(){
             <p> ** Distance is calculated from the departure and distance coordinates and is NOT from distance on the roads **</p>
         </div>
         <div className="subtext-box">
-            <h3 className="headerText"> Discover Road Trips </h3>
+            <h3 className="headerText" onClick={()=>navigate('/roadTrips')}> Discover Road Trips </h3>
             <p> This is where you will be able to see all of the road trips! </p>
             <p> Information on the road trips are able to be filtered and displayed, such as: the username, the road trip name, the trip distance, and users are able to see the pit stops accompanied with the road trips! </p>
             <p> You can also like a road trip adding to its popularity! </p>
         </div>
         <div className="subtext-box">
-            <h3 className="headerText"> Search by State </h3>
+            <h3 className="headerText" onClick={()=>navigate('/states')}> Search by State </h3>
             <p> This is where pit stops and destinations will be able to be viewed sorted by their respective cities and states </p>
             <p> Click on a desired state and all available cities will appear with information regarding how many pit stops and destinations each city currently has </p>
             <p> To see the list of pit stops or destinations for a city, click the button labeled "show [destinations/pit stops]" </p>
         </div>
         <div className="subtext-box">
-            <h3 className="headerText"> Profile </h3>
+            <h3 className="headerText" onClick={()=>navigate('/userPage')}> Profile </h3>
             <p> This is where you will be able to see the information for all of your road trips, simply click the button labled "show road trips!"</p>
             <p> If you would like to create a road trip, click the button labled "Create Trip!" and you will be navigated to the map page's new road trip form </p>
             <p> The road trips displayed are all able to be deleted through this page as well! </p>
