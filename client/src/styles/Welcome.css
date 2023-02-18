@@ -1,3 +1,9 @@
 .headerText{
     text-align: center;
 }
+
+.subtext-box{
+    border: solid 2px rgb(152, 152, 152);
+    padding: 3px;
+    margin: 3px
+}

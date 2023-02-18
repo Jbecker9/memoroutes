@@ -4,6 +4,7 @@ import { fetchUser } from "../reducers/userSlice";
 import "../styles/App.css"
 import Login from "./Login";
 import NavRoutes from "./NavRoutes";
+// import * as dotenv from 'dotenv'
 
 function App() {
   const user = useSelector((state)=> state.user);
@@ -13,10 +14,12 @@ function App() {
     dispatch(fetchUser())
   }, [dispatch])
 
-  if (!(user || user.entities?.error)){
-    return <NavRoutes />
-  } else {
+  console.log(process.env.REACT_APP_GOOGLE_MAPS_API_KEY)
+
+  if (!user && user.entities?.error){
     return <Login />
+  } else {
+    return <NavRoutes />
   }
 }
 
