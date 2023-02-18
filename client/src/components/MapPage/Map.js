@@ -6,19 +6,28 @@ import ActiveTrip from "./ActiveTrip/ActiveTrip";
 import { useSelector } from "react-redux";
 import FindOrCreateTrip from "./FindOrCreateTrip";
 
-console.log("Hello World!")
-
 function Map(){
     const { activeTrip, setActiveTrip, showActiveRoadTrip, startingPoint, setStartingPoint, setPath, setRenderNewTripForm, path } = useContext(MapPageContext)
     const user = useSelector((state) => state.user.entities)
-    const [existingTripId, setExistingTripId] = useState(setTimeout(() => { return user.road_trips[0]?.id}, 1000))
+    const [existingTripId, setExistingTripId] = useState(setTimeout(() => findExistingRoadTrips(), 1000))
     
     function findCityOrState(geoInfo, locationType){
        return geoInfo.results[0].address_components.find((addressComponent) => addressComponent.types.includes(locationType)).long_name
     }
 
+    function findExistingRoadTrips(){
+        if (user.road_trips){
+            return user.road_trips[0].id
+        } else {
+            return 0
+        }
+    }
+
+    console.log(user.road_trips)
+    findExistingRoadTrips()
+
     function handleMapClick(event){
-        fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${event.latLng.lat()},${event.latLng.lng()}&key=${process.env.REACT_APP_API_KEY}`)
+        fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${event.latLng.lat()},${event.latLng.lng()}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`)
             .then((res)=>res.json())
             .then((locationData) => {
                 if(activeTrip.departure && !activeTrip.destination){
@@ -75,7 +84,7 @@ function Map(){
             <div className="MapPage-ActiveTripSideBarDiv">
                                 { activeTrip ? <ActiveTrip /> : <FindOrCreateTrip renderActiveTrip={renderActiveTrip} setExistingTripId={setExistingTripId} handleNewTripFormRender={handleNewTripFormRender} /> }
             </div>
-                    <LoadScript libraries={Polyline} googleMapsApiKey={process.env.REACT_APP_API_KEY}>
+                    <LoadScript libraries={Polyline} googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}>
                         <GoogleMap
                         id="direction"
                         mapContainerClassName="MapPage-map"
