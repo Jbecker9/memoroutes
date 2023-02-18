@@ -7,8 +7,7 @@
     width: 50%;
     background-color: white;
     border-radius: 5px;
-    border: 2px outset #BBE2C6;
-    border-color: #BBE2C6;
+    border: 2px outset #d6d6d6;
     cursor: pointer;
     margin: 5px auto;
     text-align: center;
@@ -16,7 +15,7 @@
 }
 
 .UserPage-button:hover{
-    background-color: #BBE2C6;
+    background-color: #d6d6d6;
 }
 
 .UserPage-tripsDiv{

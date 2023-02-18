@@ -13,7 +13,7 @@ function App() {
     dispatch(fetchUser())
   }, [dispatch])
 
-  if (!user && user.entities?.error){
+  if (!user || user.entities?.error){
     return <Login />
   } else {
     return <NavRoutes />

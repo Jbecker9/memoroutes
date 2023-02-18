@@ -23,9 +23,6 @@ function Map(){
         }
     }
 
-    console.log(user.road_trips)
-    findExistingRoadTrips()
-
     function handleMapClick(event){
         fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${event.latLng.lat()},${event.latLng.lng()}&key=${process.env.REACT_APP_GOOGLE_MAPS_API_KEY}`)
             .then((res)=>res.json())

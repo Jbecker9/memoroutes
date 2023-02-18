@@ -2,7 +2,7 @@
     background-color: white;
     margin: 10px auto;
     border: 2px solid;
-    border-color: #BBE2C6;
+    border-color: #d6d6d6;
     border-radius: 5px;
     box-shadow: 2px 3px 5px #999;
     text-align: center;
@@ -12,14 +12,14 @@
     width: 25%;
     background-color: white;
     border-radius: 5px;
-    border: 2px outset #BBE2C6;
-    border-color: #BBE2C6;
+    border: 2px outset;
+    border-color: #d6d6d6;
     cursor: pointer;
     margin: 2px auto;
 }
 
 .TripCard-pitStopButton:hover{
-    background-color: #BBE2C6;
+    background-color: #d6d6d6;
 }
 
 .TripCard-likeButton{
